@@ -1,0 +1,9 @@
+{
+  "IndexPage": {
+    "title": "next-intl example",
+    "description": "Это базовый пример, демонстрирующий использование <code>next-intl</code> с маршрутизатором приложений Next.js. Попробуйте изменить локаль в правом верхнем углу и посмотрите, как изменится содержимое."
+  },
+  "LocaleLayout": {
+    "title": "next-intl example"
+  }
+}
