@@ -2,6 +2,7 @@ import React from "react";
 import {useTranslations} from 'next-intl';
 import {unstable_setRequestLocale} from 'next-intl/server';
 import PageLayout from "@/components/PageLayout";
+import LatestEntries from "@/ui/main/latest-entries";
 
 
 type Props = {
@@ -23,6 +24,7 @@ export default function IndexPage({params: {locale}}: Props) {
                     )
                 })}
             </p>
+            <LatestEntries />
         </PageLayout>
     );
 }
