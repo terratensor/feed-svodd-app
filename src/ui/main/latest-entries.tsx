@@ -9,7 +9,7 @@ export default async function LatestEntries() {
         return (
             <div
                 key={hit._id}
-                className="flex flex-col max-w-4xl mx-auto my-5">
+                className="flex flex-col max-w-4xl mx-auto mb-5">
                 <h3 className="text-xl my-3">{hit._source.title}</h3>
                 <div className="text-base/7">{hit._source.summary}</div>
                 <a href={hit._source.url} target="_blank">{hit._source.url}</a>
