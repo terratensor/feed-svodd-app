@@ -43,7 +43,7 @@ function makeQuery(text: string) {
                 "summary",
                 "content"
             ],
-            limit: 200,
+            limit: 0,
             no_match_size: 0,
             // max_matches: 100,
             pre_tags: "<mark>",
