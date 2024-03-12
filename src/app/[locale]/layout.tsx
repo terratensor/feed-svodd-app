@@ -3,6 +3,7 @@ import {Inter} from 'next/font/google';
 import {getTranslations, unstable_setRequestLocale} from 'next-intl/server';
 import React, {ReactNode} from 'react';
 import {locales} from '@/config';
+import styles from "@/app/styles.module.scss"
 
 const inter = Inter({subsets: ['latin']});
 
@@ -24,8 +25,8 @@ export default function LocaleLayout({
     // Enable static rendering
     unstable_setRequestLocale(locale);
     return (
-        <html className="h-full" lang={locale}>
-        <body className={clsx(inter.className, 'flex h-full flex-col')}>
+        <html className="dark h-full" lang={locale}>
+        <body className={clsx(inter.className, `bg-white dark:bg-svoddBlack-200 flex h-full flex-col`)}>
         {/*<Navigation />*/}
         {children}
         </body>

@@ -41,7 +41,7 @@ function makeQuery(text: string, offset: number) {
         index: "feed",
         highlight: {
             fields: [
-                "title",
+                // "title",
                 "summary",
                 "content"
             ],
@@ -53,11 +53,11 @@ function makeQuery(text: string, offset: number) {
         },
         query: {
             query_string: `${text}`,
-            // bool: {
-            //     should: [
-            //         {equals: {language: "ru"}},
-            //     ],
-            // },
+            bool: {
+                // should: [
+                //     {equals: {language: "ru"}},
+                // ],
+            },
         },
         limit: 20,
         offset: offset,
@@ -121,5 +121,5 @@ export async function fetchFilteredEntriesPages(text: string) {
     }
     let hits = await response.json();
 
-    return Math.ceil(Number(hits["hits"]["total"]) / ITEMS_PER_PAGE)
+    return Math.ceil(Number(hits["hits"] ? hits["hits"]["total"] : 0) / ITEMS_PER_PAGE)
 }
