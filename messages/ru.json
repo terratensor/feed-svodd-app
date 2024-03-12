@@ -1,7 +1,7 @@
 {
   "IndexPage": {
     "title": "next-intl example",
-    "description": "Это базовый пример, демонстрирующий использование <code>next-intl</code> с маршрутизатором приложений Next.js. Попробуйте изменить локаль в правом верхнем углу и посмотрите, как изменится содержимое."
+    "description": "Это базовый пример, демонстрирующий использование <code>next-intl</code> с маршрутизатором <code>приложений</code> Next.js. Попробуйте изменить локаль в правом верхнем углу и посмотрите, как изменится содержимое."
   },
   "LocaleLayout": {
     "title": "next-intl example"
@@ -9,5 +9,9 @@
   "NotFoundPage": {
     "title": "Page not found",
     "description": "Please double-check the browser address bar or use the navigation to go to a known page."
+  },
+  "PageLayout": {
+    "title": "PageLayout",
+    "description": "Description"
   }
 }

@@ -1,20 +1,23 @@
-import {fetchLatestEntries} from "@/lib/data";
+import {fetchFilteredEntries, fetchLatestEntries} from "@/lib/data";
 import clsx from "clsx";
 
-export default async function LatestEntries() {
-    const latestEntries = await fetchLatestEntries();
+export default async function LatestEntries({query}: {query: string}) {
+    // const latestEntries = await fetchLatestEntries();
+    const latestEntries = await fetchFilteredEntries(query);
     const hits = latestEntries["hits"]["hits"];
 
-    return (<div> {hits.map((hit: Hit) => {
+    console.log(hits)
+
+    return (<>{hits.map((hit: Hit) => {
         return (
             <div
                 key={hit._id}
-                className="flex flex-col max-w-4xl mx-auto mb-5">
-                <h3 className="text-xl my-3">{hit._source.title}</h3>
-                <div className="text-base/7">{hit._source.summary}</div>
+                className="mb-10">
+                <h3 className="text-xl font-semibold ">{hit._source.title}</h3>
+                <div className="text-base/7">{hit._source.content}</div>
                 <a href={hit._source.url} target="_blank">{hit._source.url}</a>
             </div>
         );
     })}
-    </div>);
+    </>);
 }
