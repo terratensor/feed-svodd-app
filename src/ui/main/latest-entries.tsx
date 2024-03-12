@@ -1,12 +1,10 @@
 import {fetchFilteredEntries, fetchLatestEntries} from "@/lib/data";
 import clsx from "clsx";
 
-export default async function LatestEntries({query}: { query: string }) {
+export default async function LatestEntries({query, currentPage}: { query: string, currentPage: number }) {
     // const latestEntries = await fetchLatestEntries();
-    const latestEntries = await fetchFilteredEntries(query);
+    const latestEntries = await fetchFilteredEntries(query, currentPage);
     const hits = latestEntries["hits"]["hits"];
-
-    console.log(hits)
 
     return (<>{hits.map((hit: Hit) => {
         return (
