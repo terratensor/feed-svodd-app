@@ -1,11 +1,14 @@
-import {fetchFilteredEntries, fetchLatestEntries} from "@/lib/data";
-import clsx from "clsx";
+import {fetchFilteredEntries} from "@/lib/data";
+import LatestEntries from "@/ui/search/latest-entries";
 
-export default async function LatestEntries({query, currentPage}: { query: string, currentPage: number }) {
+export default async function SearchedEntries({query, currentPage}: { query: string, currentPage: number }) {
     // const latestEntries = await fetchLatestEntries();
     const latestEntries = await fetchFilteredEntries(query, currentPage);
     const hits = latestEntries["hits"]["hits"];
-
+    console.log(query)
+    if (query.length == 0) {
+        return <LatestEntries hits={hits}/>
+    }
     return (<>{hits.map((hit: Hit) => {
         return (
             <div

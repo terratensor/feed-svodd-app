@@ -1,6 +1,6 @@
 import {getTranslations, unstable_setRequestLocale} from 'next-intl/server';
 import PageLayout from "@/components/PageLayout";
-import LatestEntries from "@/ui/main/latest-entries";
+import SearchedEntries from "@/ui/main/searched-entries";
 import Search from "@/ui/search";
 import Pagination from "@/ui/search/pagination";
 import {fetchFilteredEntriesPages} from "@/lib/data";
@@ -31,7 +31,7 @@ export default async function Page({params: {locale}, searchParams}: Props) {
                 <Search placeholder="Поиск по kremlin.ru | mid.ru | mil.ru …"/>
             </div>
             <div className="flex flex-col max-w-6xl mx-auto my-5">
-                <LatestEntries query={query}  currentPage={currentPage} />
+                <SearchedEntries query={query} currentPage={currentPage} />
             </div>
             <div className="mt-5 flex w-full justify-center">
                 <Pagination totalPages={totalPages}/>
