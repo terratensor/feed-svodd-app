@@ -16,3 +16,17 @@ input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+html.h-full.dark {
+  mark {
+    background-color: #504f4f;
+    color: #bfc3c3;
+  }
+}
+
+html.h-full.light {
+  mark {
+    background-color: #e1e0e0;
+    color: #212529;
+  }
+}

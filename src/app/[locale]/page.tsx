@@ -5,6 +5,11 @@ import Search from "@/ui/search";
 import Pagination from "@/ui/search/pagination";
 import {fetchFilteredEntriesPages} from "@/lib/data";
 import {log} from "node:util";
+import MainMenu from "@/ui/menu/main-menu";
+import SelectMenu from "@/ui/menu/select-menu";
+import LocaleSwitcher from "@/components/LocaleSwitcher";
+import * as React from "react";
+import ThemeSwitch from "@/components/ThemeSwitch";
 
 
 type Props = {
@@ -28,10 +33,14 @@ export default async function Page({params: {locale}, searchParams}: Props) {
 
     return (
         <PageLayout title={t('title')}>
-            <div className="sticky top-0 p-3 z-40 flex items-center justify-between gap-2 max-w-[1200px] mx-auto bg-svoddBlack-400">
+            <div
+                className="sticky top-0 p-3 z-40 flex items-center
+                justify-between gap-2 max-w-[1200px] mx-auto bg-svoddWhite-400 dark:bg-svoddBlack-400">
                 <Search placeholder={t("SearchPlaceholder")}/>
+                <MainMenu />
+                <ThemeSwitch />
             </div>
-            <div className="flex flex-col max-w-6xl mx-auto my-5 space-y-16 dark:text-svoddWhite">
+            <div className="flex flex-col max-w-6xl mx-auto my-5 space-y-16 text-svoddBlack-100 dark:text-svoddWhite-200">
                 <SearchedEntries query={query} currentPage={currentPage} locale={locale} />
             </div>
             <div className="mt-5 flex w-full justify-center">

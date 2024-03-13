@@ -4,6 +4,7 @@ import {getTranslations, unstable_setRequestLocale} from 'next-intl/server';
 import React, {ReactNode} from 'react';
 import {locales} from '@/config';
 import styles from "@/app/styles.module.scss"
+import {Providers} from "@/app/providers";
 
 const inter = Inter({subsets: ['latin']});
 
@@ -25,10 +26,12 @@ export default function LocaleLayout({
     // Enable static rendering
     unstable_setRequestLocale(locale);
     return (
-        <html className="dark h-full" lang={locale}>
-        <body className={clsx(inter.className, `bg-white dark:bg-svoddBlack-200 flex h-full flex-col`)}>
+        <html className="dark h-full" lang={locale} suppressHydrationWarning>
+        <body className={clsx(inter.className, `bg-svoddWhite-400 dark:bg-svoddBlack-200 flex h-full flex-col`)}>
+        <Providers>
         {/*<Navigation />*/}
         {children}
+        </Providers>
         </body>
         </html>
     );

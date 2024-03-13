@@ -15,10 +15,16 @@ const config: Config = {
       },
       colors: {
         svoddBlack: {
+          100: '#212529',
           200: '#1c1c1e',
           400: '#19181c',
         },
-        svoddWhite: '#bfc3c3',
+        svoddWhite: {
+          100: '#e1e0e0',
+          200: '#bfc3c3',
+          400: '#f9f8f6',
+          600: '#f3f1ed',
+        },
         svoddGray: '#504f4f',
         svoddRed: '#ad3434',
         blue: {
