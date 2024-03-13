@@ -18,5 +18,10 @@
   "PageLayout": {
     "title": "PageLayout",
     "description": "Description"
+  },
+  "EntrySourceUrl": {
+    "kremlin": "Президент России",
+    "mid": "Министерство иностранных дел Российской Федерации",
+    "mil": "Министерство обороны Российской Федерации"
   }
 }

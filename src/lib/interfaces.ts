@@ -9,6 +9,7 @@ interface Source {
     summary: string;
     content: string;
     url: string;
+    language: string;
     published: number;
 }
 

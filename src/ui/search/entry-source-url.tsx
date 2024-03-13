@@ -1,13 +1,17 @@
+import {getTranslations} from "next-intl/server";
+
 const sources = [
-    {site: 'kremlin.ru', title: 'Президент России'},
-    {site: 'mid.ru', title: 'Министерство иностранных дел Российской Федерации'},
-    {site: 'mil.ru', title: 'Министерство обороны Российской Федерации'}
+    {site: 'kremlin.ru', title: 'kremlin'},
+    {site: 'mid.ru', title: 'mid'},
+    {site: 'mil.ru', title: 'mil'}
 ]
-export default function EntrySourceUrl({url}: { url: string }) {
+export default async function EntrySourceUrl({url}: { url: string }) {
+
+    const t = await getTranslations('EntrySourceUrl')
 
     const sr = sources.map((source) => {
         if (url.toLowerCase().indexOf(source.site) >= 0) {
-            return source.title
+            return t(source.title)
         }
         return ''
     })
