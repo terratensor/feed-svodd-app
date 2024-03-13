@@ -11,7 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import {Contrast, DarkMode, LightMode } from "@mui/icons-material";
 import MenuIcon from '@mui/icons-material/Menu';
-import LocaleSwitcher from "@/components/LocaleSwitcher";
+import ThemeSwitch from "@/components/ThemeSwitch";
 
 export default function MainMenu() {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -36,7 +36,7 @@ export default function MainMenu() {
                         aria-expanded={open ? 'true' : undefined}
                     >
 
-                            <MenuIcon className="text-black dark:text-white" />
+                            <MenuIcon className="text-black dark:text-svoddWhite-200" />
 
                     </IconButton>
                 </Tooltip>
@@ -76,7 +76,9 @@ export default function MainMenu() {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
+
                 <MenuItem onClick={handleClose}>
+                    <ThemeSwitch />
                     <Avatar /> Profile
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
