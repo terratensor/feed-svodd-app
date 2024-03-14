@@ -78,8 +78,7 @@ export default function MainMenu() {
             >
 
                 <MenuItem onClick={handleClose}>
-                    <ThemeSwitch />
-                    <Avatar /> Profile
+                    <ThemeSwitch /> Светлая
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
                     <Avatar /> My account

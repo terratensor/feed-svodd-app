@@ -4,10 +4,7 @@ import SearchedEntries from "@/ui/main/searched-entries";
 import Search from "@/ui/search";
 import Pagination from "@/ui/search/pagination";
 import {fetchFilteredEntriesPages} from "@/lib/data";
-import {log} from "node:util";
 import MainMenu from "@/ui/menu/main-menu";
-import SelectMenu from "@/ui/menu/select-menu";
-import LocaleSwitcher from "@/components/LocaleSwitcher";
 import * as React from "react";
 import ThemeSwitch from "@/components/ThemeSwitch";
 
@@ -29,7 +26,7 @@ export default async function Page({params: {locale}, searchParams}: Props) {
     const query = searchParams?.query || '';
     const currentPage = Number(searchParams?.page) || 1;
 
-    const totalPages = await fetchFilteredEntriesPages(query)
+    const totalPages = await fetchFilteredEntriesPages(locale, query)
 
     return (
         <PageLayout title={t('title')}>

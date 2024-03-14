@@ -17,8 +17,8 @@ function setInitialQuery(): QueryString {
         query: {
             query_string: "",
             bool: {
-                should: [{equals: {language: "ru"}}]
-            }
+                should: [{}]
+            },
         },
         limit: 20,
         offset: 0,
@@ -29,10 +29,10 @@ function setInitialQuery(): QueryString {
                 }
             }
         ]
-    }
+    };
 }
 
-function makeQuery(text: string, offset: number) {
+function makeQuery(text: string, offset: number, locale: string) {
 
     let query: QueryString = setInitialQuery()
 
@@ -42,29 +42,17 @@ function makeQuery(text: string, offset: number) {
         }
     }
 
+    if (text === "") {
+        query.query.bool.should = [{equals: {language: locale}}];
+    }
+
     query.query.query_string = text;
     query.offset = offset
 
     return query;
 }
 
-export async function fetchLatestEntries() {
-    noStore();
-    const response = await fetch(`${getApiURL('/search')}`, {
-        next: {revalidate: 10},
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify(setInitialQuery())
-    });
-    if (!response.ok) {
-        throw new Error("failed to fetch API data");
-    }
-    return response.json();
-}
-
-export async function fetchFilteredEntries(text: string, currentPage: number) {
+export async function fetchFilteredEntries(locale: string, text: string, currentPage: number) {
     noStore();
     const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
@@ -74,7 +62,7 @@ export async function fetchFilteredEntries(text: string, currentPage: number) {
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
-        body: JSON.stringify(makeQuery(text, offset))
+        body: JSON.stringify(makeQuery(text, offset, locale))
     });
     if (!response.ok) {
         throw new Error("failed to fetch API data");
@@ -82,7 +70,7 @@ export async function fetchFilteredEntries(text: string, currentPage: number) {
     return response.json();
 }
 
-export async function fetchFilteredEntriesPages(text: string) {
+export async function fetchFilteredEntriesPages(locale: string, text: string) {
     noStore();
 
     const response = await fetch(`${getApiURL('/search')}`, {
@@ -91,7 +79,7 @@ export async function fetchFilteredEntriesPages(text: string) {
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
-        body: JSON.stringify(makeQuery(text, 0))
+        body: JSON.stringify(makeQuery(text, 0, locale))
     });
     if (!response.ok) {
         throw new Error("failed to fetch API data");

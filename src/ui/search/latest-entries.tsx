@@ -17,7 +17,7 @@ export default function LatestEntries({hits, locale}: { hits: Hit[], locale: str
                         hit._source.summary ?
                             <div className="text-base/7" dangerouslySetInnerHTML={{__html: hit._source.summary}}/>
                             :
-                            <div className="text-base/7" dangerouslySetInnerHTML={{__html: hit._source.content}}/>
+                            <div className="text-base/7" dangerouslySetInnerHTML={{__html: hit._source.content.substring(0,300)+'…'}}/>
                     }
 
                     <EntrySourceUrl url={hit._source.url} />

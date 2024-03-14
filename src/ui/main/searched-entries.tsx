@@ -10,7 +10,7 @@ export default async function SearchedEntries({query, currentPage, locale}: {
     locale: string
 }) {
 
-    const latestEntries = await fetchFilteredEntries(query, currentPage);
+    const latestEntries = await fetchFilteredEntries(locale, query, currentPage);
     const hits = latestEntries["hits"] ? latestEntries["hits"]["hits"] : [];
 
     if (query.length == 0) {

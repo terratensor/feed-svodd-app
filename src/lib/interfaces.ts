@@ -33,8 +33,8 @@ interface QueryString {
     highlight?: HighlightFields;
     query: {
         query_string: string;
-        bool?: {
-            should: { equals: { language: string } }[];
+        bool: {
+            should: {}[];
         };
     };
     limit: number;
