@@ -20,7 +20,7 @@ function setInitialQuery(): QueryString {
                 should: [{}]
             },
         },
-        limit: 20,
+        limit: ITEMS_PER_PAGE,
         offset: 0,
         sort: [
             {
