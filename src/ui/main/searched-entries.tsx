@@ -4,13 +4,14 @@ import styles from "./search.module.scss"
 import {showDate} from "@/lib/utils";
 import EntrySourceUrl from "@/ui/search/entry-source-url";
 
-export default async function SearchedEntries({query, currentPage, locale}: {
+export default async function SearchedEntries({query, currentPage, rid, locale}: {
     query: string,
     currentPage: number,
+    rid: number,
     locale: string
 }) {
 
-    const latestEntries = await fetchFilteredEntries(locale, query, currentPage);
+    const latestEntries = await fetchFilteredEntries(locale, query, currentPage, rid);
     const hits = latestEntries["hits"] ? latestEntries["hits"]["hits"] : [];
 
     if (query.length == 0) {

@@ -32,7 +32,7 @@ function setInitialQuery(): QueryString {
     };
 }
 
-function makeQuery(text: string, offset: number, locale: string) {
+function makeQuery(text: string, offset: number, rid: number, locale: string) {
 
     let query: QueryString = setInitialQuery()
 
@@ -45,14 +45,19 @@ function makeQuery(text: string, offset: number, locale: string) {
     if (text === "") {
         query.query.bool.should = [{equals: {language: locale}}];
     }
+    console.log(rid)
+    if (rid > 0) {
+        query.query.bool.should = [{equals: {resource_id: rid}}]
+    }
 
     query.query.query_string = text;
     query.offset = offset
 
+    console.log("%", query.query.bool.should)
     return query;
 }
 
-export async function fetchFilteredEntries(locale: string, text: string, currentPage: number) {
+export async function fetchFilteredEntries(locale: string, text: string, currentPage: number, rid: number) {
     noStore();
     const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
@@ -62,7 +67,7 @@ export async function fetchFilteredEntries(locale: string, text: string, current
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
-        body: JSON.stringify(makeQuery(text, offset, locale))
+        body: JSON.stringify(makeQuery(text, offset, rid, locale))
     });
     if (!response.ok) {
         throw new Error("failed to fetch API data");
@@ -70,7 +75,7 @@ export async function fetchFilteredEntries(locale: string, text: string, current
     return response.json();
 }
 
-export async function fetchFilteredEntriesPages(locale: string, text: string) {
+export async function fetchFilteredEntriesPages(locale: string, text: string, rid: number) {
     noStore();
 
     const response = await fetch(`${getApiURL('/search')}`, {
@@ -79,7 +84,7 @@ export async function fetchFilteredEntriesPages(locale: string, text: string) {
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
-        body: JSON.stringify(makeQuery(text, 0, locale))
+        body: JSON.stringify(makeQuery(text, 0, rid, locale))
     });
     if (!response.ok) {
         throw new Error("failed to fetch API data");

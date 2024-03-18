@@ -14,6 +14,7 @@ type Props = {
     searchParams?: {
         query?: string;
         page?: string;
+        rid?: string;
     }
 };
 
@@ -25,8 +26,9 @@ export default async function Page({params: {locale}, searchParams}: Props) {
 
     const query = searchParams?.query || '';
     const currentPage = Number(searchParams?.page) || 1;
+    const rid = Number(searchParams?.rid) || 0;
 
-    const totalPages = await fetchFilteredEntriesPages(locale, query)
+    const totalPages = await fetchFilteredEntriesPages(locale, query, rid)
 
     return (
         <PageLayout title={t('title')}>
@@ -39,7 +41,7 @@ export default async function Page({params: {locale}, searchParams}: Props) {
             </div>
             <div
                 className="flex flex-col max-w-6xl mx-auto my-5 space-y-16 text-svoddBlack-100 dark:text-svoddWhite-200">
-                <SearchedEntries query={query} currentPage={currentPage} locale={locale} />
+                <SearchedEntries query={query} currentPage={currentPage} rid={rid} locale={locale} />
             </div>
             <div className="mt-5 flex w-full justify-center">
                 <Pagination totalPages={totalPages}/>
