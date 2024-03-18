@@ -26,9 +26,9 @@ export default async function SearchedEntries({query, currentPage, locale}: {
                     className="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl bg-svoddWhite-600 dark:bg-svoddBlack-400"></div>
                 <div className="relative">
                     {hit.highlight.title && hit.highlight.title.length > 0 ?
-                        <h3 className="text-xl pt-8 font-semibold" dangerouslySetInnerHTML={{__html: hit.highlight.title}}/>
+                        <h3 className="text-xl font-semibold pt-8 mb-2" dangerouslySetInnerHTML={{__html: hit.highlight.title}}/>
                         :
-                        <h3 className="text-xl pt-8 font-semibold">{hit._source.title}</h3>
+                        <h3 className="text-xl font-semibold pt-8 mb-2">{hit._source.title}</h3>
                     }
                     {
                         hit.highlight.content.length > 0 ?

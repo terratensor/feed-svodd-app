@@ -3,7 +3,6 @@ import {Inter} from 'next/font/google';
 import {getTranslations, unstable_setRequestLocale} from 'next-intl/server';
 import React, {ReactNode} from 'react';
 import {locales} from '@/config';
-import styles from "@/app/styles.module.scss"
 import {Providers} from "@/app/providers";
 
 const inter = Inter({subsets: ['latin']});
@@ -46,8 +45,12 @@ export async function generateMetadata({
         alternates: {
             canonical: '/',
             languages: {
-                'en': '/en',
                 'ru': '/ru',
+                'en': '/en',
+                'de': '/de',
+                'fr': '/fr',
+                'es': '/es',
+                'pt': '/pt',
             },
         },
         title: t('title'),

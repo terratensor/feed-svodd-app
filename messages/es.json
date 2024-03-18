@@ -1,0 +1,27 @@
+{
+  "IndexPage": {
+    "title": "next-intl example",
+    "description": "Это базовый пример, демонстрирующий использование <code>next-intl</code> с маршрутизатором <code>приложений</code> Next.js. Попробуйте изменить локаль в правом верхнем углу и посмотрите, как изменится содержимое.",
+    "SearchPlaceholder": "Поиск по kremlin.ru | mid.ru | mil.ru …"
+  },
+  "LocaleLayout": {
+    "title": "next-intl example"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, de {🇩🇪 Deutsch} en {🇺🇸 English} other {Unknown}}"
+  },
+  "NotFoundPage": {
+    "title": "Page not found",
+    "description": "Please double-check the browser address bar or use the navigation to go to a known page."
+  },
+  "PageLayout": {
+    "title": "PageLayout",
+    "description": "Description"
+  },
+  "EntrySourceUrl": {
+    "kremlin": "Президент России",
+    "mid": "Министерство иностранных дел Российской Федерации",
+    "mil": "Министерство обороны Российской Федерации"
+  }
+}

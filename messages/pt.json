@@ -1,0 +1,27 @@
+{
+  "IndexPage": {
+    "title": "next-intl example",
+    "description": "This is a basic example that demonstrates the usage of <code>next-intl</code> with the Next.js App Router. Try changing the locale in the top right corner and see how the content changes.",
+    "SearchPlaceholder": "Search on kremlin.ru | mid.ru | mil.ru …"
+  },
+  "LocaleLayout": {
+    "title": "next-intl example"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, de {🇩🇪 Deutsch} en {🇺🇸 English} other {Unknown}}"
+  },
+  "NotFoundPage": {
+    "title": "Page not found",
+    "description": "Please double-check the browser address bar or use the navigation to go to a known page."
+  },
+  "PageLayout": {
+    "title": "PageLayout",
+    "description": "Description"
+  },
+  "EntrySourceUrl": {
+    "kremlin": "President of Russia",
+    "mid": "The Ministry of Foreign Affairs of the Russian Federation",
+    "mil": "The Ministry of Defense of the Russian Federation"
+  }
+}
