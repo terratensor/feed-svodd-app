@@ -34,7 +34,7 @@ interface QueryString {
     query: {
         query_string: string;
         bool: {
-            should: {}[];
+            must: {}[];
         };
     };
     limit: number;

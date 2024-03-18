@@ -17,7 +17,7 @@ function setInitialQuery(): QueryString {
         query: {
             query_string: "",
             bool: {
-                should: [{}]
+                must: []
             },
         },
         limit: ITEMS_PER_PAGE,
@@ -43,17 +43,16 @@ function makeQuery(text: string, offset: number, rid: number, locale: string) {
     }
 
     if (text === "") {
-        query.query.bool.should = [{equals: {language: locale}}];
+        query.query.bool.must.push({equals: {language: locale}});
     }
-    console.log(rid)
+
     if (rid > 0) {
-        query.query.bool.should = [{equals: {resource_id: rid}}]
+        query.query.bool.must.push({equals: {resource_id: rid}})
     }
 
     query.query.query_string = text;
     query.offset = offset
 
-    console.log("%", query.query.bool.should)
     return query;
 }
 
