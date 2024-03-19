@@ -11,8 +11,8 @@ export default function PageLayout({children, title}: Props) {
 
     return (
         <div className="flex-grow md:overflow-y-auto">
-            <div className="w-full">
-                <div className="mx-auto px-2">{children}</div>
+            <div className="w-full mt-[80px]">
+                <div className="mx-auto px-5">{children}</div>
             </div>
         </div>
     );

@@ -55,3 +55,8 @@ export const showDate = (published: number, locale: string) => {
     minute: "2-digit",
   }).format(published*1000)
 }
+
+export const showISOSDate = (timestamp: number) => {
+  const date = new Date(timestamp*1000);
+  return date.toISOString();
+}

@@ -4,12 +4,14 @@ import React from "react";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import {useDebouncedCallback} from "use-debounce";
 import SvoddLogoIcon from "@/ui/icons/SvoddLogoIcon";
-import {Link} from "@/navigation";
+import Link from 'next/link';
+import getMainPageURL from "@/utils/getMainPageURL";
 
 export default function Search({placeholder}: { placeholder: string }) {
 
     const searchParams = useSearchParams();
     const pathname = usePathname();
+    const resourceIDs = searchParams.getAll('rid') || [];
     const {replace} = useRouter();
     const handleSearch = useDebouncedCallback((term) => {
         const params = new URLSearchParams(searchParams)
@@ -21,6 +23,9 @@ export default function Search({placeholder}: { placeholder: string }) {
         }
         replace(`${pathname}?${params.toString()}`);
     }, 300);
+
+
+    const href = getMainPageURL(resourceIDs)
 
     return (
         <div className="relative flex flex-1 flex-shrink-0">
@@ -38,7 +43,13 @@ export default function Search({placeholder}: { placeholder: string }) {
                 defaultValue={searchParams.get('query')?.toString()}
                 id="search"
             />
-            <a href="/">
+            {/*<div className="flex">*/}
+            {/*<input type="checkbox" className="rounded"/> kremlin.ru*/}
+            {/*<input type="checkbox" className="rounded"/> mid.ru*/}
+            {/*<input type="checkbox" className="rounded"/> mil.ru*/}
+
+            {/*</div>*/}
+            <a href={href}>
                 <SvoddLogoIcon className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </a>
         </div>

@@ -4,6 +4,7 @@ import {getTranslations, unstable_setRequestLocale} from 'next-intl/server';
 import React, {ReactNode} from 'react';
 import {locales} from '@/config';
 import {Providers} from "@/app/providers";
+import Navigation from "@/components/Navigation";
 
 const inter = Inter({subsets: ['latin']});
 
@@ -26,10 +27,12 @@ export default function LocaleLayout({
     unstable_setRequestLocale(locale);
     return (
         <html className="dark h-full" lang={locale} suppressHydrationWarning>
-        <body className={clsx(inter.className, `bg-svoddWhite-400 dark:bg-svoddBlack-200 flex h-full flex-col`)}>
+        <body className={clsx(inter.className, `bg-svoddWhite-400 dark:bg-svoddBlack-200`)}>
         <Providers>
-        {/*<Navigation />*/}
-        {children}
+            <main className="flex h-full flex-col">
+                <Navigation />
+                {children}
+            </main>
         </Providers>
         </body>
         </html>
@@ -37,8 +40,8 @@ export default function LocaleLayout({
 }
 
 export async function generateMetadata({
-   params: {locale}
-}: Omit<Props, 'children'>) {
+                                           params: {locale}
+                                       }: Omit<Props, 'children'>) {
     const t = await getTranslations({locale, namespace: 'LocaleLayout'});
 
     return {
@@ -54,7 +57,7 @@ export async function generateMetadata({
             },
         },
         title: t('title'),
-        description: 'The official Next.js Course Dashboard, built with App Router.',
+        description: 'Поиск по сайтам Президента России, Министерства иностранных дел Российской Федерации, Министерство обороны Российской Федерации',
         metadataBase: new URL('https://feed.svodd.ru'),
     };
 }

@@ -1,5 +1,5 @@
 'use client'
-import {usePathname} from "next/navigation";
+import {usePathname, useSearchParams} from "next/navigation";
 import {useEffect} from "react";
 
 export default function Scroll() {
@@ -8,8 +8,13 @@ export default function Scroll() {
     // this useEffect is a workaround to 'fix' that behavior.
 
     const pathname = usePathname();
+    const searchParams = useSearchParams();
+    const search = searchParams.get('page')
+
     useEffect(() => {
-        window.scroll(0, 0);
-    }, [pathname]);
+        console.log(window.innerHeight)
+        window.scrollTo({ top: 100, behavior: 'smooth' });
+        console.log('scroll')
+    }, [search]);
     return <></>;
 }

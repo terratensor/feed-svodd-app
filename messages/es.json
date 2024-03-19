@@ -1,8 +1,8 @@
 {
   "IndexPage": {
-    "title": "next-intl example",
-    "description": "Это базовый пример, демонстрирующий использование <code>next-intl</code> с маршрутизатором <code>приложений</code> Next.js. Попробуйте изменить локаль в правом верхнем углу и посмотрите, как изменится содержимое.",
-    "SearchPlaceholder": "Поиск по kremlin.ru | mid.ru | mil.ru …"
+    "title": "Search on kremlin.ru | mid.ru | mil.ru …",
+    "description": "Search on kremlin.ru | mid.ru | mil.ru …",
+    "SearchPlaceholder": "Search on kremlin.ru | mid.ru | mil.ru …"
   },
   "LocaleLayout": {
     "title": "next-intl example"
