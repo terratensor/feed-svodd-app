@@ -1,6 +1,6 @@
 import {usePathname} from "next/navigation";
 
-export default function getMainPageURL(rids: string[]) {
+export default function useMainPageURL(rids: string[]) {
 
     const pathname = usePathname();
 

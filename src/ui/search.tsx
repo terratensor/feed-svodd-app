@@ -4,8 +4,7 @@ import React from "react";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import {useDebouncedCallback} from "use-debounce";
 import SvoddLogoIcon from "@/ui/icons/SvoddLogoIcon";
-import Link from 'next/link';
-import getMainPageURL from "@/utils/getMainPageURL";
+import useMainPageURL from "@/utils/useMainPageURL";
 
 export default function Search({placeholder}: { placeholder: string }) {
 
@@ -25,7 +24,7 @@ export default function Search({placeholder}: { placeholder: string }) {
     }, 300);
 
 
-    const href = getMainPageURL(resourceIDs)
+    const href = useMainPageURL(resourceIDs)
 
     return (
         <div className="relative flex flex-1 flex-shrink-0">
