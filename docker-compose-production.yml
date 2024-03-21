@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  feed-app:
+    image: ${REGISTRY}/feed-app:${IMAGE_TAG}
+    build:
+      dockerfile: prod.Dockerfile
+    # Set environment variables directly in the docker-compose file
+    environment:
+      ENV_VARIABLE: production
+      NEXT_PUBLIC_ENV_VARIABLE: production
+      PUBLIC_SITE_URL: "http:/feed.svodd.ru"
+      NEXT_API_URL: "http://manticore_feed:9308"
+    networks:
+      - traefik-public
+      - feed-parser-net
+    deploy:
+      placement:
+        constraints: [ node.role == manager ]
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik-public
+        - traefik.http.routers.feed-app.rule=Host(`feed.svodd.ru`)
+        - traefik.http.services.feed-app.loadBalancer.server.port=3000
+        - traefik.http.routers.feed-app.middlewares=frontend-redirect,secure-headers
+        - traefik.http.routers.feed-app.entryPoints=https
+        - traefik.http.routers.feed-app.tls=true
+        - traefik.http.routers.feed-app.tls.certResolver=letsEncrypt
+      mode: replicated
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 15s
+
+  # Add more containers below (nginx, postgres, etc.)
+
+# Define a network, which allows containers to communicate
+# with each other, by using their container name as a hostname
+networks:
+  traefik-public:
+    external: true
+  feed-parser-net:
+    name: feed-parser-net
+    external: true
