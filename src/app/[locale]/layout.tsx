@@ -40,8 +40,8 @@ export default function LocaleLayout({
 }
 
 export async function generateMetadata({
-                                           params: {locale}
-                                       }: Omit<Props, 'children'>) {
+   params: {locale}
+}: Omit<Props, 'children'>) {
     const t = await getTranslations({locale, namespace: 'LocaleLayout'});
 
     return {
