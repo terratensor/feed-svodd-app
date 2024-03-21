@@ -20,10 +20,12 @@ COPY . .
 
 # Note: Don't expose ports here, Compose will handle that for us
 
+ENV TZ=Europe/Moscow
+
 # Start Next.js in development mode based on the preferred package manager
 CMD \
-  if [ -f yarn.lock ]; then yarn dev; \
-  elif [ -f package-lock.json ]; then npm run dev; \
-  elif [ -f pnpm-lock.yaml ]; then pnpm dev; \
-  else npm run dev; \
+  if [ -f yarn.lock ]; then yarn dev -H "0.0.0.0"; \
+  elif [ -f package-lock.json ]; then npm run dev -H "0.0.0.0"; \
+  elif [ -f pnpm-lock.yaml ]; then pnpm dev -H "0.0.0.0"; \
+  else npm run dev -H "0.0.0.0"; \
   fi

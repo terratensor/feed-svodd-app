@@ -20,7 +20,14 @@ services:
     ports:
       - "3000:3000"
     networks:
+      - traefik-public
       - feed-parser-net
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-public
+      - traefik.http.routers.feed-app.rule=Host(`feed.localhost`)
+      - traefik.http.routers.feed-app.entryPoints=http
+      - traefik.http.services.feed-app.loadBalancer.server.port=3000
 
   # Add more containers below (nginx, postgres, etc.)
 
@@ -31,3 +38,4 @@ networks:
     external: true
   feed-parser-net:
     name: feed-parser-net
+    external: true
