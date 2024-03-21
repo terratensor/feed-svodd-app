@@ -32,6 +32,13 @@ function makeQuery(text: string, offset: number, rids: number[], locale: string)
         if (query.highlight) {
             query.highlight.fields = ["summary", "content"];
         }
+        query.sort = [
+            {
+                created: {
+                    order: "desc"
+                }
+            }
+        ]
     }
 
     if (text === "") {
