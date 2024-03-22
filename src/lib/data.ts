@@ -34,9 +34,10 @@ function makeQuery(text: string, offset: number, rids: number[], locale: string)
         }
         query.sort = [
             {
-                created: {
-                    order: "desc"
-                }
+                published: "desc"
+            },
+            {
+                created: "desc"
             }
         ]
     }
@@ -45,9 +46,10 @@ function makeQuery(text: string, offset: number, rids: number[], locale: string)
         query.query.bool.must.push({equals: {language: locale}});
         query.sort = [
             {
-                created: {
-                    order: "desc"
-                }
+                published: "desc"
+            },
+            {
+                created: "desc"
             }
         ]
     }

@@ -40,5 +40,5 @@ interface QueryString {
     limit: number;
     offset: number;
     max_matches?: number;
-    sort?: { created: { order: string } }[];
+    sort?: {}[];
 }
