@@ -2,10 +2,11 @@ import {getTranslations, unstable_setRequestLocale} from 'next-intl/server';
 import PageLayout from "@/components/PageLayout";
 import SearchedEntries from "@/ui/main/searched-entries";
 import Pagination from "@/ui/search/pagination";
-import {fetchFilteredEntriesPages} from "@/lib/data";
+import {fetchFilteredEntriesTotalHits, ITEMS_PER_PAGE} from "@/lib/data";
 import * as React from "react";
 import {Suspense} from "react";
 import {SearchedEntriesSkeleton} from "@/ui/sceletons";
+import SearchSummary from "@/ui/main/search-summary";
 
 
 type Props = {
@@ -40,7 +41,8 @@ export default async function Page({params: {locale}, searchParams}: Props) {
     }
     const rids = handleRids(searchParams?.rid);
 
-    const totalPages = await fetchFilteredEntriesPages(locale, query, rids)
+    const totalHits = await fetchFilteredEntriesTotalHits(locale, query, rids)
+    const totalPages = Math.ceil( totalHits / ITEMS_PER_PAGE)
 
     return (
         <PageLayout title={t('title')}>
@@ -48,6 +50,7 @@ export default async function Page({params: {locale}, searchParams}: Props) {
                 <div
                     className={`flex flex-col max-w-6xl mx-auto my-6 space-y-16 text-svoddBlack-100 dark:text-svoddWhite-200`}
                 >
+                    <SearchSummary totalHits={totalHits} currentPage={currentPage} />
                     <SearchedEntries
                         query={query}
                         currentPage={currentPage}

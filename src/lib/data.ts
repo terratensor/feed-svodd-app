@@ -1,7 +1,8 @@
 import {unstable_noStore as noStore} from "next/cache";
 import getApiURL from "@/utils/getApiURL";
+import {number} from "prop-types";
 
-const ITEMS_PER_PAGE = 20;
+export const ITEMS_PER_PAGE = 20;
 
 function setInitialQuery(): QueryString {
     return {
@@ -85,7 +86,7 @@ export async function fetchFilteredEntries(locale: string, text: string, current
     return response.json();
 }
 
-export async function fetchFilteredEntriesPages(locale: string, text: string, rids: number[]) {
+export async function fetchFilteredEntriesTotalHits(locale: string, text: string, rids: number[]) {
     noStore();
 
     const response = await fetch(`${getApiURL('/search')}`, {
@@ -101,5 +102,5 @@ export async function fetchFilteredEntriesPages(locale: string, text: string, ri
     }
     let hits = await response.json();
 
-    return Math.ceil(Number(hits["hits"] ? hits["hits"]["total"] : 0) / ITEMS_PER_PAGE)
+    return Math.ceil(Number(hits["hits"] ? hits["hits"]["total"] : 0))
 }

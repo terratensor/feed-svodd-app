@@ -7,6 +7,9 @@
   "LocaleLayout": {
     "title": "Поиск по kremlin.ru | mid.ru | mil.ru …"
   },
+  "SearchSummary": {
+    "summary": "Показано записей {start} – {next} из {totalHits}"
+  },
   "LocaleSwitcher": {
     "label": "Change language",
     "locale": "{locale, select, de {🇩🇪 Deutsch} en {🇺🇸 English} other {Unknown}}"
