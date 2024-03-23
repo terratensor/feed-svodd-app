@@ -1,11 +1,14 @@
 {
   "IndexPage": {
-    "title": "Search on kremlin.ru | mid.ru | mil.ru …",
-    "description": "Search on kremlin.ru | mid.ru | mil.ru …",
-    "SearchPlaceholder": "Search on kremlin.ru | mid.ru | mil.ru …"
+    "title": "Suche auf kremlin.ru | mid.ru | mil.ru …",
+    "description": "Suche auf kremlin.ru | mid.ru | mil.ru …",
+    "SearchPlaceholder": "Suche auf kremlin.ru | mid.ru | mil.ru …"
   },
   "LocaleLayout": {
-    "title": "Search on kremlin.ru | mid.ru | mil.ru …"
+    "title": "Suche auf kremlin.ru | mid.ru | mil.ru …"
+  },
+  "SearchSummary": {
+    "summary": "Einträge {start} – {next} von {totalHits} werden angezeigt"
   },
   "LocaleSwitcher": {
     "label": "Change language",
@@ -21,7 +24,7 @@
   },
   "EntrySourceUrl": {
     "kremlin": "President of Russia",
-    "mid": "The Ministry of Foreign Affairs of the Russian Federation",
+    "mid": "Außenministerium der Russischen Föderation",
     "mil": "The Ministry of Defense of the Russian Federation"
   }
 }

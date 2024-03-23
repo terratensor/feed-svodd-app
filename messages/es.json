@@ -1,11 +1,14 @@
 {
   "IndexPage": {
-    "title": "Search on kremlin.ru | mid.ru | mil.ru …",
-    "description": "Search on kremlin.ru | mid.ru | mil.ru …",
-    "SearchPlaceholder": "Search on kremlin.ru | mid.ru | mil.ru …"
+    "title": "Buscar en kremlin.ru | mid.ru | mil.ru …",
+    "description": "Buscar en kremlin.ru | mid.ru | mil.ru …",
+    "SearchPlaceholder": "Buscar en kremlin.ru | mid.ru | mil.ru …"
   },
   "LocaleLayout": {
-    "title": "Search on kremlin.ru | mid.ru | mil.ru …"
+    "title": "Buscar en kremlin.ru | mid.ru | mil.ru …"
+  },
+  "SearchSummary": {
+    "summary": "Mostrando entradas {start} – {next} de {totalHits}"
   },
   "LocaleSwitcher": {
     "label": "Change language",
@@ -21,7 +24,7 @@
   },
   "EntrySourceUrl": {
     "kremlin": "Президент России",
-    "mid": "Министерство иностранных дел Российской Федерации",
+    "mid": "Ministerio de Asuntos Exteriores de la Federación de Rusia",
     "mil": "Министерство обороны Российской Федерации"
   }
 }

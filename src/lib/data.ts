@@ -1,7 +1,13 @@
 import {unstable_noStore as noStore} from "next/cache";
 import getApiURL from "@/utils/getApiURL";
+import {number} from "prop-types";
 
-const ITEMS_PER_PAGE = 20;
+export const ITEMS_PER_PAGE = 20;
+
+const summary = {
+    totalHits: number,
+    totalPages: number,
+}
 
 function setInitialQuery(): QueryString {
     return {
@@ -101,5 +107,7 @@ export async function fetchFilteredEntriesPages(locale: string, text: string, ri
     }
     let hits = await response.json();
 
-    return Math.ceil(Number(hits["hits"] ? hits["hits"]["total"] : 0) / ITEMS_PER_PAGE)
+    summary.totalPages = Math.ceil(Number(hits["hits"] ? hits["hits"]["total"] : 0) / ITEMS_PER_PAGE)
+    summary.totalHits = Math.ceil(Number(hits["hits"] ? hits["hits"]["total"] : 0))
+    return summary
 }
