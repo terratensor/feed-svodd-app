@@ -8,7 +8,6 @@ import {className} from "postcss-selector-parser";
 
 export default async function LatestEntries({hits, locale}: { hits: Hit[], locale: string }) {
     return (<>{hits.map((hit: Hit, index: number ) => {
-        console.log(index)
         return (
             <article
                 key={hit._id}

@@ -4,11 +4,6 @@ import {number} from "prop-types";
 
 export const ITEMS_PER_PAGE = 20;
 
-const summary = {
-    totalHits: number,
-    totalPages: number,
-}
-
 function setInitialQuery(): QueryString {
     return {
         index: "feed",
@@ -91,7 +86,7 @@ export async function fetchFilteredEntries(locale: string, text: string, current
     return response.json();
 }
 
-export async function fetchFilteredEntriesPages(locale: string, text: string, rids: number[]) {
+export async function fetchFilteredEntriesTotalHits(locale: string, text: string, rids: number[]) {
     noStore();
 
     const response = await fetch(`${getApiURL('/search')}`, {
@@ -107,7 +102,5 @@ export async function fetchFilteredEntriesPages(locale: string, text: string, ri
     }
     let hits = await response.json();
 
-    summary.totalPages = Math.ceil(Number(hits["hits"] ? hits["hits"]["total"] : 0) / ITEMS_PER_PAGE)
-    summary.totalHits = Math.ceil(Number(hits["hits"] ? hits["hits"]["total"] : 0))
-    return summary
+    return Math.ceil(Number(hits["hits"] ? hits["hits"]["total"] : 0))
 }
