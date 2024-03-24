@@ -11,7 +11,7 @@ export default function SearchSummary(
     const t = useTranslations('SearchSummary');
 
     const totalPages =  Math.ceil( totalHits / ITEMS_PER_PAGE);
-    const start = (ITEMS_PER_PAGE * (currentPage-1)) + 1;
+    const start = totalPages ? (ITEMS_PER_PAGE * (currentPage-1)) + 1 : 0;
     const next = (totalPages - currentPage) >= 1 ? ((start-1) + ITEMS_PER_PAGE) : (totalHits)
 
     return (
