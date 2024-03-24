@@ -8,7 +8,8 @@
     "title": "Search on kremlin.ru | mid.ru | mil.ru …"
   },
   "SearchSummary": {
-    "summary": "Showing entries {start} – {next} of {totalHits}"
+    "summary": "Showing entries {start} – {next} of {totalHits}",
+    "notFound": "No results were found for your request"
   },
   "LocaleSwitcher": {
     "label": "Change language",

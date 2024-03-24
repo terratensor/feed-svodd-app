@@ -3,6 +3,8 @@ import LatestEntries from "@/ui/search/latest-entries";
 import styles from "./search.module.scss"
 import {showDate} from "@/lib/utils";
 import EntrySourceUrl from "@/ui/search/entry-source-url";
+import clsx from "clsx";
+import {className} from "postcss-selector-parser";
 
 export default async function SearchedEntries({query, currentPage, rids, locale}: {
     query: string,
@@ -18,11 +20,13 @@ export default async function SearchedEntries({query, currentPage, rids, locale}
         return <LatestEntries hits={hits} locale={locale}/>
     }
 
-    return (<>{hits.map((hit: Hit) => {
+    return (<>{hits.map((hit: Hit, index: number) => {
         return (
             <article
                 key={hit._id}
-                className={`${styles.entries} relative group`}>
+                className={clsx('relative group', className, {
+                    "!mt-10": index == 0
+                })}>
                 <div
                     className="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 rounded-2xl bg-svoddWhite-600 dark:bg-svoddBlack-400"></div>
                 <div className="relative">
