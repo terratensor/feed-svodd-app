@@ -15,6 +15,8 @@ export default function SearchSummary(
     const next = (totalPages - currentPage) >= 1 ? ((start-1) + ITEMS_PER_PAGE) : (totalHits)
 
     return (
-        <div className='text-sm mb-0'>{t('summary', {start: start, next: next, totalHits: totalHits} )}</div>
+        <div className='text-sm mb-0'>{
+            totalPages ? t('summary', {start: start, next: next, totalHits: totalHits} ) : t('notFound')
+        }</div>
     );
 }
