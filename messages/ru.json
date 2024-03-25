@@ -11,6 +11,9 @@
     "summary": "Показано записей {start} – {next} из {totalHits}",
     "notFound": "По вашему запросу ничего не найдено"
   },
+  "LatestEntries": {
+    "dateNotSet": "Дата не установлена"
+  },
   "LocaleSwitcher": {
     "label": "Change language",
     "locale": "{locale, select, de {🇩🇪 Deutsch} en {🇺🇸 English} other {Unknown}}"
