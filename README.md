@@ -61,4 +61,7 @@ https://github.com/terratensor/feed-svodd-app/pull/4
 - на английском и русском языках сайта kremlin.ru
 - на русском языке сайт mil.ru
 
+#### Индексация
+- ru mid.ru — https://feed.svodd.ru/ru?rid=2
+
 
