@@ -11,6 +11,9 @@
     "summary": "Mostrando entradas {start} – {next} de {totalHits}",
     "notFound": "Não foram encontrados resultados para sua solicitação"
   },
+  "LatestEntries": {
+    "dateNotSet": "Data não definida"
+  },
   "LocaleSwitcher": {
     "label": "Change language",
     "locale": "{locale, select, de {🇩🇪 Deutsch} en {🇺🇸 English} other {Unknown}}"

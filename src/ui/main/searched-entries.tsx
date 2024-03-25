@@ -5,6 +5,7 @@ import {showDate} from "@/lib/utils";
 import EntrySourceUrl from "@/ui/search/entry-source-url";
 import clsx from "clsx";
 import {className} from "postcss-selector-parser";
+import {getTranslations, unstable_setRequestLocale} from "next-intl/server";
 
 export default async function SearchedEntries({query, currentPage, rids, locale}: {
     query: string,
@@ -12,6 +13,9 @@ export default async function SearchedEntries({query, currentPage, rids, locale}
     rids: number[],
     locale: string
 }) {
+// Enable static rendering
+    unstable_setRequestLocale(locale);
+    const t = await getTranslations('LatestEntries');
 
     const latestEntries = await fetchFilteredEntries(locale, query, currentPage, rids);
     const hits = latestEntries["hits"] ? latestEntries["hits"]["hits"] : [];
@@ -47,7 +51,9 @@ export default async function SearchedEntries({query, currentPage, rids, locale}
                     <dl className="absolute left-0 top-0 lg:right-full lg:mr-[calc(6.5rem+1px)]">
                         <dt className="sr-only">Date</dt>
                         <dd className="whitespace-nowrap text-sm leading-6 dark:text-slate-400">
-                            <time dateTime="2024-03-06T16:30:00.000Z">{showDate(hit._source.published, locale)}</time>
+                            {hit._source.published ?
+                                <time dateTime="2024-03-06T16:30:00.000Z">{showDate(hit._source.published, locale)}</time>
+                                : t("dateNotSet")}
                         </dd>
                     </dl>
                 </div>
