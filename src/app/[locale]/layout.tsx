@@ -5,6 +5,7 @@ import React, {ReactNode} from 'react';
 import {locales} from '@/config';
 import {Providers} from "@/app/providers";
 import Navigation from "@/components/Navigation";
+import getURL from "@/utils/getURL";
 
 const inter = Inter({subsets: ['latin']});
 
@@ -45,6 +46,7 @@ export async function generateMetadata({
     const t = await getTranslations({locale, namespace: 'LocaleLayout'});
 
     return {
+        metadataBase: new URL(process.env.PUBLIC_SITE_URL || 'https://feed.svodd.ru'),
         alternates: {
             canonical: '/',
             languages: {
@@ -57,7 +59,20 @@ export async function generateMetadata({
             },
         },
         title: t('title'),
-        description: 'Поиск по сайтам Президента России, Министерства иностранных дел Российской Федерации, Министерство обороны Российской Федерации',
-        metadataBase: new URL('https://feed.svodd.ru'),
+        description: t('description'),
+        openGraph: {
+          type: 'website',
+          url: new URL(process.env.PUBLIC_SITE_URL || 'http://feed.localhost'),
+            images: [
+                {
+                    url: getURL('/opengraph-image.png'), // Must be an absolute URL
+                    width: 1920,
+                    height: 480,
+                },
+            ]
+        },
+        twitter: {
+            images: [getURL('/opengraph-image.png')],
+        }
     };
 }

@@ -30,3 +30,11 @@ html.h-full.light {
     color: #212529;
   }
 }
+
+article p {
+  margin-top: 16px;
+}
+
+article div.content {
+  margin-bottom: 10px;
+}
