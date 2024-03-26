@@ -1,11 +1,12 @@
 {
   "IndexPage": {
-    "title": "Pesquise em kremlin.ru | mid.ru | mil.ru …",
-    "description": "Pesquise em kremlin.ru | mid.ru | mil.ru …",
-    "SearchPlaceholder": "Pesquise em kremlin.ru | mid.ru | mil.ru …"
+    "title": "Procurar em kremlin.ru | mid.ru | mil.ru …",
+    "description": "Procurar nos sites do Presidente da Russia, do Ministério dos Negócios Estrangeiros da Federaçao Russa, do Ministério da Defesa da Federaçao Russa",
+    "SearchPlaceholder": "Procurar em kremlin.ru | mid.ru | mil.ru …"
   },
   "LocaleLayout": {
-    "title": "Pesquise em kremlin.ru | mid.ru | mil.ru …"
+    "title": "Procurar em kremlin.ru | mid.ru | mil.ru …",
+    "description": "Procurar nos sites do Presidente da Russia, do Ministério dos Negócios Estrangeiros da Federaçao Russa, do Ministério da Defesa da Federaçao Russa"
   },
   "SearchSummary": {
     "summary": "Mostrando entradas {start} – {next} de {totalHits}",

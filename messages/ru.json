@@ -1,11 +1,12 @@
 {
   "IndexPage": {
     "title": "Поиск по kremlin.ru | mid.ru | mil.ru …",
-    "description": "Поиск по kremlin.ru | mid.ru | mil.ru …",
+    "description": "Поиск по сайтам Президента России, Министерства иностранных дел Российской Федерации, Министерство обороны Российской Федерации",
     "SearchPlaceholder": "Поиск по kremlin.ru | mid.ru | mil.ru …"
   },
   "LocaleLayout": {
-    "title": "Поиск по kremlin.ru | mid.ru | mil.ru …"
+    "title": "Поиск по kremlin.ru | mid.ru | mil.ru …",
+    "description": "Поиск по сайтам Президента России, Министерства иностранных дел Российской Федерации, Министерство обороны Российской Федерации"
   },
   "SearchSummary": {
     "summary": "Показано записей {start} – {next} из {totalHits}",

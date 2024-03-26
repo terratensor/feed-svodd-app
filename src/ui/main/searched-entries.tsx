@@ -28,6 +28,7 @@ export default async function SearchedEntries({query, currentPage, rids, locale}
         return (
             <article
                 key={hit._id}
+                data-url={hit._source.url}
                 className={clsx('relative group', className, {
                     "!mt-10": index == 0
                 })}>

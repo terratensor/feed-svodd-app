@@ -1,11 +1,12 @@
 {
   "IndexPage": {
     "title": "Search on kremlin.ru | mid.ru | mil.ru …",
-    "description": "Search on kremlin.ru | mid.ru | mil.ru …",
+    "description": "Search on the websites of the President of Russia, the Ministry of Foreign Affairs of the Russian Federation, the Ministry of Defense of the Russian Federation",
     "SearchPlaceholder": "Search on kremlin.ru | mid.ru | mil.ru …"
   },
   "LocaleLayout": {
-    "title": "Search on kremlin.ru | mid.ru | mil.ru …"
+    "title": "Search on kremlin.ru | mid.ru | mil.ru …",
+    "description": "Search on the websites of the President of Russia, the Ministry of Foreign Affairs of the Russian Federation, the Ministry of Defense of the Russian Federation"
   },
   "SearchSummary": {
     "summary": "Showing entries {start} – {next} of {totalHits}",
