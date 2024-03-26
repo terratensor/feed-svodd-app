@@ -1,6 +1,5 @@
 import {fetchFilteredEntries} from "@/lib/data";
 import LatestEntries from "@/ui/search/latest-entries";
-import styles from "./search.module.scss"
 import {showDate} from "@/lib/utils";
 import EntrySourceUrl from "@/ui/search/entry-source-url";
 import clsx from "clsx";
@@ -42,9 +41,9 @@ export default async function SearchedEntries({query, currentPage, rids, locale}
                     }
                     {
                         hit.highlight.content.length > 0 ?
-                            <div className="text-base/7" dangerouslySetInnerHTML={{__html: hit.highlight.content}}/>
+                            <div className="content text-base/7" dangerouslySetInnerHTML={{__html: hit.highlight.content}}/>
                             :
-                            <div className="text-base/7" dangerouslySetInnerHTML={{__html: hit._source.content}}/>
+                            <div className="content text-base/7" dangerouslySetInnerHTML={{__html: hit._source.content}}/>
                     }
 
                     <EntrySourceUrl url={hit._source.url}/>
