@@ -2,10 +2,10 @@ import {showDate, showISOSDate} from "@/lib/utils";
 import EntryTitleUrl from "@/ui/search/entry-title-url";
 import EntrySummary from "@/ui/search/entry-summary";
 import * as React from "react";
-import EntrySourceUrl from "@/ui/search/entry-source-url";
 import clsx from "clsx";
 import {className} from "postcss-selector-parser";
 import {getTranslations, unstable_setRequestLocale} from "next-intl/server";
+import EntryTags from "@/ui/search/entry-tags";
 
 export default async function LatestEntries({hits, locale}: { hits: Hit[], locale: string }) {
     // Enable static rendering
@@ -17,7 +17,7 @@ export default async function LatestEntries({hits, locale}: { hits: Hit[], local
             <article
                 key={hit._id}
                 className={clsx('relative group', className, {
-                    "!mt-10": index == 0
+                    "!mt-6": index == 0
                 })}>
                 <div
                     className="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 rounded-2xl bg-svoddWhite-600 dark:bg-svoddBlack-400"></div>
@@ -26,7 +26,8 @@ export default async function LatestEntries({hits, locale}: { hits: Hit[], local
 
                     <EntrySummary hit={hit} />
 
-                    <EntrySourceUrl url={hit._source.url} />
+                    <EntryTags hit={hit} />
+                    {/*<EntrySourceUrl url={hit._source.url} />*/}
 
                    <dl className="absolute left-0 top-0 lg:right-full lg:mr-[calc(6.5rem+1px)]">
                         <dt className="sr-only">Date</dt>

@@ -11,6 +11,7 @@ interface Source {
     url: string;
     language: string;
     published: number;
+    resource_id: number;
 }
 
 interface Highlight {
