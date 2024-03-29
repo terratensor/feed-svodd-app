@@ -1,4 +1,4 @@
-import {getTranslations} from "next-intl/server";
+import {getTranslations, unstable_setRequestLocale} from "next-intl/server";
 import type {Metadata, ResolvingMetadata} from 'next'
 import {fetchFilteredEntriesTotalHits, ITEMS_PER_PAGE} from "@/lib/data";
 import PageLayout from "@/components/PageLayout";
@@ -18,7 +18,7 @@ type Props = {
     }
 };
 export default async function Page({params: {locale}, searchParams}: Props) {
-
+    unstable_setRequestLocale(locale);
     const t = await getTranslations('SearchPage');
 
     const query = searchParams?.query || '';
