@@ -35,16 +35,16 @@ https://github.com/terratensor/feed-svodd-app/pull/1
 https://github.com/terratensor/feed-svodd-app/pull/4
 
 #### В поиске работают конструкции
-- ИЛИ: [бпла | ЮВО](https://feed.svodd.ru/ru?page=1&query=%D0%B1%D0%BF%D0%BB%D0%B0+%7C+%D0%AE%D0%92%D0%9E)  
-- И: [бпла ЮВО](https://feed.svodd.ru/ru?page=1&query=%D0%B1%D0%BF%D0%BB%D0%B0+%D0%AE%D0%92%D0%9E+)  
-- По фразе: ["«Снежногорск» и «Брест»"](https://feed.svodd.ru/ru?page=1&query=%22%C2%AB%D0%A1%D0%BD%D0%B5%D0%B6%D0%BD%D0%BE%D0%B3%D0%BE%D1%80%D1%81%D0%BA%C2%BB+%D0%B8+%C2%AB%D0%91%D1%80%D0%B5%D1%81%D1%82%C2%BB%22)
-- По вхождению слова: [прем*](https://feed.svodd.ru/ru?page=1&query=%D0%BF%D1%80%D0%B5%D0%BC*)
+- ИЛИ: [бпла | ЮВО](https://feed.svodd.ru/ru/search?page=1&query=%D0%B1%D0%BF%D0%BB%D0%B0+%7C+%D0%AE%D0%92%D0%9E)  
+- И: [бпла ЮВО](https://feed.svodd.ru/ru/search?page=1&query=%D0%B1%D0%BF%D0%BB%D0%B0+%D0%AE%D0%92%D0%9E+)  
+- По фразе: ["«Снежногорск» и «Брест»"](https://feed.svodd.ru/ru/search?page=1&query=%22%C2%AB%D0%A1%D0%BD%D0%B5%D0%B6%D0%BD%D0%BE%D0%B3%D0%BE%D1%80%D1%81%D0%BA%C2%BB+%D0%B8+%C2%AB%D0%91%D1%80%D0%B5%D1%81%D1%82%C2%BB%22)
+- По вхождению слова: [прем*](https://feed.svodd.ru/ru/search?page=1&query=%D0%BF%D1%80%D0%B5%D0%BC*)
 
 #### Поиск по полям:
-- [@title бпла](https://feed.svodd.ru/ru?page=1&query=%40title+%D0%B1%D0%BF%D0%BB%D0%B0)
-- [@summary бпла](https://feed.svodd.ru/ru?page=1&query=%40summary+%D0%B1%D0%BF%D0%BB%D0%B0)
-- [@content бпла](https://feed.svodd.ru/ru?page=1&query=%40content+%D0%B1%D0%BF%D0%BB%D0%B0)
-- [@title сводка @content бпла](https://feed.svodd.ru/ru?page=1&query=%40title+%D1%81%D0%B2%D0%BE%D0%B4%D0%BA%D0%B0+%40content+%D0%B1%D0%BF%D0%BB%D0%B0)
+- [@title бпла](https://feed.svodd.ru/ru/search?page=1&query=%40title+%D0%B1%D0%BF%D0%BB%D0%B0)
+- [@summary бпла](https://feed.svodd.ru/ru/search?page=1&query=%40summary+%D0%B1%D0%BF%D0%BB%D0%B0)
+- [@content бпла](https://feed.svodd.ru/ru/search?page=1&query=%40content+%D0%B1%D0%BF%D0%BB%D0%B0)
+- [@title сводка @content бпла](https://feed.svodd.ru/ru/search?page=1&query=%40title+%D1%81%D0%B2%D0%BE%D0%B4%D0%BA%D0%B0+%40content+%D0%B1%D0%BF%D0%BB%D0%B0)
 
 и другие логические сочетания
 
@@ -60,8 +60,3 @@ https://github.com/terratensor/feed-svodd-app/pull/4
 25.03.2024 проиндексированы и добавлены в поиск все материалы, 
 - на английском и русском языках сайта kremlin.ru
 - на русском языке сайт mil.ru
-
-#### Индексация
-- ru mid.ru — https://feed.svodd.ru/ru?rid=2
-
-
