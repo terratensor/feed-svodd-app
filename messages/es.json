@@ -4,6 +4,12 @@
     "description": "Búsqueda en sitios web del Presidente de Rusia, Ministerio de asuntos Exteriores de la Federación de Rusia, Ministerio de Defensa de la Federación de Rusia",
     "SearchPlaceholder": "Buscar en kremlin.ru | mid.ru | mil.ru …"
   },
+  "SearchPage": {
+    "title": "Buscar en kremlin.ru | mid.ru | mil.ru …",
+    "description": "Búsqueda en sitios web del Presidente de Rusia, Ministerio de asuntos Exteriores de la Federación de Rusia, Ministerio de Defensa de la Federación de Rusia",
+    "SearchPlaceholder": "Buscar en kremlin.ru | mid.ru | mil.ru …",
+    "searchResults": "Resultados de la búsqueda — {query}"
+  },
   "LocaleLayout": {
     "title": "Buscar en kremlin.ru | mid.ru | mil.ru …",
     "description": "Búsqueda en sitios web del Presidente de Rusia, Ministerio de asuntos Exteriores de la Federación de Rusia, Ministerio de Defensa de la Federación de Rusia"

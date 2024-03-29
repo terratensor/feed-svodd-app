@@ -4,6 +4,12 @@
     "description": "Procurar nos sites do Presidente da Russia, do Ministério dos Negócios Estrangeiros da Federaçao Russa, do Ministério da Defesa da Federaçao Russa",
     "SearchPlaceholder": "Procurar em kremlin.ru | mid.ru | mil.ru …"
   },
+  "SearchPage": {
+    "title": "Procurar em kremlin.ru | mid.ru | mil.ru …",
+    "description": "Procurar nos sites do Presidente da Russia, do Ministério dos Negócios Estrangeiros da Federaçao Russa, do Ministério da Defesa da Federaçao Russa",
+    "searchPlaceholder": "Procurar em kremlin.ru | mid.ru | mil.ru …",
+    "searchResults": "Resultados da pesquisa — {query}"
+  },
   "LocaleLayout": {
     "title": "Procurar em kremlin.ru | mid.ru | mil.ru …",
     "description": "Procurar nos sites do Presidente da Russia, do Ministério dos Negócios Estrangeiros da Federaçao Russa, do Ministério da Defesa da Federaçao Russa"

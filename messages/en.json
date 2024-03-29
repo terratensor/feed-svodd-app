@@ -4,6 +4,13 @@
     "description": "Search on the websites of the President of Russia, the Ministry of Foreign Affairs of the Russian Federation, the Ministry of Defense of the Russian Federation",
     "SearchPlaceholder": "Search on kremlin.ru | mid.ru | mil.ru …"
   },
+  "SearchPage": {
+    "title": "Search on kremlin.ru | mid.ru | mil.ru …",
+    "description": "Search on the websites of the President of Russia, the Ministry of Foreign Affairs of the Russian Federation, the Ministry of Defense of the Russian Federation",
+    "searchPlaceholder": "Search on kremlin.ru | mid.ru | mil.ru …",
+    "noResults": "No results were found for your request",
+    "searchResults": "Search results — {query}"
+  },
   "LocaleLayout": {
     "title": "Search on kremlin.ru | mid.ru | mil.ru …",
     "description": "Search on the websites of the President of Russia, the Ministry of Foreign Affairs of the Russian Federation, the Ministry of Defense of the Russian Federation"

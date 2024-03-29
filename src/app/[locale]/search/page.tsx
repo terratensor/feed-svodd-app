@@ -1,14 +1,13 @@
-import {getTranslations, unstable_setRequestLocale} from 'next-intl/server';
+import {getTranslations} from "next-intl/server";
+import type {Metadata, ResolvingMetadata} from 'next'
+import {fetchFilteredEntriesTotalHits, ITEMS_PER_PAGE} from "@/lib/data";
 import PageLayout from "@/components/PageLayout";
-import SearchedEntries from "@/ui/main/searched-entries";
-import LatestEntries from "@/ui/search/latest-entries";
-import Pagination from "@/ui/search/pagination";
-import {fetchFilteredEntries, fetchFilteredEntriesTotalHits, ITEMS_PER_PAGE} from "@/lib/data";
-import * as React from "react";
 import {Suspense} from "react";
 import {SearchedEntriesSkeleton} from "@/ui/sceletons";
 import SearchSummary from "@/ui/main/search-summary";
-
+import SearchedEntries from "@/ui/main/searched-entries";
+import Pagination from "@/ui/search/pagination";
+import * as React from "react";
 
 type Props = {
     params: { locale: string };
@@ -18,12 +17,9 @@ type Props = {
         rid?: string | string[];
     }
 };
-
 export default async function Page({params: {locale}, searchParams}: Props) {
-    // Enable static rendering
-    unstable_setRequestLocale(locale);
 
-    const t = await getTranslations('IndexPage');
+    const t = await getTranslations('SearchPage');
 
     const query = searchParams?.query || '';
     const currentPage = Number(searchParams?.page) || 1;
@@ -43,10 +39,7 @@ export default async function Page({params: {locale}, searchParams}: Props) {
     const rids = handleRids(searchParams?.rid);
 
     const totalHits = await fetchFilteredEntriesTotalHits(locale, query, rids)
-    const totalPages = Math.ceil( totalHits / ITEMS_PER_PAGE)
-
-    const latestEntries = await fetchFilteredEntries(locale, query, currentPage, rids);
-    const hits = latestEntries["hits"] ? latestEntries["hits"]["hits"] : [];
+    const totalPages = Math.ceil(totalHits / ITEMS_PER_PAGE)
 
     return (
         <PageLayout title={t('title')}>
@@ -54,8 +47,13 @@ export default async function Page({params: {locale}, searchParams}: Props) {
                 <div
                     className={`flex flex-col max-w-6xl mx-auto my-6 space-y-16 text-svoddBlack-100 dark:text-svoddWhite-200`}
                 >
-                    <SearchSummary totalHits={totalHits} currentPage={currentPage} />
-                   <LatestEntries hits={hits} locale={locale}/>
+                    <SearchSummary totalHits={totalHits} currentPage={currentPage}/>
+                    <SearchedEntries
+                        query={query}
+                        currentPage={currentPage}
+                        rids={rids}
+                        locale={locale}
+                    />
                 </div>
             </Suspense>
 
@@ -64,4 +62,15 @@ export default async function Page({params: {locale}, searchParams}: Props) {
             </div>
         </PageLayout>
     );
+}
+
+export async function generateMetadata(
+    {params, searchParams}: Props,
+    parent: ResolvingMetadata
+): Promise<Metadata> {
+    // read route params
+    const t = await getTranslations('SearchPage');
+    return {
+        title: t("searchResults", {query: searchParams?.query?.toString()}),
+    }
 }

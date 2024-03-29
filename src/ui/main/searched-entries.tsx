@@ -1,5 +1,4 @@
 import {fetchFilteredEntries} from "@/lib/data";
-import LatestEntries from "@/ui/search/latest-entries";
 import {showDate} from "@/lib/utils";
 import EntrySourceUrl from "@/ui/search/entry-source-url";
 import clsx from "clsx";
@@ -20,7 +19,8 @@ export default async function SearchedEntries({query, currentPage, rids, locale}
     const hits = latestEntries["hits"] ? latestEntries["hits"]["hits"] : [];
 
     if (query.length == 0) {
-        return <LatestEntries hits={hits} locale={locale}/>
+        // return <LatestEntries hits={hits} locale={locale}/>
+        return <div>Задан пустой запрос</div>
     }
 
     return (<>{hits.map((hit: Hit, index: number) => {
