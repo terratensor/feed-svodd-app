@@ -1,14 +1,11 @@
 import {getTranslations, unstable_setRequestLocale} from 'next-intl/server';
 import PageLayout from "@/components/PageLayout";
-import SearchedEntries from "@/ui/main/searched-entries";
 import LatestEntries from "@/ui/search/latest-entries";
 import Pagination from "@/ui/search/pagination";
 import {fetchFilteredEntries, fetchFilteredEntriesTotalHits, ITEMS_PER_PAGE} from "@/lib/data";
 import * as React from "react";
 import {Suspense} from "react";
 import {SearchedEntriesSkeleton} from "@/ui/sceletons";
-import SearchSummary from "@/ui/main/search-summary";
-
 
 type Props = {
     params: { locale: string };
@@ -54,7 +51,6 @@ export default async function Page({params: {locale}, searchParams}: Props) {
                 <div
                     className={`flex flex-col max-w-6xl mx-auto my-6 space-y-16 text-svoddBlack-100 dark:text-svoddWhite-200`}
                 >
-                    <SearchSummary totalHits={totalHits} currentPage={currentPage} />
                    <LatestEntries hits={hits} locale={locale}/>
                 </div>
             </Suspense>
