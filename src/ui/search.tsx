@@ -1,10 +1,11 @@
 'use client';
 
-import React from "react";
+import React, {useEffect, useRef} from "react";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import {useDebouncedCallback} from "use-debounce";
 import SvoddLogoIcon from "@/ui/icons/SvoddLogoIcon";
 import useMainPageURL from "@/utils/useMainPageURL";
+import {Link} from "@/navigation";
 
 export default function Search({placeholder}: { placeholder: string }) {
 
@@ -12,6 +13,20 @@ export default function Search({placeholder}: { placeholder: string }) {
     const pathname = usePathname();
     const resourceIDs = searchParams.getAll('rid') || [];
     const {replace} = useRouter();
+
+    const inputEl = useRef<HTMLInputElement>(null);
+
+    // Обработка состояния search input поля при каждой загрузке компонента.
+    useEffect(() => {
+        if (inputEl.current) {
+            if (searchParams.get('query')?.toString() === undefined) {
+                inputEl.current.value = '';
+            } else {
+                inputEl.current.value = searchParams.get('query')?.toString() || '';
+            }
+        }
+    });
+
     const handleSearch = useDebouncedCallback((term) => {
         const params = new URLSearchParams(searchParams)
         params.set('page', '1');
@@ -20,11 +35,10 @@ export default function Search({placeholder}: { placeholder: string }) {
         } else {
             params.delete('query');
         }
-        replace(`${pathname}?${params.toString()}`);
+        replace(`/search?${params.toString()}`);
     }, 500);
 
-
-    const href = useMainPageURL(resourceIDs)
+    // const href = useMainPageURL(resourceIDs)
 
     return (
         <div className="relative flex flex-1 flex-shrink-0">
@@ -33,6 +47,7 @@ export default function Search({placeholder}: { placeholder: string }) {
                 Search
             </label>
             <input
+                ref={inputEl}
                 className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2
                 placeholder:text-gray-500 dark:text-svoddBlack-400"
                 placeholder={placeholder}
@@ -48,9 +63,10 @@ export default function Search({placeholder}: { placeholder: string }) {
             {/*<input type="checkbox" className="rounded"/> mil.ru*/}
 
             {/*</div>*/}
-            <a href={href}>
-                <SvoddLogoIcon className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
-            </a>
+            <Link href="/">
+                <SvoddLogoIcon
+                    className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"/>
+            </Link>
         </div>
     );
 }

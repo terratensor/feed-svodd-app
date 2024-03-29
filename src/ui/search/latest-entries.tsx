@@ -22,7 +22,7 @@ export default async function LatestEntries({hits, locale}: { hits: Hit[], local
                 <div
                     className="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 rounded-2xl bg-svoddWhite-600 dark:bg-svoddBlack-400"></div>
                 <div className="relative">
-                    <EntryTitleUrl title={hit._source.title} />
+                    <EntryTitleUrl title={hit._source.title} url={hit._source.url} />
 
                     <EntrySummary hit={hit} />
 

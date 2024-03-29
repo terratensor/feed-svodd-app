@@ -69,11 +69,18 @@ function makeQuery(text: string, offset: number, rids: number[], locale: string)
     return query;
 }
 
+function getEntryQuery(url: string, language: string) {
+    let query: QueryString = setInitialQuery()
+    query.query.bool.must.push({equals: {url: url}})
+    return query;
+}
+
 export async function fetchFilteredEntries(locale: string, text: string, currentPage: number, rids: number[]) {
     noStore();
     const offset = (currentPage - 1) * ITEMS_PER_PAGE;
     // await new Promise((resolve) => setTimeout(resolve, 3000));
     const response = await fetch(`${getApiURL('/search')}`, {
+        next: {revalidate: 60},
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -90,7 +97,7 @@ export async function fetchFilteredEntriesTotalHits(locale: string, text: string
     noStore();
 
     const response = await fetch(`${getApiURL('/search')}`, {
-        // next: {revalidate: 10},
+        next: {revalidate: 60},
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -103,4 +110,20 @@ export async function fetchFilteredEntriesTotalHits(locale: string, text: string
     let hits = await response.json();
 
     return Math.ceil(Number(hits["hits"] ? hits["hits"]["total"] : 0))
+}
+
+export async function fetchEntry(locale: string, url: string) {
+    noStore();
+    const response = await fetch(`${getApiURL('/search')}`, {
+        next: {revalidate: 60},
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(getEntryQuery(url, locale))
+    });
+    if (!response.ok) {
+        throw new Error("failed to fetch API data");
+    }
+    return response.json();
 }

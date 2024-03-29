@@ -4,6 +4,12 @@
     "description": "Suche auf den Seiten des Präsidenten Russlands, des Außenministeriums der Russischen Föderation, des Verteidigungsministeriums der Russischen Föderation",
     "SearchPlaceholder": "Suche auf kremlin.ru | mid.ru | mil.ru …"
   },
+  "SearchPage": {
+    "title": "Suche auf kremlin.ru | mid.ru | mil.ru …",
+    "description": "Suche auf den Seiten des Präsidenten Russlands, des Außenministeriums der Russischen Föderation, des Verteidigungsministeriums der Russischen Föderation",
+    "SearchPlaceholder": "Suche auf kremlin.ru | mid.ru | mil.ru …",
+    "searchResults": "Ergebnisse auf Anfrage — {query}"
+  },
   "LocaleLayout": {
     "title": "Suche auf kremlin.ru | mid.ru | mil.ru …",
     "description": "Suche auf den Seiten des Präsidenten Russlands, des Außenministeriums der Russischen Föderation, des Verteidigungsministeriums der Russischen Föderation"
