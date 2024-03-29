@@ -4,13 +4,21 @@ export const locales = ['ru', 'en', 'de', 'fr', 'es', 'pt'] as const;
 
 export const pathnames = {
     '/': '/',
-    '/pathnames': {
-        ru: '/pathnames',
-        en: '/pathnames',
-        de: '/pathnames',
-        fr: '/pathnames',
-        es: '/pathnames',
-        pt: '/pathnames',
+    '/search': {
+        ru: '/search',
+        en: '/search',
+        de: '/search',
+        fr: '/search',
+        es: '/search',
+        pt: '/search',
+    },
+    '/entry': {
+        ru: '/entry',
+        en: '/entry',
+        de: '/entry',
+        fr: '/entry',
+        es: '/entry',
+        pt: '/entry',
     }
 } satisfies Pathnames<typeof locales>;
 

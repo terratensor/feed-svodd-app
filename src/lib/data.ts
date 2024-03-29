@@ -69,7 +69,7 @@ function makeQuery(text: string, offset: number, rids: number[], locale: string)
     return query;
 }
 
-function getEntryQuery(url: string, language: string) {
+function getEntryQuery(url: string) {
     let query: QueryString = setInitialQuery()
     query.query.bool.must.push({equals: {url: url}})
     return query;
@@ -112,7 +112,7 @@ export async function fetchFilteredEntriesTotalHits(locale: string, text: string
     return Math.ceil(Number(hits["hits"] ? hits["hits"]["total"] : 0))
 }
 
-export async function fetchEntry(locale: string, url: string) {
+export async function fetchEntry(url: string) {
     noStore();
     const response = await fetch(`${getApiURL('/search')}`, {
         next: {revalidate: 60},
@@ -120,7 +120,7 @@ export async function fetchEntry(locale: string, url: string) {
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
-        body: JSON.stringify(getEntryQuery(url, locale))
+        body: JSON.stringify(getEntryQuery(url))
     });
     if (!response.ok) {
         throw new Error("failed to fetch API data");
