@@ -22,6 +22,7 @@ export default function EntryTags({hit}: { hit: Hit }) {
     const searchParams = useSearchParams();
     const {replace} = useRouter();
     const handleClick = (event: React.MouseEvent<HTMLElement>, rid: number) => {
+        event.preventDefault();
         const params = new URLSearchParams(searchParams)
         if (params.get('rid')) {
             params.delete('rid');

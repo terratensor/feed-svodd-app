@@ -8,20 +8,7 @@ import React, {useTransition} from "react";
 import MenuItem from "@mui/material/MenuItem";
 import {usePathname, useRouter} from "@/navigation";
 import {useParams} from "next/navigation";
-
-interface MenuSectionProps {
-    children: React.ReactNode;
-    label: string;
-}
-
-function MenuSection({children, label}: MenuSectionProps) {
-    return (
-        <label role="group">
-            <span>{label}</span>
-            <ul>{children}</ul>
-        </label>
-    );
-}
+import {Suspense} from "react";
 
 
 export default function LocaleSwitcher() {
@@ -30,6 +17,7 @@ export default function LocaleSwitcher() {
     const [isPending, startTransition] = useTransition();
     const pathname = usePathname();
     const params = useParams();
+    const locale = useLocale();
     const createHandleMenuClick = (menuItem: string) => {
         if (menuItem === locale) {
             return;
@@ -47,18 +35,19 @@ export default function LocaleSwitcher() {
         };
     };
 
-    const locale = useLocale();
 
     return (
-        <Dropdown>
-            <MenuButton className="p-3 sm:text-base/7 text-sm">Язык</MenuButton>
-            <Menu className="bg-svoddWhite-400 dark:bg-svoddBlack-400 border rounded-xl p-3">
-                {locales.map((cur) => (
-                    <MenuItem key={cur} onClick={createHandleMenuClick(cur)}>
-                        {cur}
-                    </MenuItem>
-                ))}
-            </Menu>
-        </Dropdown>
+        <Suspense>
+            <Dropdown>
+                <MenuButton className="p-3 sm:text-base/7 text-sm">Язык</MenuButton>
+                <Menu className="bg-svoddWhite-400 dark:bg-svoddBlack-400 border rounded-xl p-3">
+                    {locales.map((cur) => (
+                        <MenuItem key={cur} onClick={createHandleMenuClick(cur)}>
+                            {cur}
+                        </MenuItem>
+                    ))}
+                </Menu>
+            </Dropdown>
+        </Suspense>
     );
 }

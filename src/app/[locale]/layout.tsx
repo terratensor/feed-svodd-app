@@ -6,8 +6,7 @@ import {locales} from '@/config';
 import {Providers} from "@/app/providers";
 import Navigation from "@/components/Navigation";
 import getURL from "@/utils/getURL";
-import SvoddLogoIcon from "@/ui/icons/SvoddLogoIcon";
-import Footer from "@/components/Footer";
+import Footer from "@/ui/layout/footer";
 
 const inter = Inter({subsets: ['latin']});
 
@@ -21,9 +20,9 @@ export function generateStaticParams() {
 }
 
 export default function LocaleLayout({
-                                         children,
-                                         params: {locale}
-                                     }: Readonly<{
+ children,
+ params: {locale}
+}: Readonly<{
     children: React.ReactNode,
     params: { locale: string }
 }>) {
@@ -51,8 +50,8 @@ export default function LocaleLayout({
 }
 
 export async function generateMetadata({
-                                           params: {locale}
-                                       }: Omit<Props, 'children'>) {
+   params: {locale}
+}: Omit<Props, 'children'>) {
     const t = await getTranslations({locale, namespace: 'LocaleLayout'});
 
     return {

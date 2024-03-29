@@ -26,7 +26,7 @@ export default async function Page({params: {locale}, searchParams}: Props) {
     const hits = await getHits(query);
 
     return (
-        <PageLayout title={hits ? hits[0]?._source.title : t('title')}>
+        <PageLayout>
             <Head>
                 <title>{hits ? hits[0]?._source.title : t('title')}</title>
             </Head>
