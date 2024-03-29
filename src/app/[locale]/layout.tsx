@@ -6,34 +6,44 @@ import {locales} from '@/config';
 import {Providers} from "@/app/providers";
 import Navigation from "@/components/Navigation";
 import getURL from "@/utils/getURL";
+import SvoddLogoIcon from "@/ui/icons/SvoddLogoIcon";
+import Footer from "@/components/Footer";
 
 const inter = Inter({subsets: ['latin']});
 
 type Props = {
     children: ReactNode;
-    params: {locale: string};
+    params: { locale: string };
 };
 
 export function generateStaticParams() {
     return locales.map((locale) => ({locale}));
 }
+
 export default function LocaleLayout({
-    children,
-    params: {locale}
-}: Readonly<{
+                                         children,
+                                         params: {locale}
+                                     }: Readonly<{
     children: React.ReactNode,
     params: { locale: string }
 }>) {
     // Enable static rendering
     unstable_setRequestLocale(locale);
     return (
-        <html className="dark h-full" lang={locale} suppressHydrationWarning>
+        <html className="dark 1h-full" lang={locale} suppressHydrationWarning>
         <body className={clsx(inter.className, `bg-svoddWhite-400 dark:bg-svoddBlack-200`)}>
         <Providers>
             <main className="flex h-full flex-col">
-                <Navigation />
-                {children}
+                <div className="container mx-auto lg:p-6 md:p-3 max-w-[1320px]">
+
+                    <div className="mb-6 md:mb-0">
+                        <Navigation/>
+                        {children}
+                    </div>
+
+                </div>
             </main>
+            <Footer/>
         </Providers>
         </body>
         </html>
@@ -41,8 +51,8 @@ export default function LocaleLayout({
 }
 
 export async function generateMetadata({
-   params: {locale}
-}: Omit<Props, 'children'>) {
+                                           params: {locale}
+                                       }: Omit<Props, 'children'>) {
     const t = await getTranslations({locale, namespace: 'LocaleLayout'});
 
     return {
@@ -61,8 +71,8 @@ export async function generateMetadata({
         title: t('title'),
         description: t('description'),
         openGraph: {
-          type: 'website',
-          url: new URL(process.env.PUBLIC_SITE_URL || 'http://feed.localhost'),
+            type: 'website',
+            url: new URL(process.env.PUBLIC_SITE_URL || 'http://feed.localhost'),
             images: [
                 {
                     url: getURL('/opengraph-image.png'), // Must be an absolute URL

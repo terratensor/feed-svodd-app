@@ -10,10 +10,8 @@ export default function PageLayout({children, title}: Props) {
     const t = useTranslations('PageLayout');
 
     return (
-        <div className="flex-grow md:overflow-y-auto">
-            <div className="w-full mt-[70px]">
-                <div className="mx-auto px-5">{children}</div>
-            </div>
+        <div className="mt-[50px]">
+            <div className="mx-auto px-5">{children}</div>
         </div>
     );
 }

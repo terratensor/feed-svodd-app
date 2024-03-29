@@ -16,7 +16,7 @@ export default async function LatestEntries({hits, locale}: { hits: Hit[], local
         return (
             <article
                 key={hit._id}
-                className={clsx('relative group', className, {
+                className={clsx('article relative group', className, {
                     "!mt-6": index == 0
                 })}>
                 <div

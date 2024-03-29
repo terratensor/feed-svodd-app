@@ -40,7 +40,7 @@ export default async function Page({params: {locale}, searchParams}: Props) {
     const rids = handleRids(searchParams?.rid);
 
     const totalHits = await fetchFilteredEntriesTotalHits(locale, query, rids)
-    const totalPages = Math.ceil( totalHits / ITEMS_PER_PAGE)
+    const totalPages = Math.ceil(totalHits / ITEMS_PER_PAGE)
 
     const latestEntries = await fetchFilteredEntries(locale, query, currentPage, rids);
     const hits = latestEntries["hits"] ? latestEntries["hits"]["hits"] : [];
@@ -49,7 +49,7 @@ export default async function Page({params: {locale}, searchParams}: Props) {
         <PageLayout title={t('title')}>
             <Suspense key={query + currentPage} fallback={<SearchedEntriesSkeleton/>}>
                 <div
-                    className={`flex flex-col max-w-6xl mx-auto my-6 space-y-16 text-svoddBlack-100 dark:text-svoddWhite-200`}
+                    className={`flex flex-col max-w-6xl mx-auto my-6 md:space-y-16 space-y-12  text-svoddBlack-100 dark:text-svoddWhite-200`}
                 >
                    <LatestEntries hits={hits} locale={locale}/>
                 </div>
