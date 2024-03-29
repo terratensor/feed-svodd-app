@@ -14,6 +14,9 @@ const config: Config = {
         '13': 'repeat(13, minmax(0, 1fr))',
       },
       colors: {
+        mid: '#bd8e00',
+        mil: '#2d7e23',
+        kremlin: '#b51d00',
         svoddBlack: {
           100: '#212529',
           200: '#1c1c1e',
@@ -22,6 +25,7 @@ const config: Config = {
         svoddWhite: {
           100: '#e1e0e0',
           200: '#bfc3c3',
+          300: '#E0D9D9',
           400: '#f9f8f6',
           600: '#f3f1ed',
         },
