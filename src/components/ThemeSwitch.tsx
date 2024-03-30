@@ -2,6 +2,7 @@
 
 import LightModeIcon from '@mui/icons-material/LightMode';
 import NightlightIcon from '@mui/icons-material/Nightlight';
+import BedtimeIcon from '@mui/icons-material/Bedtime';
 import {useEffect, useState} from "react";
 import {useTheme} from "next-themes";
 import Image from "next/image"
@@ -25,10 +26,10 @@ export default function ThemeSwitch() {
     )
 
     if (resolvedTheme === 'dark') {
-        return <LightModeIcon className='dark:text-svoddWhite-200 cursor-pointer' onClick={() => setTheme('light')}/>
+        return <LightModeIcon className='dark:text-svoddWhite-200 cursor-pointer -translate-y-[8%]' onClick={() => setTheme('light')}/>
     }
 
     if (resolvedTheme === 'light') {
-        return <NightlightIcon className='text-svoddBlack-100 cursor-pointer'  onClick={() => setTheme('dark')}/>
+        return <BedtimeIcon className='text-svoddBlack-100 cursor-pointer -translate-y-[8%]'  onClick={() => setTheme('dark')}/>
     }
 }
