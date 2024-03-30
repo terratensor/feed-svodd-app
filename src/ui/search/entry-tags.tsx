@@ -3,6 +3,7 @@ import clsx from "clsx";
 import {className} from "postcss-selector-parser";
 import * as React from "react";
 import {useRouter, useSearchParams} from "next/navigation";
+import {Suspense} from "react";
 
 function getTagName(resource_id: number) {
     switch (resource_id) {
@@ -33,12 +34,14 @@ export default function EntryTags({hit}: { hit: Hit }) {
     }
 
     return (<>
+        <Suspense>
         <span
             onClick={(event) => handleClick(event, rid)}
             className={clsx('badge text-svoddWhite-300 text-xl', className, {
-            "bg-kremlin": rid == 1,
-            "bg-mid": rid == 2,
-            "bg-mil": rid == 3,
-        })}>{getTagName(rid)}</span>
+                "bg-kremlin": rid == 1,
+                "bg-mid": rid == 2,
+                "bg-mil": rid == 3,
+            })}>{getTagName(rid)}</span>
+        </Suspense>
     </>);
 }

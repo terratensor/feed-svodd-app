@@ -16,7 +16,6 @@ export default async function Navigation() {
                 justify-between gap-2 max-w-[1200px] inset-x-0 with mx-auto bg-svoddWhite-400 dark:bg-svoddBlack-400">
             <Search placeholder={t("SearchPlaceholder")}/>
             <MainMenu/>
-            <ThemeSwitch/>
         </div>
     );
 }

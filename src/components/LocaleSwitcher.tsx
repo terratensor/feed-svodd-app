@@ -35,15 +35,14 @@ export default function LocaleSwitcher() {
         };
     };
 
-
     return (
         <Suspense>
             <Dropdown>
-                <MenuButton className="p-3 sm:text-base/7 text-sm">Язык</MenuButton>
+                <MenuButton className="p-3 sm:text-base/7 text-sm">{locale.toUpperCase()}</MenuButton>
                 <Menu className="bg-svoddWhite-400 dark:bg-svoddBlack-400 border rounded-xl p-3">
                     {locales.map((cur) => (
                         <MenuItem key={cur} onClick={createHandleMenuClick(cur)}>
-                            {cur}
+                            {cur.toUpperCase()}
                         </MenuItem>
                     ))}
                 </Menu>

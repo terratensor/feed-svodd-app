@@ -1,17 +1,16 @@
 'use client';
 
 import React, {Suspense, useEffect, useRef} from "react";
-import {usePathname, useRouter, useSearchParams} from "next/navigation";
+import {useRouter, useSearchParams} from "next/navigation";
 import {useDebouncedCallback} from "use-debounce";
 import SvoddLogoIcon from "@/ui/icons/SvoddLogoIcon";
-import useMainPageURL from "@/utils/useMainPageURL";
 import {Link} from "@/navigation";
 
 export default function Search({placeholder}: { placeholder: string }) {
 
     const searchParams = useSearchParams();
-    const pathname = usePathname();
-    const resourceIDs = searchParams.getAll('rid') || [];
+    // const pathname = usePathname();
+    // const resourceIDs = searchParams.getAll('rid') || [];
     const {replace} = useRouter();
 
     const inputEl = useRef<HTMLInputElement>(null);

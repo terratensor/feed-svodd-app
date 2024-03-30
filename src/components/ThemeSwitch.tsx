@@ -25,10 +25,10 @@ export default function ThemeSwitch() {
     )
 
     if (resolvedTheme === 'dark') {
-        return <LightModeIcon className='dark:text-svoddWhite-200' onClick={() => setTheme('light')}/>
+        return <LightModeIcon className='dark:text-svoddWhite-200 cursor-pointer' onClick={() => setTheme('light')}/>
     }
 
     if (resolvedTheme === 'light') {
-        return <NightlightIcon className='text-svoddBlack-100'  onClick={() => setTheme('dark')}/>
+        return <NightlightIcon className='text-svoddBlack-100 cursor-pointer'  onClick={() => setTheme('dark')}/>
     }
 }

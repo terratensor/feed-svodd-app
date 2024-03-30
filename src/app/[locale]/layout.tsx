@@ -6,7 +6,8 @@ import {locales} from '@/config';
 import {Providers} from "@/app/providers";
 import Navigation from "@/components/Navigation";
 import getURL from "@/utils/getURL";
-import Footer from "@/ui/layout/footer";
+import Footer from "@/components/Footer";
+
 
 const inter = Inter({subsets: ['latin']});
 
@@ -19,7 +20,7 @@ export function generateStaticParams() {
     return locales.map((locale) => ({locale}));
 }
 
-export default function LocaleLayout({
+export default async function LocaleLayout({
  children,
  params: {locale}
 }: Readonly<{
