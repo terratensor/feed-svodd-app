@@ -80,7 +80,7 @@ export async function fetchFilteredEntries(locale: string, text: string, current
     const offset = (currentPage - 1) * ITEMS_PER_PAGE;
     // await new Promise((resolve) => setTimeout(resolve, 3000));
     const response = await fetch(`${getApiURL('/search')}`, {
-        next: {revalidate: 60},
+        // next: {revalidate: 60},
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -97,7 +97,7 @@ export async function fetchFilteredEntriesTotalHits(locale: string, text: string
     noStore();
 
     const response = await fetch(`${getApiURL('/search')}`, {
-        next: {revalidate: 60},
+        // next: {revalidate: 60},
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -115,7 +115,7 @@ export async function fetchFilteredEntriesTotalHits(locale: string, text: string
 export async function fetchEntry(url: string) {
     noStore();
     const response = await fetch(`${getApiURL('/search')}`, {
-        next: {revalidate: 60},
+        // next: {revalidate: 60},
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
