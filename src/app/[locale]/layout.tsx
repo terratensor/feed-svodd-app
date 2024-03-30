@@ -31,16 +31,14 @@ export default async function LocaleLayout({
     unstable_setRequestLocale(locale);
     return (
         <html className="dark h-full" lang={locale} suppressHydrationWarning>
-        <body className={clsx(inter.className, `!flex !h-full !flex-col bg-svoddWhite-400 dark:bg-svoddBlack-200`)}>
+        <body className={clsx(inter.className, `flex h-full flex-col bg-svoddWhite-400 dark:bg-svoddBlack-200`)}>
         <Providers>
-            <main className=''>
-                <div className="container mx-auto lg:p-6 md:p-3 max-w-[1320px]">
-
+            <main>
+                <div className="container mx-auto lg:p-6 p-3 max-w-[1320px]">
                     <div className="mb-6 md:mb-0">
                         <Navigation/>
                         {children}
                     </div>
-
                 </div>
             </main>
             <Footer/>
@@ -75,14 +73,14 @@ export async function generateMetadata({
             url: new URL(process.env.PUBLIC_SITE_URL || 'http://feed.localhost'),
             images: [
                 {
-                    url: getURL('/opengraph-image.png'), // Must be an absolute URL
+                    url: '/opengraph-image.png', // Must be an absolute URL
                     width: 1920,
                     height: 480,
                 },
             ]
         },
         twitter: {
-            images: [getURL('/opengraph-image.png')],
+            images: ['/opengraph-image.png'],
         }
     };
 }
