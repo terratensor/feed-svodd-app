@@ -70,7 +70,7 @@ export default function Search({placeholder}: { placeholder: string }) {
                 </Link>
 
             </div>
-            {/*<SearchResourceFilter />*/}
+            <SearchResourceFilter />
         </Suspense>
     );
 }
