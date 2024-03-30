@@ -19,21 +19,8 @@ dev-docker-build:
 
 docker-build:
 	DOCKER_BUILDKIT=1 docker --log-level=debug build --pull --build-arg BUILDKIT_INLINE_CACHE=1 \
-		--target builder \
-		--cache-from ${REGISTRY}/feed-app:cache-builderr \
-		--tag ${REGISTRY}/feed-app:cache-builder \
-		--file ./prod.Dockerfile .
-
-	DOCKER_BUILDKIT=1 docker --log-level=debug build --pull --build-arg BUILDKIT_INLINE_CACHE=1 \
-		--cache-from ${REGISTRY}/feed-app:cache-builder \
-		--cache-from ${REGISTRY}/feed-app:cache \
-		--tag ${REGISTRY}/feed-app:cache \
 		--tag ${REGISTRY}/feed-app:${IMAGE_TAG} \
         --file ./prod.Dockerfile .
-
-push-build-cache:
-	docker push ${REGISTRY}/feed-app:cache-builder
-	docker push ${REGISTRY}/feed-app:cache
 
 push:
 	docker push ${REGISTRY}/feed-app:${IMAGE_TAG}
