@@ -1,22 +1,8 @@
 'use client'
-import clsx from "clsx";
-import {className} from "postcss-selector-parser";
 import * as React from "react";
 import {useRouter, useSearchParams} from "next/navigation";
-import {Suspense} from "react";
+import ResourceTag from "@/ui/search/ResourceTag";
 
-function getTagName(resource_id: number) {
-    switch (resource_id) {
-        case 1:
-            return "КРЕМЛЬ"
-        case 2:
-            return "МИД"
-        case 3:
-            return "МИНОБОРОНЫ"
-        default:
-            return "не определено"
-    }
-}
 
 export default function EntryTags({hit}: { hit: Hit }) {
     const rid = hit._source.resource_id;
@@ -33,15 +19,5 @@ export default function EntryTags({hit}: { hit: Hit }) {
         replace(`?${params.toString()}`);
     }
 
-    return (<>
-        <Suspense>
-        <span
-            onClick={(event) => handleClick(event, rid)}
-            className={clsx('badge text-svoddWhite-300 text-xl', className, {
-                "bg-kremlin": rid == 1,
-                "bg-mid": rid == 2,
-                "bg-mil": rid == 3,
-            })}>{getTagName(rid)}</span>
-        </Suspense>
-    </>);
+    return <ResourceTag rid={rid} handleClick={handleClick}/>;
 }
