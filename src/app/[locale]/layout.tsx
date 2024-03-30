@@ -35,7 +35,7 @@ export default async function LocaleLayout({
         <Providers>
             <main>
                 <div className="container mx-auto lg:p-6 p-3 max-w-[1320px]">
-                    <div className="mb-6 md:mb-0">
+                    <div className="mb-3 md:mb-0">
                         <Navigation/>
                         {children}
                     </div>
