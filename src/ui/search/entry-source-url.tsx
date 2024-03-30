@@ -16,5 +16,5 @@ export default async function EntrySourceUrl({url}: { url: string }) {
         return ''
     })
 
-    return <a className="text-svoddRed" href={url} target="_blank">{sr}</a>
+    return <a className="text-svoddRed-100" href={url} target="_blank">{sr}</a>
 }

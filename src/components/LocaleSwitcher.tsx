@@ -22,8 +22,8 @@ export default function LocaleSwitcher() {
     const searchParams = useSearchParams();
 
     const createHandleMenuClick = (cur: string) => {
+        const params = new URLSearchParams(searchParams);
         return () => {
-            const params = new URLSearchParams(searchParams);
              startTransition(() => {
                 router.push(
                     // @ts-expect-error -- TypeScript will validate that only known `params`

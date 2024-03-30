@@ -30,7 +30,7 @@ export default async function LocaleLayout({
     // Enable static rendering
     unstable_setRequestLocale(locale);
     return (
-        <html className="dark h-full" lang={locale} suppressHydrationWarning>
+        <html className="dark h-full" lang={locale}>
         <body className={clsx(inter.className, `flex h-full flex-col bg-svoddWhite-400 dark:bg-svoddBlack-200`)}>
         <Providers>
             <main>

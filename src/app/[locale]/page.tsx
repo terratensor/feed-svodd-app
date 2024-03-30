@@ -1,11 +1,11 @@
 import {getTranslations, unstable_setRequestLocale} from 'next-intl/server';
 import PageLayout from "@/components/PageLayout";
 import LatestEntries from "@/ui/search/latest-entries";
-import Pagination from "@/ui/search/pagination";
 import {fetchFilteredEntries, fetchFilteredEntriesTotalHits, ITEMS_PER_PAGE} from "@/lib/data";
 import * as React from "react";
 import {Suspense} from "react";
 import {SearchedEntriesSkeleton} from "@/ui/sceletons";
+import EntryPagination from "@/components/EntryPagination";
 
 type Props = {
     params: { locale: string };
@@ -45,6 +45,8 @@ export default async function Page({params: {locale}, searchParams}: Props) {
     const latestEntries = await fetchFilteredEntries(locale, query, currentPage, rids);
     const hits = latestEntries["hits"] ? latestEntries["hits"]["hits"] : [];
 
+
+
     return (
         <PageLayout>
             <Suspense key={query + currentPage} fallback={<SearchedEntriesSkeleton/>}>
@@ -54,10 +56,10 @@ export default async function Page({params: {locale}, searchParams}: Props) {
                    <LatestEntries hits={hits} locale={locale}/>
                 </div>
             </Suspense>
-
-            <div className="mt-5 flex w-full justify-center">
-                <Pagination totalPages={totalPages}/>
-            </div>
+            <EntryPagination totalPages={totalPages}/>
+            {/*<div className="mt-5 flex w-full justify-center">*/}
+            {/*    <Pagination totalPages={totalPages}/>*/}
+            {/*</div>*/}
         </PageLayout>
     );
 }

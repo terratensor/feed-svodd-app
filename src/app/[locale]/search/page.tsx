@@ -8,6 +8,7 @@ import SearchSummary from "@/ui/main/search-summary";
 import SearchedEntries from "@/ui/main/searched-entries";
 import Pagination from "@/ui/search/pagination";
 import * as React from "react";
+import EntryPagination from "@/components/EntryPagination";
 
 type Props = {
     params: { locale: string };
@@ -57,9 +58,7 @@ export default async function Page({params: {locale}, searchParams}: Props) {
                 </div>
             </Suspense>
 
-            <div className="mt-5 flex w-full justify-center">
-                <Pagination totalPages={totalPages}/>
-            </div>
+            <EntryPagination totalPages={totalPages}/>
         </PageLayout>
     );
 }

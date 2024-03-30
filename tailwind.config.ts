@@ -29,8 +29,23 @@ const config: Config = {
           400: '#f9f8f6',
           600: '#f3f1ed',
         },
-        svoddGray: '#504f4f',
-        svoddRed: '#ad3434',
+        pageLight: {
+          bg: '#e9ecef',
+          border: '#dee2e6',
+        },
+        svoddGray: {
+          300: '#495057',
+          400:'#504f4f',
+        },
+        svoddRed: {
+          100: '#ad3434',
+          300: '#af1c1c',
+          400: '#a30000',
+          500: '#720a0a',
+          700: '#560000',
+          800: '#a10000', //--bs-pagination-active-bg
+          900: '#9d0000', //--bs-pagination-active-border-color
+        },
         blue: {
           400: '#2589FE',
           500: '#0070F3',

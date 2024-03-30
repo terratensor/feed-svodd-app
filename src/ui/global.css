@@ -32,8 +32,22 @@ article, .article {
   }
   mark {
     @apply inline-block pr-1 pl-1 py-0;
-    @apply bg-svoddWhite-100 text-svoddBlack-100 dark:bg-svoddGray dark:text-svoddWhite-200;
+    @apply bg-svoddWhite-100 text-svoddBlack-100 dark:bg-svoddGray-400 dark:text-svoddWhite-200;
     margin-top: 0.15rem;
     margin-bottom: 0.15rem;
+  }
+}
+
+.svodd-pagination {
+  @apply mx-auto justify-center;
+  .MuiPaginationItem-ellipsis {
+    @apply dark:text-svoddWhite-200 dark:bg-transparent;
+  }
+  .MuiPaginationItem-page, .MuiPaginationItem-previousNext {
+    @apply text-svoddRed-400 dark:text-svoddRed-300 dark:border-svoddGray-300 border-pageLight-border;
+  }
+  .Mui-selected {
+    @apply dark:text-svoddWhite-200 text-white dark:border-svoddRed-700 dark:bg-svoddBlack-200 border-svoddRed-900 !bg-svoddRed-800;
+    @apply bg-svoddWhite-400 dark:bg-svoddRed-500;
   }
 }
