@@ -25,9 +25,9 @@ article div.content {
   margin-bottom: 10px;
 }
 
-article, .article {
+article, .article, .search-panel {
   span.badge {
-    @apply inline-flex items-center px-3.5 py-0.5 mt-2 rounded-sm text-sm font-medium;
+    @apply inline-flex items-center px-3.5 py-0.5 rounded-sm text-sm font-medium;
     cursor: pointer;
   }
   mark {
