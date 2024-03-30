@@ -34,11 +34,14 @@ const config: Config = {
           border: '#dee2e6',
         },
         svoddGray: {
-          300: '#495057',
+          300: '#495057', //--bs-border-color
           400:'#504f4f',
-        },
+          500: '#343a40', //--bs-secondary-bg
+          600: '#2b3035', //--bs-pagination-hover-bg:
+},
         svoddRed: {
           100: '#ad3434',
+          200: '#b33434',
           300: '#af1c1c',
           400: '#a30000',
           500: '#720a0a',
