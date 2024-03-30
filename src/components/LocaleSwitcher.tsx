@@ -5,10 +5,12 @@ import {Dropdown} from '@mui/base/Dropdown';
 import {Menu} from '@mui/base/Menu';
 import {MenuButton} from '@mui/base/MenuButton';
 import React, {useTransition} from "react";
-import MenuItem from "@mui/material/MenuItem";
+import {MenuItem} from '@mui/base/MenuItem';
 import {usePathname, useRouter} from "@/navigation";
-import {useParams} from "next/navigation";
+import {useSearchParams} from "next/navigation";
 import {Suspense} from "react";
+import clsx from "clsx";
+import {className} from "postcss-selector-parser";
 
 
 export default function LocaleSwitcher() {
@@ -16,20 +18,19 @@ export default function LocaleSwitcher() {
     const router = useRouter();
     const [isPending, startTransition] = useTransition();
     const pathname = usePathname();
-    const params = useParams();
     const locale = useLocale();
-    const createHandleMenuClick = (menuItem: string) => {
-        if (menuItem === locale) {
-            return;
-        }
+    const searchParams = useSearchParams();
+
+    const createHandleMenuClick = (cur: string) => {
         return () => {
-            startTransition(() => {
-                router.replace(
+            const params = new URLSearchParams(searchParams);
+             startTransition(() => {
+                router.push(
                     // @ts-expect-error -- TypeScript will validate that only known `params`
                     // are used in combination with a given `pathname`. Since the two will
                     // always match for the current route, we can skip runtime checks.
-                    {pathname, params},
-                    {locale: menuItem}
+                    `${pathname}?${params.toString()}`,
+                    {locale: cur}
                 );
             });
         };
@@ -38,10 +39,17 @@ export default function LocaleSwitcher() {
     return (
         <Suspense>
             <Dropdown>
-                <MenuButton className="p-3 sm:text-base/7 text-sm">{locale.toUpperCase()}</MenuButton>
-                <Menu className="bg-svoddWhite-400 dark:bg-svoddBlack-400 border rounded-xl p-3">
+                <MenuButton
+                    className="p-3 sm:text-base/7 text-sm">{locale.toUpperCase()
+                }</MenuButton>
+                <Menu className="bg-svoddWhite-400 dark:bg-svoddBlack-400 border rounded-xl p-7">
                     {locales.map((cur) => (
-                        <MenuItem key={cur} onClick={createHandleMenuClick(cur)}>
+                        <MenuItem
+                            key={cur} onClick={createHandleMenuClick(cur)}
+                            className={clsx('cursor-pointer', className, {
+                                'font-bold': locale === cur
+                            })}
+                        >
                             {cur.toUpperCase()}
                         </MenuItem>
                     ))}
