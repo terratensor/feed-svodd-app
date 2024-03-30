@@ -5,7 +5,7 @@ import LocaleSwitcher from "@/components/LocaleSwitcher";
 
 export default async function Footer() {
     return (
-        <footer className="container mx-auto max-w-[1320px] xl:px-16 md:px-5 pt-6 pb-4">
+        <footer className="container mt-auto mx-auto max-w-[1320px] xl:px-16 md:px-5 pt-6 pb-4">
             <div className='mx-auto px-4'>
                 <div className='flex items-center text-center justify-between '>
                     <div
