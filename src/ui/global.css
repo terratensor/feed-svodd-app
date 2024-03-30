@@ -17,23 +17,6 @@ input[type='number']::-webkit-outer-spin-button {
   margin: 0;
 }
 
-mark {
-  @apply inline-block pr-1 pl-1 py-0;
-  margin-top: 0.15rem;
-  margin-bottom: 0.15rem;
-}
-html.h-full.dark {
-  mark {
-    @apply bg-svoddGray text-svoddWhite-200;
-  }
-}
-
-html.h-full.light {
-  mark {
-    @apply bg-svoddWhite-100 text-svoddBlack-100;
-  }
-}
-
 article p {
   margin-top: 16px;
 }
@@ -42,9 +25,15 @@ article div.content {
   margin-bottom: 10px;
 }
 
-article {
-  .badge {
+article, .article {
+  span.badge {
     @apply inline-flex items-center px-3.5 py-0.5 mt-2 rounded-sm text-sm font-medium;
     cursor: pointer;
+  }
+  mark {
+    @apply inline-block pr-1 pl-1 py-0;
+    @apply bg-svoddWhite-100 text-svoddBlack-100 dark:bg-svoddGray dark:text-svoddWhite-200;
+    margin-top: 0.15rem;
+    margin-bottom: 0.15rem;
   }
 }

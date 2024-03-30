@@ -42,7 +42,7 @@ export default async function Page({params: {locale}, searchParams}: Props) {
     const totalPages = Math.ceil(totalHits / ITEMS_PER_PAGE)
 
     return (
-        <PageLayout title={t('title')}>
+        <PageLayout>
             <Suspense key={query + currentPage} fallback={<SearchedEntriesSkeleton/>}>
                 <div
                     className={`flex flex-col max-w-6xl mx-auto my-6 space-y-16 text-svoddBlack-100 dark:text-svoddWhite-200`}
@@ -65,7 +65,7 @@ export default async function Page({params: {locale}, searchParams}: Props) {
 }
 
 export async function generateMetadata(
-    {params, searchParams}: Props,
+    {searchParams}: Props,
     parent: ResolvingMetadata
 ): Promise<Metadata> {
     // read route params
