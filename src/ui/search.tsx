@@ -5,6 +5,7 @@ import {useRouter, useSearchParams} from "next/navigation";
 import {useDebouncedCallback} from "use-debounce";
 import SvoddLogoIcon from "@/ui/icons/SvoddLogoIcon";
 import {Link} from "@/navigation";
+import SearchResourceFilter from "@/ui/search/SearchResourceFilter";
 
 export default function Search({placeholder}: { placeholder: string }) {
 
@@ -68,10 +69,8 @@ export default function Search({placeholder}: { placeholder: string }) {
                         className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"/>
                 </Link>
 
-                <div className='flex flex-col'>
-                    <span className='badge bad'></span>
-                </div>
             </div>
+            {/*<SearchResourceFilter />*/}
         </Suspense>
     );
 }

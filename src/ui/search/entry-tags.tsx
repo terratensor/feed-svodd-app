@@ -4,6 +4,7 @@ import {useRouter, useSearchParams} from "next/navigation";
 import ResourceTag from "@/ui/search/ResourceTag";
 
 
+
 export default function EntryTags({hit}: { hit: Hit }) {
     const rid = hit._source.resource_id;
     const searchParams = useSearchParams();
@@ -19,5 +20,9 @@ export default function EntryTags({hit}: { hit: Hit }) {
         replace(`?${params.toString()}`);
     }
 
-    return <ResourceTag rid={rid} handleClick={handleClick}/>;
+    return <ResourceTag
+        className='mt-2'
+        rid={rid}
+        handleClick={handleClick}
+    />;
 }

@@ -1,7 +1,7 @@
 import {Suspense} from "react";
 import clsx from "clsx";
-import {className} from "postcss-selector-parser";
 import * as React from "react";
+import {XMarkIcon} from "@heroicons/react/16/solid";
 
 function getTagName(resource_id: number) {
     switch (resource_id) {
@@ -15,7 +15,15 @@ function getTagName(resource_id: number) {
             return "не определено"
     }
 }
-export default function ResourceTag({rid, handleClick}: { rid: number, handleClick: (event: React.MouseEvent<HTMLElement>, rid: number) => void }) { // rid: number}: { rid: number }) {
+
+interface ResourceTagProps {
+    className?: string;
+    rid: number;
+    handleClick: (event: React.MouseEvent<HTMLElement>, rid: number) => void;
+    showIcon?: boolean;
+}
+
+export default function ResourceTag({className, rid, handleClick, showIcon}: ResourceTagProps) {
     return (<>
         <Suspense>
         <span
@@ -24,7 +32,9 @@ export default function ResourceTag({rid, handleClick}: { rid: number, handleCli
                 "bg-kremlin": rid == 1,
                 "bg-mid": rid == 2,
                 "bg-mil": rid == 3,
-            })}>{getTagName(rid)}</span>
+            })}>{getTagName(rid)}
+            {showIcon ? <XMarkIcon className="w-4 h-4" /> : null}
+        </span>
         </Suspense>
     </>);
 }
