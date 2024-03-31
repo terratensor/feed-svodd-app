@@ -58,7 +58,9 @@ export default async function Page({params: {locale}, searchParams}: Props) {
                 </div>
             </Suspense>
 
-            <EntryPagination totalPages={totalPages}/>
+            <div className="flex w-full justify-center">
+                <Pagination totalPages={totalPages}/>
+            </div>
         </PageLayout>
     );
 }
