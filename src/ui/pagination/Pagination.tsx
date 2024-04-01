@@ -15,7 +15,10 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const currentPage = Number(searchParams.get('page')) || 1;
-    const allPages = generatePagination(currentPage, lastPageLimit);
+
+    const getTotalPages = () => totalPages < lastPageLimit ? totalPages : lastPageLimit
+
+    const allPages = generatePagination(currentPage, getTotalPages());
 
     // useEffect(() => {
     //     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -55,7 +58,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
                         <PaginationArrow
                             direction="left"
                             href={createPageURL(currentPage - 1)}
-                            isDisabled={currentPage <= 1 || (currentPage > (lastPageLimit - 1) && lastPageLimit < currentPage - 1)}
+                            isDisabled={currentPage <= 1 || (currentPage > (getTotalPages() - 1) && getTotalPages() < currentPage - 1)}
                         />
 
                         <div className="flex -space-x-px">
@@ -74,7 +77,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
                                             href={createPageURL(page)}
                                             page={page}
                                             position={position}
-                                            isDisabled={currentPage > (lastPageLimit - 1) && lastPageLimit <= page - 1 }
+                                            isDisabled={currentPage > (getTotalPages() - 1) && getTotalPages() <= page - 1 }
                                             isActive={currentPage === page}
                                         />
 
@@ -87,15 +90,15 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
                         <PaginationArrow
                             direction="right"
                             href={createPageURL(currentPage + 1)}
-                            isDisabled={currentPage >= lastPageLimit}
+                            isDisabled={currentPage >= getTotalPages()}
                         />
                         <PaginationNumber
-                            key={lastPageLimit+1}
-                            href={createPageURL(lastPageLimit)}
-                            page={lastPageLimit}
+                            key={getTotalPages()+1}
+                            href={createPageURL(getTotalPages())}
+                            page={getTotalPages()}
                             position={"last"}
                             isActive={false}
-                            isDisabled={currentPage === lastPageLimit}
+                            isDisabled={currentPage === getTotalPages()}
                         />
                         </div>
                     </nav>
