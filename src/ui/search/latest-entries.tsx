@@ -12,6 +12,19 @@ export default async function LatestEntries({hits, locale}: { hits: Hit[], local
     unstable_setRequestLocale(locale);
     const t = await getTranslations('LatestEntries');
 
+    function getTagName(resource_id: number) {
+        switch (resource_id) {
+            case 1:
+                return t('tags.kremlin')
+            case 2:
+                return t('tags.mid')
+            case 3:
+                return t('tags.mil')
+            default:
+                return t('tags.notDefined')
+        }
+    }
+
     return (<>{hits.map((hit: Hit, index: number ) => {
         return (
             <article
@@ -26,7 +39,7 @@ export default async function LatestEntries({hits, locale}: { hits: Hit[], local
 
                     <EntrySummary hit={hit} />
 
-                    <EntryTags hit={hit} />
+                    <EntryTags hit={hit} name={getTagName(hit._source.resource_id)}/>
                     {/*<EntrySourceUrl url={hit._source.url} />*/}
 
                    <dl className="absolute left-0 top-0 lg:right-full lg:mr-[calc(6.5rem+1px)]">

@@ -2,6 +2,18 @@ import ResourceTag from "@/ui/search/ResourceTag";
 import React from "react";
 import {useRouter, useSearchParams} from "next/navigation";
 
+function getTagName(resource_id: number) {
+    switch (resource_id) {
+        case 1:
+            return "КРЕМЛЬ"
+        case 2:
+            return "МИД"
+        case 3:
+            return "МИНОБОРОНЫ"
+        default:
+            return "не определено"
+    }
+}
 export default function SearchResourceFilter() {
     const searchParams = useSearchParams();
     const {push} = useRouter();
@@ -37,7 +49,7 @@ export default function SearchResourceFilter() {
         <div className='flex justify-items-start gap-1'>
             {rids ? rids.map((rid) => {
                 return (<div key={rid} className='flex flex-col'>
-                    <ResourceTag className='text-xs' rid={rid} handleClick={handleClick} showIcon={true}/>
+                    <ResourceTag className='text-xs' rid={rid} name={getTagName(rid)} handleClick={handleClick} showIcon={true}/>
                 </div>);
             }) : null}
         </div>

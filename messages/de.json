@@ -19,7 +19,13 @@
     "notFound": "Für Ihre Anfrage wurden keine Ergebnisse gefunden"
   },
   "LatestEntries": {
-    "dateNotSet": "Datum nicht festgelegt"
+    "dateNotSet": "Datum nicht festgelegt",
+    "tags": {
+      "kremlin": "Kremlin",
+      "mid": "MFA",
+      "mil": "MOD",
+      "notDefined": "Not defined"
+    }
   },
   "Footer": {
     "localeSwitcher": {

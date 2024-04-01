@@ -20,7 +20,13 @@
     "notFound": "No results were found for your request"
   },
   "LatestEntries": {
-    "dateNotSet": "Date not set"
+    "dateNotSet": "Date not set",
+    "tags": {
+      "kremlin": "Kremlin",
+      "mid": "MFA",
+      "mil": "MOD",
+      "notDefined": "Not defined"
+    }
   },
   "Footer": {
     "localeSwitcher": {

@@ -19,7 +19,13 @@
     "notFound": "Aucun document ne correspond aux termes de recherche spécifiés"
   },
   "LatestEntries": {
-    "dateNotSet": "Date non fixée"
+    "dateNotSet": "Date non fixée",
+    "tags": {
+      "kremlin": "Kremlin",
+      "mid": "MFA",
+      "mil": "MOD",
+      "notDefined": "Not defined"
+    }
   },
   "Footer": {
     "localeSwitcher": {
