@@ -25,7 +25,6 @@ export default async function Page({params: {locale}, searchParams}: Props) {
 
     const query = searchParams?.query || '';
     const currentPage = Number(searchParams?.page) || 1;
-
     const lastPageLimit = MAX_OFFSET / ITEMS_PER_PAGE;
 
     const handleRids = (rid: string | string[] | undefined) => {
