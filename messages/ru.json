@@ -19,7 +19,13 @@
     "notFound": "По вашему запросу ничего не найдено"
   },
   "LatestEntries": {
-    "dateNotSet": "Дата не установлена"
+    "dateNotSet": "Дата не установлена",
+    "tags": {
+      "kremlin": "Кремль",
+      "mid": "МИД",
+      "mil": "Минобороны",
+      "notDefined": "Не определено"
+    }
   },
   "Footer": {
     "localeSwitcher": {

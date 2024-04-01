@@ -3,9 +3,7 @@ import * as React from "react";
 import {useRouter, useSearchParams} from "next/navigation";
 import ResourceTag from "@/ui/search/ResourceTag";
 
-
-
-export default function EntryTags({hit}: { hit: Hit }) {
+export default function EntryTags({hit, name}: { hit: Hit, name: string }) {
     const rid = hit._source.resource_id;
     const searchParams = useSearchParams();
     const {replace} = useRouter();
@@ -23,6 +21,7 @@ export default function EntryTags({hit}: { hit: Hit }) {
     return <ResourceTag
         className='mt-2'
         rid={rid}
+        name={name}
         handleClick={handleClick}
     />;
 }
