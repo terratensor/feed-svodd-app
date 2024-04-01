@@ -1,11 +1,12 @@
 import {getTranslations, unstable_setRequestLocale} from 'next-intl/server';
 import PageLayout from "@/components/PageLayout";
 import LatestEntries from "@/ui/search/latest-entries";
-import {fetchFilteredEntries, fetchFilteredEntriesTotalHits, ITEMS_PER_PAGE} from "@/lib/data";
+import {fetchFilteredEntries, fetchFilteredEntriesTotalHits, ITEMS_PER_PAGE, MAX_OFFSET} from "@/lib/data";
 import * as React from "react";
 import {Suspense} from "react";
 import {SearchedEntriesSkeleton} from "@/ui/sceletons";
 import Pagination from "@/ui/pagination/Pagination";
+import {notFound} from "next/navigation";
 
 
 type Props = {
@@ -25,6 +26,11 @@ export default async function Page({params: {locale}, searchParams}: Props) {
 
     const query = searchParams?.query || '';
     const currentPage = Number(searchParams?.page) || 1;
+
+    // Если задан параметр страницы более чем установленный лимит, то показывает 404
+    if (currentPage > MAX_OFFSET / ITEMS_PER_PAGE) {
+        return notFound();
+    }
 
     const handleRids = (rid: string | string[] | undefined) => {
         let result: number[] = [];
