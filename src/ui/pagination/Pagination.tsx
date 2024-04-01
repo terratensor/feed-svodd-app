@@ -15,7 +15,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const currentPage = Number(searchParams.get('page')) || 1;
-    const allPages = generatePagination(currentPage, totalPages);
+    const allPages = generatePagination(currentPage, lastPageLimit);
 
     // useEffect(() => {
     //     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -90,12 +90,12 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
                             isDisabled={currentPage >= lastPageLimit}
                         />
                         <PaginationNumber
-                            key={totalPages}
-                            href={createPageURL(totalPages)}
-                            page={totalPages}
+                            key={lastPageLimit+1}
+                            href={createPageURL(lastPageLimit)}
+                            page={lastPageLimit}
                             position={"last"}
                             isActive={false}
-                            isDisabled={currentPage === totalPages || totalPages > lastPageLimit}
+                            isDisabled={currentPage === lastPageLimit}
                         />
                         </div>
                     </nav>
@@ -124,9 +124,9 @@ function PaginationNumber({
             'rounded-l-md': position === 'first', // || position === 'single',
             'rounded-r-md': position === 'last', // || position === 'single',
             'z-10 dark:text-svoddWhite-200 !text-white dark:border-svoddRed-700 border-svoddRed-900 dark:bg-svoddRed-500 bg-svoddRed-800': isActive,
-            'dark:hover:bg-svoddGray-600 hover:bg-svoddWhite-100 dark:bg-svoddBlack-200 bg-svoddWhite-400 ': !isActive && position !== 'middle',
+            'dark:hover:bg-svoddGray-600 hover:bg-svoddWhite-100 dark:bg-svoddBlack-200 bg-svoddWhite-400': !isActive && position !== 'middle' && !isDisabled,
             'text-gray-300 rounded-md': position === 'middle',
-            'disabled !dark:border-svoddGray-300 dark:bg-svoddGray-500 !bg-svoddWhite-100': (isDisabled  || (isDisabled && position === 'first' || position === 'last')),
+            'disabled !dark:border-svoddGray-300 dark:bg-svoddGray-500 bg-svoddWhite-100': isDisabled,
         },
     );
 
