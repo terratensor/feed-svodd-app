@@ -5,7 +5,7 @@ import {fetchFilteredEntries, fetchFilteredEntriesTotalHits, ITEMS_PER_PAGE} fro
 import * as React from "react";
 import {Suspense} from "react";
 import {SearchedEntriesSkeleton} from "@/ui/sceletons";
-import Pagination from "@/ui/search/pagination";
+import Pagination from "@/ui/pagination/Pagination";
 
 
 type Props = {
@@ -56,10 +56,8 @@ export default async function Page({params: {locale}, searchParams}: Props) {
                 >
                    <LatestEntries hits={hits} locale={locale}/>
                 </div>
-            </Suspense>
-            <div className="flex w-full justify-center">
                 <Pagination totalPages={totalPages}/>
-            </div>
+            </Suspense>
         </PageLayout>
     );
 }

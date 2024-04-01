@@ -2,8 +2,11 @@ import SvoddLogoIcon from "@/ui/icons/SvoddLogoIcon";
 import React from "react";
 import ThemeSwitch from "@/components/ThemeSwitch";
 import LocaleSwitcher from "@/components/LocaleSwitcher";
+import {useTranslations} from "next-intl";
 
-export default async function Footer() {
+export default function Footer() {
+    const t = useTranslations('Footer');
+
     return (
         <footer className="container mt-auto mx-auto max-w-[1320px] xl:px-16 md:px-5 pb-4">
             <div className='mx-auto px-4'>
@@ -15,7 +18,7 @@ export default async function Footer() {
                         СВОДД 24.02.2022 - {new Date().getFullYear()}
                     </div>
                     <div>
-                        <LocaleSwitcher />
+                        <LocaleSwitcher label={t('localeSwitcher.label')}/>
                         <ThemeSwitch />
                     </div>
                 </div>

@@ -21,9 +21,11 @@
   "LatestEntries": {
     "dateNotSet": "Дата не установлена"
   },
-  "LocaleSwitcher": {
-    "label": "Change language",
-    "locale": "{locale, select, de {🇩🇪 Deutsch} en {🇺🇸 English} other {Unknown}}"
+  "Footer": {
+    "localeSwitcher": {
+      "label": "Язык интерфейса",
+      "locale": "{locale, select, de {🇩🇪 Deutsch} en {🇺🇸 English} other {Unknown}}"
+    }
   },
   "NotFoundPage": {
     "title": "Page not found",

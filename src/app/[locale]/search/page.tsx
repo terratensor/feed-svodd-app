@@ -6,9 +6,9 @@ import {Suspense} from "react";
 import {SearchedEntriesSkeleton} from "@/ui/sceletons";
 import SearchSummary from "@/ui/main/search-summary";
 import SearchedEntries from "@/ui/main/searched-entries";
-import Pagination from "@/ui/search/pagination";
 import * as React from "react";
-import EntryPagination from "@/components/EntryPagination";
+import Pagination from "@/ui/pagination/Pagination";
+
 
 type Props = {
     params: { locale: string };
@@ -56,11 +56,8 @@ export default async function Page({params: {locale}, searchParams}: Props) {
                         locale={locale}
                     />
                 </div>
-            </Suspense>
-
-            <div className="flex w-full justify-center">
                 <Pagination totalPages={totalPages}/>
-            </div>
+            </Suspense>
         </PageLayout>
     );
 }

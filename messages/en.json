@@ -22,9 +22,11 @@
   "LatestEntries": {
     "dateNotSet": "Date not set"
   },
-  "LocaleSwitcher": {
-    "label": "Change language",
-    "locale": "{locale, select, de {🇩🇪 Deutsch} en {🇺🇸 English} other {Unknown}}"
+  "Footer": {
+    "localeSwitcher": {
+      "label": "Interface language",
+      "locale": "{locale, select, de {🇩🇪 Deutsch} en {🇺🇸 English} other {Unknown}}"
+    }
   },
   "NotFoundPage": {
     "title": "Page not found",
