@@ -54,7 +54,6 @@ export default async function Page({params: {locale}, searchParams}: Props) {
     const latestEntries = await fetchFilteredEntries(locale, query, currentPage, rids);
     const hits = latestEntries["hits"] ? latestEntries["hits"]["hits"] : [];
 
-
     return (
         <PageLayout>
             <Suspense key={query + currentPage} fallback={<SearchedEntriesSkeleton/>}>
