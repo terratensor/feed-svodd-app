@@ -3,6 +3,7 @@ import getApiURL from "@/utils/getApiURL";
 import {number} from "prop-types";
 
 export const ITEMS_PER_PAGE = 20;
+export const MAX_OFFSET = 10000;
 
 function setInitialQuery(): QueryString {
     return {
@@ -62,7 +63,7 @@ function makeQuery(text: string, offset: number, rids: number[], locale: string)
     query.query.query_string = text;
     query.offset = offset
 
-    if (offset >= 1000) {
+    if (offset >= 1000 && offset < MAX_OFFSET) {
         query.max_matches = offset + ITEMS_PER_PAGE
     }
 

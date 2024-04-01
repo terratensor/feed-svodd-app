@@ -6,11 +6,12 @@ import { generatePagination } from '@/lib/utils';
 import {usePathname, useSearchParams} from "next/navigation";
 import {ChevronDoubleLeftIcon, ChevronDoubleRightIcon} from "@heroicons/react/16/solid";
 import React, {useEffect, useRef, useState} from "react";
+import {ITEMS_PER_PAGE, MAX_OFFSET} from "@/lib/data";
 
 export default function Pagination({ totalPages }: { totalPages: number }) {
 
     // NOTE: comment in this code when you get to this point in the course
-    const lastPageLimit = 500;
+    const lastPageLimit = MAX_OFFSET / ITEMS_PER_PAGE;
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const currentPage = Number(searchParams.get('page')) || 1;
@@ -54,7 +55,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
                         <PaginationArrow
                             direction="left"
                             href={createPageURL(currentPage - 1)}
-                            isDisabled={currentPage <= 1}
+                            isDisabled={currentPage <= 1 || (currentPage > (lastPageLimit - 1) && lastPageLimit < currentPage - 1)}
                         />
 
                         <div className="flex -space-x-px">
@@ -73,6 +74,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
                                             href={createPageURL(page)}
                                             page={page}
                                             position={position}
+                                            isDisabled={currentPage > (lastPageLimit - 1) && lastPageLimit <= page - 1 }
                                             isActive={currentPage === page}
                                         />
 
@@ -85,7 +87,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
                         <PaginationArrow
                             direction="right"
                             href={createPageURL(currentPage + 1)}
-                            isDisabled={currentPage >= totalPages}
+                            isDisabled={currentPage >= lastPageLimit}
                         />
                         <PaginationNumber
                             key={totalPages}
@@ -124,7 +126,7 @@ function PaginationNumber({
             'z-10 dark:text-svoddWhite-200 !text-white dark:border-svoddRed-700 border-svoddRed-900 dark:bg-svoddRed-500 bg-svoddRed-800': isActive,
             'dark:hover:bg-svoddGray-600 hover:bg-svoddWhite-100 dark:bg-svoddBlack-200 bg-svoddWhite-400 ': !isActive && position !== 'middle',
             'text-gray-300 rounded-md': position === 'middle',
-            'disabled !dark:border-svoddGray-300 dark:bg-svoddGray-500 bg-svoddWhite-100': (isDisabled  && (position === 'first' || position === 'last')),
+            'disabled !dark:border-svoddGray-300 dark:bg-svoddGray-500 !bg-svoddWhite-100': (isDisabled  || (isDisabled && position === 'first' || position === 'last')),
         },
     );
 
