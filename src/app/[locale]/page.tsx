@@ -26,11 +26,7 @@ export default async function Page({params: {locale}, searchParams}: Props) {
 
     const query = searchParams?.query || '';
     const currentPage = Number(searchParams?.page) || 1;
-
-    // Если задан параметр страницы более чем установленный лимит, то показывает 404
-    if (currentPage > MAX_OFFSET / ITEMS_PER_PAGE) {
-        return notFound();
-    }
+    const lastPageLimit = MAX_OFFSET / ITEMS_PER_PAGE;
 
     const handleRids = (rid: string | string[] | undefined) => {
         let result: number[] = [];
@@ -49,10 +45,14 @@ export default async function Page({params: {locale}, searchParams}: Props) {
     const totalHits = await fetchFilteredEntriesTotalHits(locale, query, rids)
     const totalPages = Math.ceil(totalHits / ITEMS_PER_PAGE)
 
+    const getTotalPages = () => totalPages < lastPageLimit ? totalPages : lastPageLimit
+    // Если задан параметр страницы более чем установленный лимит, то показывает 404
+    if (currentPage > getTotalPages()) {
+        return notFound();
+    }
+
     const latestEntries = await fetchFilteredEntries(locale, query, currentPage, rids);
     const hits = latestEntries["hits"] ? latestEntries["hits"]["hits"] : [];
-
-
 
     return (
         <PageLayout>
