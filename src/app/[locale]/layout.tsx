@@ -2,7 +2,7 @@ import clsx from "clsx";
 import {Inter} from 'next/font/google';
 import {getTranslations, unstable_setRequestLocale} from 'next-intl/server';
 import React, {ReactNode} from 'react';
-import {locales} from '@/config';
+import {defaultLocale, locales} from '@/config';
 import {Providers} from "@/app/providers";
 import Navigation from "@/components/Navigation";
 
@@ -52,9 +52,6 @@ export async function generateMetadata({
    params: {locale}
 }: Omit<Props, 'children'>) {
 
-    if (locale === undefined || locale === null || !locale) {
-        locale = 'ru';
-    }
     const t = await getTranslations({locale, namespace: 'LocaleLayout'});
 
     return {
@@ -73,7 +70,6 @@ export async function generateMetadata({
         title: t('title'),
         description: t('description'),
         openGraph: {
-            type: 'website',
             url: new URL(process.env.PUBLIC_SITE_URL || 'http://feed.localhost'),
             images: [
                 {
@@ -81,7 +77,9 @@ export async function generateMetadata({
                     width: 1920,
                     height: 480,
                 },
-            ]
+            ],
+            locale: locale,
+            type: 'website',
         },
         twitter: {
             images: ['/opengraph-image.png'],
