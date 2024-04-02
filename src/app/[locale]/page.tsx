@@ -7,6 +7,8 @@ import {Suspense} from "react";
 import {SearchedEntriesSkeleton} from "@/ui/sceletons";
 import Pagination from "@/ui/pagination/Pagination";
 import {notFound} from "next/navigation";
+import type {Metadata, ResolvingMetadata} from "next";
+import {getAlternatesMetadata} from "@/lib/utils";
 
 
 type Props = {
@@ -66,4 +68,24 @@ export default async function Page({params: {locale}, searchParams}: Props) {
             </Suspense>
         </PageLayout>
     );
+}
+
+export async function generateMetadata(
+    {params, searchParams}: Props,
+    parent: ResolvingMetadata
+): Promise<Metadata> {
+    // read route params
+    const t = await getTranslations({locale: params.locale, namespace: 'IndexPage'});
+
+    const alternates = await getAlternatesMetadata({
+        locale: params.locale,
+        pathname: '/',
+        searchParams: searchParams
+    });
+
+    return {
+        alternates: alternates,
+        title: t('title'),
+        description: t('description'),
+    }
 }
