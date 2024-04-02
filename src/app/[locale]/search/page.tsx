@@ -49,7 +49,7 @@ export default async function Page({params: {locale}, searchParams}: Props) {
     const getTotalPages = () => totalPages < lastPageLimit ? totalPages : lastPageLimit
     // Если задан параметр страницы более чем установленный лимит, то показывает 404 и есть результаты поиска,
     // иначе показываем сообщение об отсутствии результатов
-    if (currentPage > getTotalPages() && totalHits > 0) {
+    if ((currentPage > getTotalPages() && totalHits > 0) || currentPage < 0) {
         return notFound();
     }
 
