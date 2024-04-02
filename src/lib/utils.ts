@@ -1,5 +1,5 @@
 import {number} from "prop-types";
-import {locales} from "@/config";
+import {defaultLocale, locales} from "@/config";
 
 export const formatDateToLocal = (
     dateStr: string,
@@ -73,7 +73,7 @@ export const getAlternatesMetadata = async ({pathname, searchParams}: {
 }) => {
     const url: URL = new URL(process.env.PUBLIC_SITE_URL || 'https://feed.svodd.ru');
 
-    url.pathname = pathname;
+    url.pathname = defaultLocale + pathname;
     const sp = new URLSearchParams();
     const numPage = Number(searchParams?.page);
 
