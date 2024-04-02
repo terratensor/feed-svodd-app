@@ -2,10 +2,9 @@ import clsx from "clsx";
 import {Inter} from 'next/font/google';
 import {getTranslations, unstable_setRequestLocale} from 'next-intl/server';
 import React, {ReactNode} from 'react';
-import {defaultLocale, locales} from '@/config';
+import {locales} from '@/config';
 import {Providers} from "@/app/providers";
 import Navigation from "@/components/Navigation";
-
 import Footer from "@/components/Footer";
 
 

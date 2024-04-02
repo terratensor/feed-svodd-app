@@ -8,6 +8,7 @@ import EntryUrl from "@/ui/entry/entry-url";
 import Head from "next/head";
 import type {Metadata, ResolvingMetadata} from "next";
 import {getAlternatesMetadata} from "@/lib/utils";
+import {headers} from "next/headers";
 
 type Props = {
     params: { locale: string };
