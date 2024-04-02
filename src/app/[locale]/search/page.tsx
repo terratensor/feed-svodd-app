@@ -88,9 +88,9 @@ export async function generateMetadata(
     return {
         alternates: alternates,
         title: t("searchResults", {query: searchParams?.query?.toString()}),
+        description: t('description'),
         openGraph: {
             title: t("searchResults", {query: searchParams?.query?.toString()}),
-            description: t('description'),
         }
     }
 }

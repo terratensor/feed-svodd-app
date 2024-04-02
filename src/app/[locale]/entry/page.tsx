@@ -63,5 +63,6 @@ export async function generateMetadata(
     return {
         alternates: alternates,
         title: hits ? hits[0]?._source.title : t('title'),
+        description: t('description'),
     }
 }
