@@ -1,13 +1,13 @@
 'use client';
 
 import React, {Suspense, useEffect, useRef} from "react";
-import {useRouter, useSearchParams} from "next/navigation";
+import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import {useDebouncedCallback} from "use-debounce";
 import SvoddLogoIcon from "@/ui/icons/SvoddLogoIcon";
-import {Link} from "@/navigation";
 import SearchResourceFilter from "@/ui/search/SearchResourceFilter";
+import useMainPageURL from "@/utils/useMainPageURL";
 
-export default function Search({placeholder}: { placeholder: string }) {
+export default function Search({placeholder, locale}: { placeholder: string, locale: string }) {
 
     const searchParams = useSearchParams();
     // const pathname = usePathname();
@@ -35,10 +35,10 @@ export default function Search({placeholder}: { placeholder: string }) {
         } else {
             params.delete('query');
         }
-        replace(`/search?${params.toString()}`);
+        replace(`/${locale}/search?${params.toString()}`);
     }, 500);
 
-    // const href = useMainPageURL(resourceIDs)
+    const href = useMainPageURL(locale)
 
     return (
         <Suspense>
@@ -64,7 +64,7 @@ export default function Search({placeholder}: { placeholder: string }) {
                 {/*<input type="checkbox" className="rounded"/> mil.ru*/}
 
                 {/*</div>*/}
-                <a href="/">
+                <a href={href}>
                     <SvoddLogoIcon
                         className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"/>
                 </a>

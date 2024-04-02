@@ -74,8 +74,7 @@ export const getAlternatesMetadata = async ({locale, pathname, searchParams}: {
 }) => {
     const url: URL = new URL(process.env.PUBLIC_SITE_URL || 'https://feed.svodd.ru');
 
-    url.pathname = pathname;
-    const sp = new URLSearchParams();
+    url.pathname = locale !== defaultLocale ? `${locale}${pathname}` : pathname;
     const numPage = Number(searchParams?.page);
 
     (searchParams?.page && numPage > 1) && url.searchParams.set('page', searchParams?.page.toString());
