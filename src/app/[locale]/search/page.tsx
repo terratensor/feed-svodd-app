@@ -9,6 +9,8 @@ import SearchedEntries from "@/ui/main/searched-entries";
 import * as React from "react";
 import Pagination from "@/ui/pagination/Pagination";
 import {notFound} from "next/navigation";
+import {getAlternatesMetadata} from "@/lib/utils";
+import {locales} from "@/config";
 
 
 type Props = {
@@ -77,7 +79,14 @@ export async function generateMetadata(
 ): Promise<Metadata> {
     // read route params
     const t = await getTranslations('SearchPage');
+
+    const alternates = await getAlternatesMetadata({
+        pathname: '/search',
+        searchParams: searchParams
+    })
+
     return {
+        alternates: alternates,
         title: t("searchResults", {query: searchParams?.query?.toString()}),
     }
 }

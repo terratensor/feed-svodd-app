@@ -7,6 +7,7 @@ import {fetchEntry} from "@/lib/data";
 import EntryUrl from "@/ui/entry/entry-url";
 import Head from "next/head";
 import type {Metadata, ResolvingMetadata} from "next";
+import {getAlternatesMetadata} from "@/lib/utils";
 
 type Props = {
     params: { locale: string };
@@ -52,7 +53,14 @@ export async function generateMetadata(
     const t = await getTranslations('SearchPage');
     const query = searchParams.url;
     const hits = await getHits(query);
+
+    const alternates = await getAlternatesMetadata({
+        pathname: '/entry',
+        searchParams: searchParams
+    });
+
     return {
+        alternates: alternates,
         title: hits ? hits[0]?._source.title : t('title'),
     }
 }
