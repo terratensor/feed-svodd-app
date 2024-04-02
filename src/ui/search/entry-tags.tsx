@@ -6,7 +6,7 @@ import ResourceTag from "@/ui/search/ResourceTag";
 export default function EntryTags({hit, name}: { hit: Hit, name: string }) {
     const rid = hit._source.resource_id;
     const searchParams = useSearchParams();
-    const {replace} = useRouter();
+    const {push} = useRouter();
     const handleClick = (event: React.MouseEvent<HTMLElement>, rid: number) => {
         event.preventDefault();
         const params = new URLSearchParams(searchParams)
@@ -15,7 +15,7 @@ export default function EntryTags({hit, name}: { hit: Hit, name: string }) {
         } else {
             params.set('rid', `${rid}`);
         }
-        replace(`?${params.toString()}`);
+        push(`?${params.toString()}`);
     }
 
     return <ResourceTag
