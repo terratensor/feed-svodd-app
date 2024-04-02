@@ -20,17 +20,6 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
 
     const allPages = generatePagination(currentPage, getTotalPages());
 
-    // useEffect(() => {
-    //     window.scrollTo({ top: 0, behavior: 'smooth' });
-    //     console.log(window)
-    //     let body = document.body
-    //     let html = document.documentElement;
-    //     let height = document.body.clientHeight;
-    //     console.log(body.scrollHeight, body.offsetHeight)
-    //     console.log(html.clientHeight, html.scrollHeight, html.offsetHeight)
-    //     console.log(height)
-    // }, []);
-
     const createPageURL = (pageNumber: number|string) => {
         const params = new URLSearchParams(searchParams);
         params.set('page', pageNumber.toString());
@@ -48,7 +37,6 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
                     <nav className="flex justify-center">
                         <div className='inline-flex'>
                         <PaginationNumber
-                            key={1}
                             href={createPageURL(1)}
                             page={1}
                             position={"first"}
@@ -71,18 +59,14 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
                                 // if (page === '...') position = 'middle';
 
                                 return (
-                                    <>
-                                        <PaginationNumber
-                                            key={page}
-                                            href={createPageURL(page)}
-                                            page={page}
-                                            position={position}
-                                            isDisabled={currentPage > (getTotalPages() - 1) && getTotalPages() <= page - 1 }
-                                            isActive={currentPage === page}
-                                        />
-
-                                    </>
-
+                                    <PaginationNumber
+                                        key={index}
+                                        href={createPageURL(page)}
+                                        page={page}
+                                        position={position}
+                                        isDisabled={currentPage > (getTotalPages() - 1) && getTotalPages() <= page - 1 }
+                                        isActive={currentPage === page}
+                                    />
                                 );
                             })}
                         </div>
@@ -93,7 +77,6 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
                             isDisabled={currentPage >= getTotalPages()}
                         />
                         <PaginationNumber
-                            key={getTotalPages()+1}
                             href={createPageURL(getTotalPages())}
                             page={getTotalPages()}
                             position={"last"}
