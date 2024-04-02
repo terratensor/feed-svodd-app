@@ -77,7 +77,7 @@ export async function generateMetadata(
     parent: ResolvingMetadata
 ): Promise<Metadata> {
     // read route params
-    const t = await getTranslations('SearchPage');
+    const t = await getTranslations({locale: params.locale, namespace: 'SearchPage'});
 
     const alternates = await getAlternatesMetadata({
         locale: params.locale,
@@ -88,5 +88,9 @@ export async function generateMetadata(
     return {
         alternates: alternates,
         title: t("searchResults", {query: searchParams?.query?.toString()}),
+        openGraph: {
+            title: t("searchResults", {query: searchParams?.query?.toString()}),
+            description: t('description'),
+        }
     }
 }
