@@ -73,13 +73,14 @@ export default async function Page({params: {locale}, searchParams}: Props) {
 }
 
 export async function generateMetadata(
-    {searchParams}: Props,
+    {params, searchParams}: Props,
     parent: ResolvingMetadata
 ): Promise<Metadata> {
     // read route params
     const t = await getTranslations('SearchPage');
 
     const alternates = await getAlternatesMetadata({
+        locale: params.locale,
         pathname: '/search',
         searchParams: searchParams
     })
