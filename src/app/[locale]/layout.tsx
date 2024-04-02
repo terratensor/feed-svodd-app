@@ -1,13 +1,12 @@
 import clsx from "clsx";
 import {Inter} from 'next/font/google';
-import {getLocale, getTranslations, unstable_setRequestLocale} from 'next-intl/server';
+import {getTranslations, unstable_setRequestLocale} from 'next-intl/server';
 import React, {ReactNode} from 'react';
 import {locales} from '@/config';
 import {Providers} from "@/app/providers";
 import Navigation from "@/components/Navigation";
-import getURL from "@/utils/getURL";
+
 import Footer from "@/components/Footer";
-import {headers} from "next/headers";
 
 
 const inter = Inter({subsets: ['latin']});
