@@ -51,7 +51,11 @@ export default async function LocaleLayout({
 export async function generateMetadata({
    params: {locale}
 }: Omit<Props, 'children'>) {
-    const t = await getTranslations({locale: 'ru', namespace: 'LocaleLayout'});
+
+    if (locale === undefined || locale === null || !locale) {
+        locale = 'ru';
+    }
+    const t = await getTranslations({locale, namespace: 'LocaleLayout'});
 
     return {
         metadataBase: new URL(process.env.PUBLIC_SITE_URL || 'https://feed.svodd.ru'),
