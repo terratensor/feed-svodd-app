@@ -1,6 +1,7 @@
 import {Pathnames} from 'next-intl/navigation';
 
 export const locales = ['ru', 'en', 'de', 'fr', 'es', 'pt'] as const;
+export const defaultLocale = 'ru';
 
 export const pathnames = {
     '/': '/',

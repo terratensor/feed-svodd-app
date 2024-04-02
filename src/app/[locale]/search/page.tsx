@@ -10,7 +10,6 @@ import * as React from "react";
 import Pagination from "@/ui/pagination/Pagination";
 import {notFound} from "next/navigation";
 import {getAlternatesMetadata} from "@/lib/utils";
-import {locales} from "@/config";
 
 
 type Props = {
