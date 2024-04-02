@@ -77,7 +77,7 @@ export async function generateMetadata(
     parent: ResolvingMetadata
 ): Promise<Metadata> {
     // read route params
-    const t = await getTranslations({locale: params.locale, namespace: 'SearchPage'});
+    const t = await getTranslations({locale: 'ru', namespace: 'SearchPage'});
 
     const alternates = await getAlternatesMetadata({
         locale: params.locale,

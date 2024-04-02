@@ -1,12 +1,13 @@
 import clsx from "clsx";
 import {Inter} from 'next/font/google';
-import {getTranslations, unstable_setRequestLocale} from 'next-intl/server';
+import {getLocale, getTranslations, unstable_setRequestLocale} from 'next-intl/server';
 import React, {ReactNode} from 'react';
 import {locales} from '@/config';
 import {Providers} from "@/app/providers";
 import Navigation from "@/components/Navigation";
 import getURL from "@/utils/getURL";
 import Footer from "@/components/Footer";
+import {headers} from "next/headers";
 
 
 const inter = Inter({subsets: ['latin']});
@@ -51,7 +52,7 @@ export default async function LocaleLayout({
 export async function generateMetadata({
    params: {locale}
 }: Omit<Props, 'children'>) {
-    const t = await getTranslations({locale, namespace: 'LocaleLayout'});
+    const t = await getTranslations({locale: 'ru', namespace: 'LocaleLayout'});
 
     return {
         metadataBase: new URL(process.env.PUBLIC_SITE_URL || 'https://feed.svodd.ru'),

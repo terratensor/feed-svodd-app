@@ -8,6 +8,9 @@ import EntryUrl from "@/ui/entry/entry-url";
 import Head from "next/head";
 import type {Metadata, ResolvingMetadata} from "next";
 import {getAlternatesMetadata} from "@/lib/utils";
+import {getParams} from "next/dist/export/helpers/get-params";
+import {getPathname} from "next/dist/lib/url";
+import {headers} from "next/headers";
 
 type Props = {
     params: { locale: string };
@@ -50,7 +53,7 @@ export async function generateMetadata(
     parent: ResolvingMetadata
 ): Promise<Metadata> {
     // read route params
-    const t = await getTranslations({locale: params.locale, namespace: 'SearchPage'});
+    const t = await getTranslations({locale: 'ru', namespace: 'SearchPage'});
     const query = searchParams.url;
     const hits = await getHits(query);
 
