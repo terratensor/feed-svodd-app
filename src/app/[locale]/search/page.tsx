@@ -10,7 +10,6 @@ import * as React from "react";
 import Pagination from "@/ui/pagination/Pagination";
 import {notFound} from "next/navigation";
 import {getAlternatesMetadata} from "@/lib/utils";
-import {locales} from "@/config";
 
 
 type Props = {
@@ -74,13 +73,14 @@ export default async function Page({params: {locale}, searchParams}: Props) {
 }
 
 export async function generateMetadata(
-    {searchParams}: Props,
+    {params, searchParams}: Props,
     parent: ResolvingMetadata
 ): Promise<Metadata> {
     // read route params
     const t = await getTranslations('SearchPage');
 
     const alternates = await getAlternatesMetadata({
+        locale: params.locale,
         pathname: '/search',
         searchParams: searchParams
     })

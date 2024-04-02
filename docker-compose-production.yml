@@ -9,7 +9,7 @@ services:
     environment:
       ENV_VARIABLE: production
       NEXT_PUBLIC_ENV_VARIABLE: production
-      PUBLIC_SITE_URL: "http:/feed.svodd.ru"
+      PUBLIC_SITE_URL: "https:/feed.svodd.ru"
       NEXT_API_URL: "http://manticore_feed:9308"
     networks:
       - traefik-public
