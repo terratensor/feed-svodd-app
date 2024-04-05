@@ -36,7 +36,7 @@ export default function Search({placeholder, locale}: { placeholder: string, loc
             params.delete('query');
         }
         replace(`/${locale}/search?${params.toString()}`);
-    }, 500);
+    }, 300);
 
     const href = useMainPageURL(locale)
 

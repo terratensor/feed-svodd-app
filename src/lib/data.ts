@@ -7,7 +7,7 @@ export const MAX_OFFSET = 10000;
 
 function setInitialQuery(): QueryString {
     return {
-        index: "feed",
+        index: "feed_new",
         highlight: {
             fields: ["title", "summary", "content"],
             limit: 0,
@@ -73,6 +73,10 @@ function makeQuery(text: string, offset: number, rids: number[], locale: string)
 function getEntryQuery(url: string) {
     let query: QueryString = setInitialQuery()
     query.query.bool.must.push({equals: {url: url}})
+    query.sort= [
+        { chunk: "asc"  },
+    ];
+    query.limit = 100;
     return query;
 }
 

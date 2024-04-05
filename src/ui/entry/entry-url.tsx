@@ -8,13 +8,18 @@ import {notFound} from "next/navigation";
 export default async function EntryUrl({hits, locale}: { hits: Hit[], locale: string }) {
     const t = await getTranslations('LatestEntries');
 
-    return (<>{hits.length > 0 ? hits.map((hit: Hit, index: number) => {
-        return (
+    if (hits.length <= 0) {
+        return notFound();
+    }
+
+    const hit = hits[0]
+
+    return (<>{
             <article
                 key={hit._id}
                 data-url={hit._source.url}
                 className={clsx('relative group', className, {
-                    "!mt-10": index == 0
+                    "!mt-10": true
                 })}>
                 <div
                     className="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 rounded-2xl bg-svoddWhite-600 dark:bg-svoddBlack-400"></div>
@@ -26,12 +31,20 @@ export default async function EntryUrl({hits, locale}: { hits: Hit[], locale: st
                         <h3 className="text-xl font-semibold pt-8 mb-2">{hit._source.title}</h3>
                     }
                     {
-                        hit.highlight.content.length > 0 ?
-                            <div className="content text-base/7"
-                                 dangerouslySetInnerHTML={{__html: hit.highlight.content}}/>
-                            :
-                            <div className="content text-base/7"
-                                 dangerouslySetInnerHTML={{__html: hit._source.content}}/>
+                        hits.map((hit: Hit, index: number) => {
+                            return <>{
+                            hit.highlight.content.length > 0 ?
+                                <div key={hit._id} className="content text-base/7"
+                                     dangerouslySetInnerHTML={{__html: hit.highlight.content}}
+                                     id={hit._source.chunk.toString()}
+                                />
+                                :
+                                <div key={hit._id} className="content text-base/7"
+                                     dangerouslySetInnerHTML={{__html: hit._source.content}}
+                                     id={`${hit._source.chunk.toString()}`}
+                                />
+                            }</>
+                        })
                     }
 
                     <EntrySourceUrl url={hit._source.url}/>
@@ -47,7 +60,7 @@ export default async function EntryUrl({hits, locale}: { hits: Hit[], locale: st
                     </dl>
                 </div>
             </article>
-        );
-    }) : notFound()}
+
+  }
     </>);
 }
