@@ -8,10 +8,15 @@ interface Source {
     title: string;
     summary: string;
     content: string;
-    url: string;
-    language: string;
-    published: number;
     resource_id: number;
+    chunk: number;
+    published: number;
+    updated: number;
+    created: number;
+    language: string;
+    url: string;
+    author: string;
+    number: string;
 }
 
 interface Highlight {

@@ -33,6 +33,8 @@ ARG PUBLIC_SITE_URL
 ENV PUBLIC_SITE_URL=${PUBLIC_SITE_URL}
 ARG NEXT_API_URL
 ENV NEXT_API_URL=${NEXT_API_URL}
+ARG MANTICORE_INDEX_NAME
+ENV MANTICORE_INDEX_NAME=${MANTICORE_INDEX_NAME}
 
 # Next.js collects completely anonymous telemetry data about general usage. Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line to disable telemetry at build time
