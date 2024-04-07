@@ -9,7 +9,6 @@ export const MAX_OFFSET = 10000;
 const index = getIndexName();
 
 function setInitialQuery(): QueryString {
-    console.log(index)
     return {
         index: index,
         highlight: {
