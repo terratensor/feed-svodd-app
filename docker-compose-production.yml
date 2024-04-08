@@ -11,6 +11,7 @@ services:
       NEXT_PUBLIC_ENV_VARIABLE: production
       PUBLIC_SITE_URL: "https:/feed.svodd.ru"
       NEXT_API_URL: "http://manticore_feed:9308"
+      MANTICORE_INDEX_NAME: "feed"
     networks:
       - traefik-public
       - feed-parser-net

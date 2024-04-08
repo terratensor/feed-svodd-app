@@ -1,7 +1,12 @@
 import {getTranslations, unstable_setRequestLocale} from 'next-intl/server';
 import PageLayout from "@/components/PageLayout";
 import LatestEntries from "@/ui/search/latest-entries";
-import {fetchFilteredEntries, fetchFilteredEntriesTotalHits, ITEMS_PER_PAGE, MAX_OFFSET} from "@/lib/data";
+import {
+    fetchEntries,
+    fetchFilteredEntriesTotalHits,
+    ITEMS_PER_PAGE,
+    MAX_OFFSET
+} from "@/lib/data";
 import * as React from "react";
 import {Suspense} from "react";
 import {SearchedEntriesSkeleton} from "@/ui/sceletons";
@@ -50,7 +55,7 @@ export default async function Page({params: {locale}, searchParams}: Props) {
         return notFound();
     }
 
-    const latestEntries = await fetchFilteredEntries(locale, query, currentPage, rids);
+    const latestEntries = await fetchEntries(locale, currentPage, rids);
     const hits = latestEntries["hits"] ? latestEntries["hits"]["hits"] : [];
 
     return (

@@ -1,13 +1,16 @@
 import {unstable_noStore as noStore} from "next/cache";
 import getApiURL from "@/utils/getApiURL";
 import {number} from "prop-types";
+import getIndexName from "@/utils/getIndexName";
 
 export const ITEMS_PER_PAGE = 20;
 export const MAX_OFFSET = 10000;
 
+const index = getIndexName();
+
 function setInitialQuery(): QueryString {
     return {
-        index: "feed_new",
+        index: index,
         highlight: {
             fields: ["title", "summary", "content"],
             limit: 0,
@@ -24,6 +27,34 @@ function setInitialQuery(): QueryString {
         limit: ITEMS_PER_PAGE,
         offset: 0,
     };
+}
+
+function makeIndexQuery(offset: number, rids: number[], locale: string) {
+
+    let query: QueryString = setInitialQuery()
+
+    query.query.bool.must.push({equals: {chunk: 1}})
+    query.query.bool.must.push({equals: {language: locale}});
+    if (rids && rids.length > 0) {
+        query.query.bool.must.push({in: {resource_id: rids}})
+    }
+
+    query.sort = [
+        {
+            published: "desc"
+        },
+        {
+            created: "desc"
+        }
+    ];
+
+    query.offset = offset
+
+    if (offset >= 1000 && offset < MAX_OFFSET) {
+        query.max_matches = offset + ITEMS_PER_PAGE
+    }
+
+    return query;
 }
 
 function makeQuery(text: string, offset: number, rids: number[], locale: string) {
@@ -76,10 +107,27 @@ function getEntryQuery(url: string) {
     query.sort= [
         { chunk: "asc"  },
     ];
-    query.limit = 100;
+    query.limit = 1000;
     return query;
 }
 
+export async function fetchEntries(locale: string, currentPage: number, rids: number[]) {
+    noStore();
+    const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+
+    const response = await fetch(`${getApiURL('/search')}`, {
+        // next: {revalidate: 60},
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(makeIndexQuery(offset, rids, locale))
+    });
+    if (!response.ok) {
+        throw new Error("failed to fetch API data");
+    }
+    return response.json();
+}
 export async function fetchFilteredEntries(locale: string, text: string, currentPage: number, rids: number[]) {
     noStore();
     const offset = (currentPage - 1) * ITEMS_PER_PAGE;
