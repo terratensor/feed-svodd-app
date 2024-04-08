@@ -10,11 +10,13 @@ export default function EntryTags({hit, name}: { hit: Hit, name: string }) {
     const handleClick = (event: React.MouseEvent<HTMLElement>, rid: number) => {
         event.preventDefault();
         const params = new URLSearchParams(searchParams)
-        if (params.get('rid')) {
-            params.delete('rid');
+        
+        if (params.has('rid', rid.toString())) {
+            params.delete('rid', rid.toString());
         } else {
-            params.set('rid', `${rid}`);
+            params.append('rid', `${rid}`);
         }
+        
         push(`?${params.toString()}`);
     }
 

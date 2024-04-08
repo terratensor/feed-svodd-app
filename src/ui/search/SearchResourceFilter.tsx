@@ -1,57 +1,100 @@
 import ResourceTag from "@/ui/search/ResourceTag";
-import React from "react";
+import React, {useEffect} from "react";
 import {useRouter, useSearchParams} from "next/navigation";
 
-function getTagName(resource_id: number) {
-    switch (resource_id) {
-        case 1:
-            return "КРЕМЛЬ"
-        case 2:
-            return "МИД"
-        case 3:
-            return "МИНОБОРОНЫ"
-        default:
-            return "не определено"
-    }
+const resourceNamesMap = [
+    {rid: 1, name: "КРЕМЛЬ", active: false},
+    {rid: 2, name: "МИД", active: false},
+    {rid: 3, name: "МИНОБОРОНЫ", active: false},
+];
+
+function getItem(resource_id: number): { name: string; active: boolean; rid: number } | string {
+    return resourceNamesMap.find((item: {
+        rid: number,
+        name: string,
+        active: boolean
+    }) => item.rid === resource_id) || "не определено";
 }
+
 export default function SearchResourceFilter() {
     const searchParams = useSearchParams();
-    const {push} = useRouter();
+    const {replace} = useRouter();
+    const params = new URLSearchParams(searchParams)
+    const [rids, setRids] = React.useState(resourceNamesMap);
 
-    const handleRids = (rid: string | string[] | undefined) => {
-        let result: number[] = [];
-        if (rid && rid instanceof Array) {
-            rid.map((value) => {
-                return result.push(Number(value))
-            })
-        } else if (rid) {
-            result.push(Number(rid))
-        }
+    useEffect(() => {
 
-        return result
+        // console.log("searchParams", params.getAll('rid'))
+
+        const ridParams = params.getAll('rid');
+        ridParams.map((rid) => {
+            setRids(rids.map(item => {
+                if (item.rid === Number(rid)) {
+                    item.active = true;
+                    return item;
+                } else {
+                    return item;
+                }
+            }));
+        })
+
+        // console.log("searchParams2", rids)
+    }, [searchParams]);
+
+    useEffect(() => {
+        const params = new URLSearchParams(searchParams)
+        console.log("use effect 45 params", params.toString())
+        console.log("useEffect 45", rids)
+        console.log("searchParams 47", params.getAll('rid'))
+        params.getAll('rid').map((rid) => {
+            rids.forEach((item, index) => {
+                if (item.rid === Number(rid) && !item.active) {
+                    console.log("index", rids[index])
+                }
+            });
+        })
+    });
+
+    function handleChangeRid(rid: number) {
+        setRids(rids.map(item => {
+            if (item.rid === rid) {
+                item.active = !item.active;
+                return item;
+            } else {
+                return item;
+            }
+        }));
     }
-    const rids = handleRids(searchParams.getAll('rid'));
 
     const handleClick = (event: React.MouseEvent<HTMLElement>, rid: number) => {
         event.preventDefault();
         const params = new URLSearchParams(searchParams)
 
-        if (params.get('rid')) {
-            console.log(params.get('rid'))
+        handleChangeRid(rid)
+
+        if (params.has('rid', rid.toString())) {
             params.delete('rid', rid.toString());
         } else {
-            params.set('rid', `${rid}`);
+            params.append('rid', `${rid}`);
         }
-        push(`?${params.toString()}`);
+
+        replace(`?${params.toString()}`);
     }
 
     return (
         <div className='flex justify-items-start gap-1'>
-            {rids ? rids.map((rid) => {
-                return (<div key={rid} className='flex flex-col'>
-                    <ResourceTag className='text-xs' rid={rid} name={getTagName(rid)} handleClick={handleClick} showIcon={true}/>
+            {resourceNamesMap.map((item) => {
+                return (<div key={item.rid} className='flex flex-col'>
+                    <ResourceTag
+                        className='text-xs'
+                        rid={item.rid}
+                        name={item.name}
+                        active={item.active}
+                        handleClick={handleClick}
+                        showIcon={item.active}
+                    />
                 </div>);
-            }) : null}
+            })}
         </div>
     )
 }
