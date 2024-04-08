@@ -48,6 +48,10 @@ const config: Config = {
           700: '#560000',
           800: '#a10000', //--bs-pagination-active-bg
           900: '#9d0000', //--bs-pagination-active-border-color
+          1000: '#a50000', // btn-svodd
+          1100: '#7e0000', // btn-border
+          1200: '#b90000', // btn-svodd-hover
+          1300: '#9f0000', // btn-svodd-hover
         },
         blue: {
           400: '#2589FE',
