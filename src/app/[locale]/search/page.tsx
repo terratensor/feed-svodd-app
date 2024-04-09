@@ -61,7 +61,7 @@ export default async function Page({params: {locale}, searchParams}: Props) {
         <PageLayout>
             <Suspense key={query + currentPage} fallback={<SearchedEntriesSkeleton/>}>
                 <div
-                    className={`flex flex-col max-w-6xl mx-auto my-6 space-y-16 text-svoddBlack-100 dark:text-svoddWhite-200`}
+                    className={`flex flex-col max-w-6xl mx-auto my-6 space-y-16 lg:pt-0 pt-5 text-svoddBlack-100 dark:text-svoddWhite-200`}
                 >
                     <SearchSummary totalHits={totalHits} currentPage={currentPage}/>
                     <SearchedEntries
