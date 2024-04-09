@@ -1,6 +1,7 @@
 import ResourceTag from "@/ui/search/ResourceTag";
 import React, {useEffect} from "react";
 import {useRouter, useSearchParams} from "next/navigation";
+import storage from "@/lib/localStorage";
 
 const resourceNamesMap = [
     {rid: 1, name: "КРЕМЛЬ", active: false},
@@ -8,74 +9,43 @@ const resourceNamesMap = [
     {rid: 3, name: "МИНОБОРОНЫ", active: false},
 ];
 
-function getItem(resource_id: number): { name: string; active: boolean; rid: number } | string {
-    return resourceNamesMap.find((item: {
-        rid: number,
-        name: string,
-        active: boolean
-    }) => item.rid === resource_id) || "не определено";
-}
-
 export default function SearchResourceFilter() {
     const searchParams = useSearchParams();
     const {replace} = useRouter();
     const params = new URLSearchParams(searchParams)
-    const [rids, setRids] = React.useState(resourceNamesMap);
+    const [rid, setRid] = React.useState(0)
+
+    // устанавливаем при первой загрузке значение rid из searchParams
+    useEffect(() => {
+        const ridParam = params.get('rid');
+        if (ridParam) {
+            storage.set(`rid`, ridParam.toString())
+            setRid(Number(ridParam.toString()))
+        } else {
+            storage.remove('rid')
+        }
+    }, []);
 
     useEffect(() => {
-
-        // console.log("searchParams", params.getAll('rid'))
-
-        const ridParams = params.getAll('rid');
-        ridParams.map((rid) => {
-            setRids(rids.map(item => {
-                if (item.rid === Number(rid)) {
-                    item.active = true;
-                    return item;
-                } else {
-                    return item;
-                }
-            }));
-        })
-
-        // console.log("searchParams2", rids)
-    }, [searchParams]);
-
-    useEffect(() => {
-        const params = new URLSearchParams(searchParams)
-        console.log("use effect 45 params", params.toString())
-        console.log("useEffect 45", rids)
-        console.log("searchParams 47", params.getAll('rid'))
-        params.getAll('rid').map((rid) => {
-            rids.forEach((item, index) => {
-                if (item.rid === Number(rid) && !item.active) {
-                    console.log("index", rids[index])
-                }
-            });
-        })
+        storage.get('rid') ? setRid(storage.get('rid')) : setRid(0)
     });
 
-    function handleChangeRid(rid: number) {
-        setRids(rids.map(item => {
-            if (item.rid === rid) {
-                item.active = !item.active;
-                return item;
-            } else {
-                return item;
-            }
-        }));
+    function handleChangeRid(ridParam: number) {
+        rid == ridParam ? setRid(0) : setRid(ridParam);
     }
 
-    const handleClick = (event: React.MouseEvent<HTMLElement>, rid: number) => {
+    const handleClick = (event: React.MouseEvent<HTMLElement>, ridParam: number) => {
         event.preventDefault();
         const params = new URLSearchParams(searchParams)
 
-        handleChangeRid(rid)
+        handleChangeRid(ridParam)
 
-        if (params.has('rid', rid.toString())) {
-            params.delete('rid', rid.toString());
+        if (params.has('rid', ridParam.toString())) {
+            params.delete('rid', ridParam.toString());
+            storage.remove('rid')
         } else {
-            params.append('rid', `${rid}`);
+            params.set('rid', `${ridParam}`);
+            storage.set(`rid`, ridParam.toString())
         }
 
         replace(`?${params.toString()}`);
@@ -89,9 +59,9 @@ export default function SearchResourceFilter() {
                         className='text-xs'
                         rid={item.rid}
                         name={item.name}
-                        active={item.active}
+                        active={rid == item.rid}
                         handleClick={handleClick}
-                        showIcon={item.active}
+                        // showIcon={item.active}
                     />
                 </div>);
             })}
