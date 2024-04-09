@@ -4,7 +4,8 @@ const storage = {
             const value = localStorage.getItem(key) ?? '';
             return JSON.parse(value);
         } catch (error) {
-            console.error(`Error getting item ${key} from localStorage:`, error);
+            // console.error(`Error getting item ${key} from localStorage:`, error);
+            // console.error(`Error getting item ${key} from localStorage:`);
         }
     }, set(key: string, value: string) {
         try {
@@ -21,4 +22,3 @@ const storage = {
     },
 };
 export default storage;
-

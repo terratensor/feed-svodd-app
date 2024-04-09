@@ -2,6 +2,7 @@
 import * as React from "react";
 import {useRouter, useSearchParams} from "next/navigation";
 import ResourceTag from "@/ui/search/ResourceTag";
+import storage from "@/lib/localStorage";
 
 export default function EntryTags({hit, name}: { hit: Hit, name: string }) {
     const rid = hit._source.resource_id;
@@ -10,11 +11,15 @@ export default function EntryTags({hit, name}: { hit: Hit, name: string }) {
     const handleClick = (event: React.MouseEvent<HTMLElement>, rid: number) => {
         event.preventDefault();
         const params = new URLSearchParams(searchParams)
-        if (params.get('rid')) {
-            params.delete('rid');
+        
+        if (params.has('rid', rid.toString())) {
+            params.delete('rid', rid.toString());
+            storage.remove('rid')
         } else {
-            params.set('rid', `${rid}`);
+            params.append('rid', `${rid}`);
+            storage.set(`rid`, rid.toString())
         }
+        
         push(`?${params.toString()}`);
     }
 

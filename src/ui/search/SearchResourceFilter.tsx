@@ -1,57 +1,70 @@
 import ResourceTag from "@/ui/search/ResourceTag";
-import React from "react";
+import React, {useEffect} from "react";
 import {useRouter, useSearchParams} from "next/navigation";
+import storage from "@/lib/localStorage";
 
-function getTagName(resource_id: number) {
-    switch (resource_id) {
-        case 1:
-            return "КРЕМЛЬ"
-        case 2:
-            return "МИД"
-        case 3:
-            return "МИНОБОРОНЫ"
-        default:
-            return "не определено"
-    }
-}
+const resourceNamesMap = [
+    {rid: 1, name: "КРЕМЛЬ", active: false},
+    {rid: 2, name: "МИД", active: false},
+    {rid: 3, name: "МИНОБОРОНЫ", active: false},
+];
+
 export default function SearchResourceFilter() {
     const searchParams = useSearchParams();
-    const {push} = useRouter();
+    const {replace} = useRouter();
+    const params = new URLSearchParams(searchParams)
+    const [rid, setRid] = React.useState(0)
 
-    const handleRids = (rid: string | string[] | undefined) => {
-        let result: number[] = [];
-        if (rid && rid instanceof Array) {
-            rid.map((value) => {
-                return result.push(Number(value))
-            })
-        } else if (rid) {
-            result.push(Number(rid))
+    // устанавливаем при первой загрузке значение rid из searchParams
+    useEffect(() => {
+        const ridParam = params.get('rid');
+        if (ridParam) {
+            storage.set(`rid`, ridParam.toString())
+            setRid(Number(ridParam.toString()))
+        } else {
+            storage.remove('rid')
         }
+    }, []);
 
-        return result
+    useEffect(() => {
+        storage.get('rid') ? setRid(storage.get('rid')) : setRid(0)
+    });
+
+    function handleChangeRid(ridParam: number) {
+        rid == ridParam ? setRid(0) : setRid(ridParam);
     }
-    const rids = handleRids(searchParams.getAll('rid'));
 
-    const handleClick = (event: React.MouseEvent<HTMLElement>, rid: number) => {
+    const handleClick = (event: React.MouseEvent<HTMLElement>, ridParam: number) => {
         event.preventDefault();
         const params = new URLSearchParams(searchParams)
 
-        if (params.get('rid')) {
-            console.log(params.get('rid'))
-            params.delete('rid', rid.toString());
+        handleChangeRid(ridParam)
+
+        if (params.has('rid', ridParam.toString())) {
+            params.delete('rid', ridParam.toString());
+            storage.remove('rid')
         } else {
-            params.set('rid', `${rid}`);
+            params.set('rid', `${ridParam}`);
+            storage.set(`rid`, ridParam.toString())
         }
-        push(`?${params.toString()}`);
+
+        replace(`?${params.toString()}`);
     }
 
     return (
         <div className='flex justify-items-start gap-1'>
-            {rids ? rids.map((rid) => {
-                return (<div key={rid} className='flex flex-col'>
-                    <ResourceTag className='text-xs' rid={rid} name={getTagName(rid)} handleClick={handleClick} showIcon={true}/>
+            {resourceNamesMap.map((item) => {
+                return (<div key={item.rid} className='flex flex-col'>
+                    <ResourceTag
+                        className='text-xs'
+                        rid={item.rid}
+                        name={item.name}
+                        active={rid == item.rid}
+                        handleClick={handleClick}
+                        // showIcon={item.active}
+                    />
                 </div>);
-            }) : null}
+            })}
         </div>
     )
 }

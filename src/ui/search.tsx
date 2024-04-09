@@ -5,11 +5,12 @@ import {useRouter, useSearchParams} from "next/navigation";
 import SvoddLogoIcon from "@/ui/icons/SvoddLogoIcon";
 import SearchResourceFilter from "@/ui/search/SearchResourceFilter";
 import useMainPageURL from "@/utils/useMainPageURL";
+import Link from "next/link";
 
 export default function Search({placeholder, locale}: { placeholder: string, locale: string }) {
 
     const searchParams = useSearchParams();
-    const {replace} = useRouter();
+    const {push} = useRouter();
 
     const inputEl = useRef<HTMLInputElement>(null);
 
@@ -24,7 +25,7 @@ export default function Search({placeholder, locale}: { placeholder: string, loc
         }
     });
 
-    const href = useMainPageURL(locale)
+    const href = useMainPageURL(locale, searchParams.get('rid')?.toString()?.split(','))
 
     async function onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
@@ -32,13 +33,18 @@ export default function Search({placeholder, locale}: { placeholder: string, loc
         const formData = new FormData(event.currentTarget)
 
         const term = formData.get('query')?.toString() || '';
+        // Если задан пустой запрос, ничего не делаем return
+        if (term == '') {
+            return
+        }
         params.delete('page');
+        params.delete('url');
         if (term) {
             params.set('query', term);
         } else {
             params.delete('query');
         }
-        replace(`/${locale}/search?${params.toString()}`);
+        push(`/${locale}/search?${params.toString()}`);
     }
 
     return (
@@ -64,10 +70,10 @@ export default function Search({placeholder, locale}: { placeholder: string, loc
                     {/*<input type="checkbox" className="rounded"/> mil.ru*/}
 
                     {/*</div>*/}
-                    <a href={href}>
+                    <Link href={href}>
                         <SvoddLogoIcon
                             className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"/>
-                    </a>
+                    </Link>
                     <button className="btn-svodd" type="submit">Поиск</button>
 
                 </div>

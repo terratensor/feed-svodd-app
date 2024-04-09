@@ -10,6 +10,7 @@ import * as React from "react";
 import Pagination from "@/ui/pagination/Pagination";
 import {notFound} from "next/navigation";
 import {getAlternatesMetadata} from "@/lib/utils";
+import EmptyQuery from "@/components/EmptyQuery";
 
 
 type Props = {
@@ -50,6 +51,10 @@ export default async function Page({params: {locale}, searchParams}: Props) {
     // иначе показываем сообщение об отсутствии результатов
     if ((currentPage > getTotalPages() && totalHits > 0) || currentPage < 0) {
         return notFound();
+    }
+
+    if (query.length == 0) {
+        return <EmptyQuery />
     }
 
     return (
