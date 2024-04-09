@@ -20,11 +20,11 @@ export default function ResourceTag({className, rid, name, active, handleClick, 
         <Suspense>
         <span
             onClick={(event) => handleClick(event, rid)}
-            className={clsx('badge text-svoddWhite-300 text-xl', className, {
-                "bg-kremlin": rid == 1 && active,
-                "bg-mid": rid == 2 && active,
-                "bg-mil": rid == 3 && active,
-                "dark:bg-svoddGray-300 dark:text-svoddWhite-300 bg-gray-200 text-gray-800": !active &&(rid == 1 || rid == 2 || rid == 3)
+            className={clsx('badge text-xl', className, {
+                "bg-kremlin text-svoddWhite-300": rid == 1 && active,
+                "bg-mid text-svoddWhite-300": rid == 2 && active,
+                "bg-mil text-svoddWhite-300": rid == 3 && active,
+                "bg-gray-200 text-gray-800 dark:bg-svoddGray-300 dark:text-svoddWhite-300": !active &&(rid == 1 || rid == 2 || rid == 3)
             })}>{name.toUpperCase()}
             {showIcon ? <XMarkIcon className="w-4 h-4" /> : null}
         </span>
