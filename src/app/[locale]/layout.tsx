@@ -84,6 +84,9 @@ export async function generateMetadata({
         },
         twitter: {
             images: ['/opengraph-image.png'],
+        },
+        verification: {
+            yandex: 'e14e74173d89b6c5'
         }
     };
 }
