@@ -34,7 +34,7 @@ function EntryCardSkeleton() {
 }
 
 export function SearchedEntriesSkeleton() {
-    return <div className="flex flex-col max-w-6xl mx-auto space-y-16 text-svoddBlack-100 dark:text-svoddWhite-200">
+    return <div className="flex flex-col max-w-6xl mx-auto space-y-16 text-svoddBlack-100 dark:text-svoddWhite-200 p-3">
         <EntryCardSkeleton/>
         <EntryCardSkeleton/>
         <EntryCardSkeleton/>
