@@ -1,11 +1,15 @@
 'use client';
 
-import React, {FormEvent, Suspense, useEffect, useRef} from "react";
+import React, {FormEvent, Suspense, useEffect, useRef, useState} from "react";
 import {useRouter, useSearchParams} from "next/navigation";
 import SvoddLogoIcon from "@/ui/icons/SvoddLogoIcon";
 import SearchResourceFilter from "@/ui/search/SearchResourceFilter";
 import useMainPageURL from "@/utils/useMainPageURL";
 import Link from "next/link";
+import {useScrollPosition} from "@/utils/useScrollPosition";
+import usePrevious from "@/utils/usePrevious";
+import clsx from "clsx";
+import {className} from "postcss-selector-parser";
 
 export default function Search({placeholder, locale}: { placeholder: string, locale: string }) {
 
@@ -13,6 +17,24 @@ export default function Search({placeholder, locale}: { placeholder: string, loc
     const {push} = useRouter();
 
     const inputEl = useRef<HTMLInputElement>(null);
+    //
+    const scrollPosition = useScrollPosition();
+    const prevScrollPosition = usePrevious(scrollPosition)
+    const [isVisible, setVisible] = useState(true)
+
+    useEffect(() => {
+
+        console.log(scrollPosition - (prevScrollPosition || 0))
+        if (scrollPosition - (prevScrollPosition || 0) > 0) {
+            console.log("scrollDown")
+            setVisible(false)
+        } else {
+            console.log("scrollUp")
+            setVisible(true)
+        }
+        // something happens after it reaches 80% of the screen
+
+    }, [scrollPosition]);
 
     // Обработка состояния search input поля при каждой загрузке компонента.
     useEffect(() => {
@@ -23,7 +45,7 @@ export default function Search({placeholder, locale}: { placeholder: string, loc
                 inputEl.current.value = searchParams.get('query')?.toString() || '';
             }
         }
-    });
+    }, []);
 
     const href = useMainPageURL(locale, searchParams.get('rid')?.toString()?.split(','))
 
@@ -48,7 +70,10 @@ export default function Search({placeholder, locale}: { placeholder: string, loc
     }
 
     return (
-        <div className="search-panel opacity-100">
+        <div className={clsx('search-panel', className, {
+            "transition-all duration-250 opacity-100": isVisible,
+            "transition-all duration-250 opacity-0": !isVisible,
+        })}>
             <Suspense>
                 <form className="svodd-search-form" onSubmit={onSubmit}>
                     <div className="relative flex flex-1 flex-shrink-0">
