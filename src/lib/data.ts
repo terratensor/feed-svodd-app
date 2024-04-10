@@ -193,7 +193,7 @@ export async function fetchSitemap() {
     if (!response.ok) {
         throw new Error("failed to fetch API data");
     }
-    return await response.json();
+    return response.json();
 }
 
 function makeSitemapQuery(limit: number, locale: string) {
