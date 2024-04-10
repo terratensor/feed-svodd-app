@@ -32,60 +32,58 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
 
     return (
         <>
-            <div className="pagination flex w-full justify-center">
-                <div className={clsx('detachable fixed-bottom')}>
-                    <nav className="flex justify-center">
-                        <div className='inline-flex'>
-                        <PaginationNumber
-                            href={createPageURL(1)}
-                            page={1}
-                            position={"first"}
-                            isActive={false}
-                            isDisabled={currentPage === 1}
-                        />
-                        <PaginationArrow
-                            direction="left"
-                            href={createPageURL(currentPage - 1)}
-                            isDisabled={currentPage <= 1 || (currentPage > (getTotalPages() - 1) && getTotalPages() < currentPage - 1)}
-                        />
+            <div className="pagination flex w-full justify-center sticky bottom-0">
+                <nav className="flex justify-center detachable">
+                    <div className='inline-flex'>
+                    <PaginationNumber
+                        href={createPageURL(1)}
+                        page={1}
+                        position={"first"}
+                        isActive={false}
+                        isDisabled={currentPage === 1}
+                    />
+                    <PaginationArrow
+                        direction="left"
+                        href={createPageURL(currentPage - 1)}
+                        isDisabled={currentPage <= 1 || (currentPage > (getTotalPages() - 1) && getTotalPages() < currentPage - 1)}
+                    />
 
-                        <div className="flex -space-x-px">
-                            {allPages.map((page, index) => {
-                                let position: 'first' | 'last' | 'single' | 'middle' | undefined;
+                    <div className="flex -space-x-px">
+                        {allPages.map((page, index) => {
+                            let position: 'first' | 'last' | 'single' | 'middle' | undefined;
 
-                                if (index === 0) position = 'single';
-                                if (index === allPages.length - 1) position = 'single';
-                                if (allPages.length === 1) position = 'single';
-                                // if (page === '...') position = 'middle';
+                            if (index === 0) position = 'single';
+                            if (index === allPages.length - 1) position = 'single';
+                            if (allPages.length === 1) position = 'single';
+                            // if (page === '...') position = 'middle';
 
-                                return (
-                                    <PaginationNumber
-                                        key={index}
-                                        href={createPageURL(page)}
-                                        page={page}
-                                        position={position}
-                                        isDisabled={currentPage > (getTotalPages() - 1) && getTotalPages() <= page - 1 }
-                                        isActive={currentPage === page}
-                                    />
-                                );
-                            })}
-                        </div>
+                            return (
+                                <PaginationNumber
+                                    key={index}
+                                    href={createPageURL(page)}
+                                    page={page}
+                                    position={position}
+                                    isDisabled={currentPage > (getTotalPages() - 1) && getTotalPages() <= page - 1 }
+                                    isActive={currentPage === page}
+                                />
+                            );
+                        })}
+                    </div>
 
-                        <PaginationArrow
-                            direction="right"
-                            href={createPageURL(currentPage + 1)}
-                            isDisabled={currentPage >= getTotalPages()}
-                        />
-                        <PaginationNumber
-                            href={createPageURL(getTotalPages())}
-                            page={getTotalPages()}
-                            position={"last"}
-                            isActive={false}
-                            isDisabled={currentPage === getTotalPages()}
-                        />
-                        </div>
-                    </nav>
-                </div>
+                    <PaginationArrow
+                        direction="right"
+                        href={createPageURL(currentPage + 1)}
+                        isDisabled={currentPage >= getTotalPages()}
+                    />
+                    <PaginationNumber
+                        href={createPageURL(getTotalPages())}
+                        page={getTotalPages()}
+                        position={"last"}
+                        isActive={false}
+                        isDisabled={currentPage === getTotalPages()}
+                    />
+                    </div>
+                </nav>
             </div>
         </>
 );
