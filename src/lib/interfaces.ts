@@ -13,6 +13,7 @@ interface Source {
     published: number;
     updated: number;
     created: number;
+    updated_at: number;
     language: string;
     url: string;
     author: string;
