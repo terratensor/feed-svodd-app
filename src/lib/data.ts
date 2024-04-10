@@ -180,3 +180,27 @@ export async function fetchEntry(url: string) {
     }
     return response.json();
 }
+
+export async function fetchSitemap() {
+    const response = await fetch(`${getApiURL('/search')}`, {
+        // next: {revalidate: 60},
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(makeSitemapQuery(1000, 'ru'))
+    });
+    if (!response.ok) {
+        throw new Error("failed to fetch API data");
+    }
+    return await response.json();
+}
+
+function makeSitemapQuery(limit: number, locale: string) {
+    let query: QueryString = setInitialQuery()
+    query.query.bool.must.push({equals: {chunk: 1}})
+    query.query.bool.must.push({equals: {language: locale}});
+    query.sort = [{published: "desc"}, {created: "desc"}];
+    query.limit = limit
+    return query;
+}
