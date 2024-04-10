@@ -48,37 +48,31 @@ export default function Search({placeholder, locale}: { placeholder: string, loc
     }
 
     return (
-        <Suspense>
-            <form className="svodd-search-form" onSubmit={onSubmit}>
-                <div className="relative flex flex-1 flex-shrink-0">
+        <div className="search-panel opacity-100">
+            <Suspense>
+                <form className="svodd-search-form" onSubmit={onSubmit}>
+                    <div className="relative flex flex-1 flex-shrink-0">
 
-                    <label htmlFor="search" className="sr-only">
-                        Search
-                    </label>
-                    <input
-                        ref={inputEl}
-                        name="query"
-                        className="peer block w-full rounded-l-md border border-gray-200 py-[9px] pl-10 text-sm outline-2
-                placeholder:text-gray-500 dark:text-svoddBlack-400"
-                        placeholder={placeholder}
-                        defaultValue={searchParams.get('query')?.toString()}
-                        id="search"
-                    />
-                    {/*<div className="flex">*/}
-                    {/*<input type="checkbox" className="rounded"/> kremlin.ru*/}
-                    {/*<input type="checkbox" className="rounded"/> mid.ru*/}
-                    {/*<input type="checkbox" className="rounded"/> mil.ru*/}
-
-                    {/*</div>*/}
-                    <Link href={href}>
-                        <SvoddLogoIcon
-                            className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"/>
-                    </Link>
-                    <button className="btn-svodd" type="submit">Поиск</button>
-
-                </div>
-            </form>
-            <SearchResourceFilter/>
-        </Suspense>
+                        <label htmlFor="search" className="sr-only">
+                            Search
+                        </label>
+                        <input
+                            ref={inputEl}
+                            name="query"
+                            className="search-input"
+                            placeholder={placeholder}
+                            defaultValue={searchParams.get('query')?.toString()}
+                            id="search"
+                        />
+                        <Link href={href}>
+                            <SvoddLogoIcon
+                                className="svodd-input-logo"/>
+                        </Link>
+                        <button className="btn-svodd" type="submit">Поиск</button>
+                    </div>
+                </form>
+                <SearchResourceFilter/>
+            </Suspense>
+        </div>
     );
 }

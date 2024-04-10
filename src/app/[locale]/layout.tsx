@@ -31,7 +31,7 @@ export default async function LocaleLayout({
     unstable_setRequestLocale(locale);
     return (
         <html className="dark h-full" lang={locale}>
-        <body className={clsx(inter.className, `flex h-full flex-col bg-svoddWhite-400 dark:bg-svoddBlack-200`)}>
+        <body className={clsx(inter.className)}>
         <YandexMetrika />
         <Providers>
             <main>

@@ -8,7 +8,7 @@ export default function Footer() {
     const t = useTranslations('Footer');
 
     return (
-        <footer className="container mt-auto mx-auto max-w-[1320px] xl:px-16 md:px-5 pb-4">
+        <footer className="footer">
             <div className='mx-auto px-4'>
                 <div className='flex items-center text-center justify-between '>
                     <div
