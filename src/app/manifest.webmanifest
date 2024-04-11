@@ -1,0 +1,29 @@
+{
+    "name": "feed.svodd.ru",
+    "short_name": "svodd",
+    "icons": [
+        {
+            "src": "/icon192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "color_overrides": [
+      {
+        "media": "(prefers-color-scheme: dark)",
+        "theme_color": "#bfc3c3",
+        "background_color": "#1c1c1e"
+      },
+      {
+        "media": "(prefers-color-scheme: light)",
+        "theme_color": "#212529",
+        "background_color": "#f9f8f6"
+      }
+    ],
+    "display": "standalone"
+}
