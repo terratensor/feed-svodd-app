@@ -1,6 +1,7 @@
 import React, {forwardRef} from 'react'
 import {Menu} from '@headlessui/react'
 import Link from "next/link";
+import {Bars3Icon} from "@heroicons/react/24/solid";
 
 interface MyLinkProps {
     href: string;
@@ -25,7 +26,7 @@ MyCustomButton.displayName = 'MyCustomButton'
 export default function MyDropdown() {
     return (
         <Menu>
-            <Menu.Button>More</Menu.Button>
+            <Menu.Button><Bars3Icon className='w-7 h-7 ml-2'/></Menu.Button>
             <Menu.Items>
                 <Menu.Item>
                     {({active}) => (

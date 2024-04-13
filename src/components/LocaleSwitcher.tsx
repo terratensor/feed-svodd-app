@@ -6,6 +6,7 @@ import {usePathname, useRouter} from "@/navigation";
 import {useSearchParams} from "next/navigation";
 import {Suspense} from "react";
 import LocaleSwitcherSelect from "@/components/LocaleSwitcherSelect";
+import {ucFirst} from "@/utils/html";
 
 
 export default function LocaleSwitcher({label}: { label: string }) {
@@ -36,7 +37,7 @@ export default function LocaleSwitcher({label}: { label: string }) {
             <LocaleSwitcherSelect defaultValue={locale} label={label}>
                 {locales.map((cur) => (
                     <option key={cur} value={cur}>
-                        {cur}
+                        {ucFirst(cur)}
                     </option>
                 ))}
             </LocaleSwitcherSelect>
