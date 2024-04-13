@@ -7,6 +7,7 @@ import {Providers} from "@/app/providers";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import YandexMetrika from "@/components/YandexMetrika";
+import {getAlternatesMetadata} from "@/lib/utils";
 
 
 const inter = Inter({subsets: ['latin']});
@@ -57,17 +58,7 @@ export async function generateMetadata({
 
     return {
         metadataBase: new URL(process.env.PUBLIC_SITE_URL || 'https://feed.svodd.ru'),
-        alternates: {
-            canonical: '/',
-            languages: {
-                'ru': '/ru',
-                'en': '/en',
-                'de': '/de',
-                'fr': '/fr',
-                'es': '/es',
-                'pt': '/pt',
-            },
-        },
+        alternates: await getAlternatesMetadata({locale}),
         title: t('title'),
         description: t('description'),
         openGraph: {

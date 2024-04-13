@@ -7,8 +7,8 @@ import {fetchEntry} from "@/lib/data";
 import EntryUrl from "@/ui/entry/entry-url";
 import Head from "next/head";
 import type {Metadata, ResolvingMetadata} from "next";
-import {getAlternatesMetadata} from "@/lib/utils";
-import {headers} from "next/headers";
+import {getEntryAlternates} from "@/lib/utils";
+import {strippedHtml} from "@/utils/html";
 
 type Props = {
     params: { locale: string };
@@ -52,18 +52,21 @@ export async function generateMetadata(
 ): Promise<Metadata> {
     // read route params
     const t = await getTranslations({locale: params.locale, namespace: 'SearchPage'});
-    const query = searchParams.url;
+    const query: string = searchParams.url;
     const hits = await getHits(query);
+    const entry: Source = hits ? hits[0]?._source : null;
 
-    const alternates = await getAlternatesMetadata({
+    const alternates = await getEntryAlternates({
         locale: params.locale,
-        pathname: '/entry',
-        searchParams: searchParams
+        entry: entry
     });
+
+    const summary = entry ?
+        strippedHtml(entry.summary.trim()) : null;
 
     return {
         alternates: alternates,
-        title: hits ? hits[0]?._source.title : t('title'),
-        description: t('description'),
+        title: entry ? entry.title : t('title'),
+        description: summary && summary != "" ? summary : t('description'),
     }
 }

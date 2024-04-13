@@ -1,4 +1,3 @@
-import {number} from "prop-types";
 import {defaultLocale, locales} from "@/config";
 
 export const formatDateToLocal = (
@@ -55,38 +54,38 @@ export const showISOSDate = (timestamp: number) => {
     return date.toISOString();
 }
 
-// TODO непонятно почему если использовать объект url, то измененные searchParams не передаются в generateMetadata (page=1)
-// поэтому используется url.toString()
-export const getAlternatesMetadata = async ({locale, pathname, searchParams}: {
-    locale: string,
-    pathname: string,
-    searchParams?: {
-        query?: string;
-        page?: string;
-        rid?: string | string[];
-        url?: string;
+
+export const getAlternatesMetadata = async ({ locale }: { locale: string }) => {
+    const siteURL: URL = new URL(process.env.PUBLIC_SITE_URL || 'https://feed.svodd.ru');
+
+    siteURL.pathname = locale !== defaultLocale ? `/${locale}` : "";
+
+    return {
+        canonical: siteURL.toString(),
     }
+}
+
+export const getEntryAlternates = async ({locale, entry}: {
+    locale: string,
+    entry: Source
 }) => {
+    const initialPathname = "/entry"
     const url: URL = new URL(process.env.PUBLIC_SITE_URL || 'https://feed.svodd.ru');
 
-    url.pathname = locale !== defaultLocale ? `${locale}${pathname}` : pathname;
-    const numPage = Number(searchParams?.page);
+    url.pathname = entry.language !== defaultLocale ? `${entry.language}${initialPathname}` : initialPathname;
+    url.searchParams.set('url', entry.url);
 
-    (searchParams?.page && numPage > 1) && url.searchParams.set('page', searchParams?.page.toString());
-    searchParams?.rid && url.searchParams.set('rid', searchParams?.rid?.toString() || '');
-    searchParams?.query && url.searchParams.set('query', searchParams?.query?.toString() || '');
-    searchParams?.url && url.searchParams.set('url', searchParams?.url?.toString() || '');
+    const alternateUrl: URL = new URL(url);
 
-    const alternateUrl = new URL(url);
-    // TODO непонятно почему если использовать объект url, то измененные searchParams не передаются в generateMetadata (page=1)
-    // поэтому используется url.toString()
-    const languages: Record<string, string> = locales.reduce((obj: { [key: string]: string }, locale) => {
-        alternateUrl.pathname = `${locale}${pathname}`;
-        obj[locale] = alternateUrl.toString();
+    const languages: Record<string, string> = locales.reduce((obj: { [key: string]: string }, localeAlt) => {
+        if (localeAlt !== entry.language) {
+            alternateUrl.pathname = `${localeAlt}${initialPathname}`;
+            obj[localeAlt] = alternateUrl.toString();
+        }
         return obj;
     }, {});
 
-    return  {
+    return {
         canonical: url.toString(),
         languages: languages,
     }
