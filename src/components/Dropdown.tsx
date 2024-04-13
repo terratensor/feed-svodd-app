@@ -49,6 +49,7 @@ export default function Dropdown() {
                                         className={`${
                                             active ? 'dark:bg-svoddRed-900 bg-svoddRed-1000 text-white' : 'text-gray-900 dark:text-svoddWhite-300'
                                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                        onClick={() => window.open('https://svodd.ru')}
                                     >
                                         {active ? (
                                             <QuestionAnswer
@@ -73,6 +74,7 @@ export default function Dropdown() {
                                         className={`${
                                             active ? 'dark:bg-svoddRed-900 bg-svoddRed-1000 text-white' : 'text-gray-900 dark:text-svoddWhite-300'
                                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                        onClick={() => window.open('https://kob.svodd.ru')}
                                     >
                                         {active ? (
                                             <LibraryBooksOutlined
@@ -97,6 +99,7 @@ export default function Dropdown() {
                                         className={`${
                                             active ? 'dark:bg-svoddRed-900 bg-svoddRed-1000 text-white' : 'text-gray-900 dark:text-svoddWhite-300'
                                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                        onClick={() => window.open('https://lib.svodd.ru')}
                                     >
                                         {active ? (
                                             <LibraryBooksOutlined
@@ -123,6 +126,7 @@ export default function Dropdown() {
                                         className={`${
                                             active ? 'dark:bg-svoddRed-900 bg-svoddRed-1000 text-white' : 'text-gray-900 dark:text-svoddWhite-300'
                                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                        onClick={() => window.open('https://svodd.ru/bolshaya-svoddnaya-tema?sort=-date')}
                                     >
                                         {active ? (
                                             <ChatBubbleLeftRightIcon
@@ -147,16 +151,15 @@ export default function Dropdown() {
                                         className={`${
                                             active ? 'dark:bg-svoddRed-900 bg-svoddRed-1000 text-white' : 'text-gray-900 dark:text-svoddWhite-300'
                                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                        onClick={() => window.open('https://t.me/svoddru')}
                                     >
                                         {active ? (
                                             <Telegram
-                                                // fontSize={'small'}
                                                 className="mr-2 h-5 w-5 dark:text-red-200"
                                                 aria-hidden="true"
                                             />
                                         ) : (
                                             <Telegram
-                                                // fontSize={'small'}
                                                 className="mr-2 h-5 w-5 text-svoddRed-100"
                                                 aria-hidden="true"
                                             />
@@ -175,6 +178,7 @@ export default function Dropdown() {
                                         className={`${
                                             active ? 'dark:bg-svoddRed-900 bg-svoddRed-1000 text-white' : 'text-gray-900 dark:text-svoddWhite-300'
                                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                        onClick={() => window.open('https://svodd.ru/contact')}
                                     >
                                         {active ? (
                                             <ForwardToInboxOutlined
