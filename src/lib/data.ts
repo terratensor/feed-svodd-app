@@ -188,7 +188,7 @@ export async function fetchSitemap() {
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
-        body: JSON.stringify(makeSitemapQuery(1000, 'ru'))
+        body: JSON.stringify(makeSitemapQuery(10000))
     });
     if (!response.ok) {
         throw new Error("failed to fetch API data");
@@ -196,11 +196,11 @@ export async function fetchSitemap() {
     return response.json();
 }
 
-function makeSitemapQuery(limit: number, locale: string) {
+function makeSitemapQuery(limit: number) {
     let query: QueryString = setInitialQuery()
-    query.query.bool.must.push({equals: {chunk: 1}})
-    query.query.bool.must.push({equals: {language: locale}});
+    query.max_matches = limit;
+    query.query.bool.must.push({equals: {chunk: 1}});
     query.sort = [{published: "desc"}, {created: "desc"}];
-    query.limit = limit
+    query.limit = limit;
     return query;
 }
