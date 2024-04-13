@@ -6,6 +6,9 @@ import SvoddLogoIcon from "@/ui/icons/SvoddLogoIcon";
 import SearchResourceFilter from "@/ui/search/SearchResourceFilter";
 import useMainPageURL from "@/utils/useMainPageURL";
 import Link from "next/link";
+import {MagnifyingGlassIcon} from "@heroicons/react/24/outline";
+import Dropdown from "@/components/Dropdown";
+
 
 export default function Search({placeholder, locale}: { placeholder: string, locale: string }) {
 
@@ -68,7 +71,10 @@ export default function Search({placeholder, locale}: { placeholder: string, loc
                             <SvoddLogoIcon
                                 className="svodd-input-logo"/>
                         </Link>
-                        <button className="btn-svodd" type="submit">Поиск</button>
+                        <button className="btn-svodd" type="submit">
+                            <MagnifyingGlassIcon className="w-6 h-6"/>
+                        </button>
+                        <Dropdown />
                     </div>
                 </form>
                 <SearchResourceFilter/>

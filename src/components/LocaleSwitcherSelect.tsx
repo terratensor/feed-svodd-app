@@ -44,14 +44,13 @@ export default function LocaleSwitcherSelect({
         >
             <p className="sr-only">{label}</p>
             <select
-                className="inline-flex appearance-none bg-transparent py-3 pl-2 pr-8 border-0"
+                className="inline-flex appearance-none bg-transparent py-3 pl-2 pr-8 border-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 cursor-pointer"
                 defaultValue={defaultValue}
                 disabled={isPending}
                 onChange={onSelectChange}
             >
                 {children}
             </select>
-            {/*<span className="pointer-events-none absolute right-2 top-[8px]">⌄</span>*/}
         </label>
     );
 }
