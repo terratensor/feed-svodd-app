@@ -1,12 +1,10 @@
 import {fetchFilteredEntries} from "@/lib/data";
 import {showDate} from "@/lib/utils";
-import EntrySourceUrl from "@/ui/search/entry-source-url";
 import clsx from "clsx";
 import {className} from "postcss-selector-parser";
 import {getTranslations, unstable_setRequestLocale} from "next-intl/server";
 import EntryTags from "@/ui/search/entry-tags";
-import Link from "next/link";
-import getURL from "@/utils/getURL";
+import getURL, {getLanguagePrefix} from "@/utils/getURL";
 
 export default async function SearchedEntries({query, currentPage, rids, locale}: {
     query: string,
@@ -57,7 +55,7 @@ export default async function SearchedEntries({query, currentPage, rids, locale}
                     {/*}*/}
                     <div className={'flex justify-end'}>
                         <a className='text-svoddRed-100 underline-offset-0'
-                            href={`${locale}/entry?url=${hit._source.url}#${hit._source.chunk}`}
+                            href={`${getLanguagePrefix(locale)}/entry?url=${hit._source.url}#${hit._source.chunk}`}
                         ><span className='underline underline-offset-1'>контекст</span></a>
                     </div>
                     {

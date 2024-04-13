@@ -9,7 +9,6 @@ import SearchedEntries from "@/ui/main/searched-entries";
 import * as React from "react";
 import Pagination from "@/ui/pagination/Pagination";
 import {notFound} from "next/navigation";
-import {getAlternatesMetadata} from "@/lib/utils";
 import EmptyQuery from "@/components/EmptyQuery";
 
 
@@ -84,14 +83,9 @@ export async function generateMetadata(
     // read route params
     const t = await getTranslations({locale: params.locale, namespace: 'SearchPage'});
 
-    const alternates = await getAlternatesMetadata({
-        locale: params.locale,
-        pathname: '/search',
-        searchParams: searchParams
-    })
-
     return {
-        alternates: alternates,
+        robots: 'noindex',
+        alternates: null,
         title: t("searchResults", {query: searchParams?.query?.toString()}),
         description: t('description'),
         openGraph: {
