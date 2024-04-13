@@ -1,6 +1,7 @@
 import {usePathname} from "next/navigation";
 import {defaultLocale} from "@/config";
 import storage from "@/lib/localStorage";
+import {getLanguagePrefix} from "@/utils/getURL";
 
 export default function useMainPageURL(locale: string, rids?: string[]) {
 
@@ -18,7 +19,7 @@ export default function useMainPageURL(locale: string, rids?: string[]) {
     params.delete('page')
 
     if (params.toString().length > 0) {
-        return `/${locale}/?${params.toString()}`
+        return `${getLanguagePrefix(locale)}/?${params.toString()}`
     }
     if (locale === defaultLocale) {
         return '/';
