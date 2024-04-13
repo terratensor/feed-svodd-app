@@ -29,12 +29,12 @@ main {
     inset-x-0 mx-auto bg-svoddWhite-400 dark:bg-svoddBlack-400;
 
     .search-input {
-      @apply block w-full rounded-l-md border border-gray-200 py-[9px] pl-10
+      @apply block w-full rounded-l-md border border-gray-200 py-[9px] pl-11
       text-sm outline-2 placeholder:text-gray-500 dark:text-svoddBlack-400;
     }
 
     .svodd-input-logo {
-      @apply absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900;
+      @apply absolute left-3 top-1/2 h-[24px] w-[24px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900;
     }
   }
 }

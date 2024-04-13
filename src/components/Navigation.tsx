@@ -13,7 +13,6 @@ export default async function Navigation() {
     return (
         <>
             <Search placeholder={t("SearchPlaceholder")} locale={locale}/>
-            {/*<MainMenu/>*/}
         </>
     );
 }

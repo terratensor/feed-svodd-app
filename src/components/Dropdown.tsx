@@ -34,7 +34,7 @@ export default function Dropdown() {
                         dark:bg-svoddBlack-100 bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
                         <div className="px-1 py-1">
                             <div className='group flex w-full items-center rounded-md px-2 py-2 text-sm
-                            dark:bg-svoddBlack-100 dark:text-svoddWhite-300 bg-svoddWhite-600 text-gray-500 cursor-default'>
+                            dark:bg-svoddBlack-100 dark:text-svoddWhite-300 cursor-default'>
                                 <MagnifyingGlassIcon
                                     className="mr-2 h-5 w-5"
                                     aria-hidden="true"
@@ -57,7 +57,7 @@ export default function Dropdown() {
                                             />
                                         ) : (
                                             <QuestionAnswer
-                                                className="mr-2 h-5 w-5 text-svoddRed-400"
+                                                className="mr-2 h-5 w-5 text-svoddRed-100"
                                                 aria-hidden="true"
                                             />
                                         )}
@@ -81,7 +81,7 @@ export default function Dropdown() {
                                             />
                                         ) : (
                                             <LibraryBooksOutlined
-                                                className="mr-2 h-5 w-5 text-svoddRed-400"
+                                                className="mr-2 h-5 w-5 text-svoddRed-100"
                                                 aria-hidden="true"
                                             />
                                         )}
@@ -105,7 +105,7 @@ export default function Dropdown() {
                                             />
                                         ) : (
                                             <LibraryBooksOutlined
-                                                className="mr-2 h-5 w-5 text-svoddRed-400"
+                                                className="mr-2 h-5 w-5 text-svoddRed-100"
                                                 aria-hidden="true"
                                             />
                                         )}
@@ -131,7 +131,7 @@ export default function Dropdown() {
                                             />
                                         ) : (
                                             <ChatBubbleLeftRightIcon
-                                                className="mr-2 h-6 w-6 text-svoddRed-400"
+                                                className="mr-2 h-6 w-6 text-svoddRed-100"
                                                 aria-hidden="true"
                                             />
                                         )}
@@ -157,7 +157,7 @@ export default function Dropdown() {
                                         ) : (
                                             <Telegram
                                                 // fontSize={'small'}
-                                                className="mr-2 h-5 w-5 text-svoddRed-400"
+                                                className="mr-2 h-5 w-5 text-svoddRed-100"
                                                 aria-hidden="true"
                                             />
                                         )}
@@ -183,7 +183,7 @@ export default function Dropdown() {
                                             />
                                         ) : (
                                             <ForwardToInboxOutlined
-                                                className="mr-2 h-5 w-5 text-svoddRed-400"
+                                                className="mr-2 h-5 w-5 text-svoddRed-100"
                                                 aria-hidden="true"
                                             />
                                         )}
