@@ -9,6 +9,7 @@ import Head from "next/head";
 import type {Metadata, ResolvingMetadata} from "next";
 import {getEntryAlternates} from "@/lib/utils";
 import {strippedHtml} from "@/utils/html";
+import {notFound} from "next/navigation";
 
 type Props = {
     params: { locale: string };
@@ -25,6 +26,11 @@ export default async function Page({params: {locale}, searchParams}: Props) {
     unstable_setRequestLocale(locale);
     const t = await getTranslations('IndexPage');
     const query = searchParams.url;
+
+    if (!query) {
+        return notFound();
+    }
+
     const hits = await getHits(query);
 
     return (
@@ -55,7 +61,9 @@ export async function generateMetadata(
     const query: string = searchParams.url;
     const hits = await getHits(query);
     const entry: Source = hits ? hits[0]?._source : null;
-
+    if (!entry) {
+        return notFound();
+    }
     const alternates = await getEntryAlternates({
         locale: params.locale,
         entry: entry
