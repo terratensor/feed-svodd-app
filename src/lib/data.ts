@@ -188,7 +188,7 @@ export async function fetchSitemap() {
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
-        body: JSON.stringify(makeSitemapQuery(10000))
+        body: JSON.stringify(makeSitemapQuery(1000))
     });
     if (!response.ok) {
         throw new Error("failed to fetch API data");

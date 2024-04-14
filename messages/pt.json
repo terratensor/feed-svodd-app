@@ -44,6 +44,7 @@
   "EntrySourceUrl": {
     "kremlin": "President of Russia",
     "mid": "Ministério dos Negócios Estrangeiros da Rússia",
-    "mil": "The Ministry of Defense of the Russian Federation"
+    "mil": "The Ministry of Defense of the Russian Federation",
+    "defaultTranslation": "Unknown"
   }
 }

@@ -1,9 +1,11 @@
 import clsx from "clsx";
 import {className} from "postcss-selector-parser";
 import EntrySourceUrl from "@/ui/search/entry-source-url";
-import {showDate} from "@/lib/utils";
+import {showDate, showISOSDate} from "@/lib/utils";
 import {getTranslations} from "next-intl/server";
 import {notFound} from "next/navigation";
+import EntryJsonLD from "@/components/EntryJsonLD";
+
 
 export default async function EntryUrl({hits, locale}: { hits: Hit[], locale: string }) {
     const t = await getTranslations('LatestEntries');
@@ -21,6 +23,7 @@ export default async function EntryUrl({hits, locale}: { hits: Hit[], locale: st
                 className={clsx('relative group', className, {
                     "!mt-10": true
                 })}>
+                <EntryJsonLD entry={hit._source}/>
                 <div
                     className="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 rounded-2xl bg-svoddWhite-600 dark:bg-svoddBlack-400"></div>
                 <div className="relative">
@@ -54,7 +57,10 @@ export default async function EntryUrl({hits, locale}: { hits: Hit[], locale: st
                         <dd className="whitespace-nowrap text-sm leading-6 dark:text-slate-400">
                             {hit._source.published ?
                                 <time
-                                    dateTime="2024-03-06T16:30:00.000Z">{showDate(hit._source.published, locale)}</time>
+                                    dateTime={showISOSDate(hit._source.published)}
+                                >{
+                                    showDate(hit._source.published, locale)}
+                                </time>
                                 : t("dateNotSet")}
                         </dd>
                     </dl>
