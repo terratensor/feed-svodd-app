@@ -4,19 +4,20 @@ import clsx from "clsx";
 import {className} from "postcss-selector-parser";
 import {getTranslations, unstable_setRequestLocale} from "next-intl/server";
 import EntryTags from "@/ui/search/entry-tags";
-import getURL, {getLanguagePrefix} from "@/utils/getURL";
+import {getLanguagePrefix} from "@/utils/getURL";
 
-export default async function SearchedEntries({query, currentPage, rids, locale}: {
+export default async function SearchedEntries({query, currentPage, rids, sort, locale}: {
     query: string,
     currentPage: number,
     rids: number[],
+    sort: string,
     locale: string
 }) {
 // Enable static rendering
     unstable_setRequestLocale(locale);
     const t = await getTranslations('LatestEntries');
 
-    const latestEntries = await fetchFilteredEntries(locale, query, currentPage, rids);
+    const latestEntries = await fetchFilteredEntries(locale, query, currentPage, rids, sort);
     const hits = latestEntries["hits"] ? latestEntries["hits"]["hits"] : [];
 
     function getTagName(resource_id: number) {
@@ -42,8 +43,8 @@ export default async function SearchedEntries({query, currentPage, rids, locale}
             <article
                 key={hit._id}
                 data-url={hit._source.url}
-                className={clsx('relative group', className, {
-                    "!mt-10": index == 0
+                className={clsx('relative group mx-5 lg:mx-0', className, {
+                    "!mt-8": index == 0
                 })}>
                 <div
                     className="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 rounded-2xl bg-svoddWhite-600 dark:bg-svoddBlack-400"></div>

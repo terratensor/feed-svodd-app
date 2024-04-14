@@ -7,8 +7,8 @@ type Props = {
 export default function PageLayout({children}: Props) {
 
     return (
-        <div className="mt-[50px]">
-            <div className="mx-auto px-5">{children}</div>
+        <div className="mt-[55px]">
+            <div className="mx-auto">{children}</div>
         </div>
     );
 }

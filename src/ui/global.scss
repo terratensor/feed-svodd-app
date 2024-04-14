@@ -20,6 +20,10 @@ input[type='number']::-webkit-outer-spin-button {
   margin: 0;
 }
 
+select.entries-sort option {
+  @apply dark:bg-svoddBlack-200 bg-svoddWhite-400;
+}
+
 main {
   .container {
     @apply lg:p-6 p-3 lg:pb-0 pb-0;
