@@ -7,6 +7,7 @@ import {Providers} from "@/app/providers";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import YandexMetrika from "@/components/YandexMetrika";
+import { GoogleAnalytics } from '@next/third-parties/google'
 import {getAlternatesMetadata} from "@/lib/utils";
 
 
@@ -45,6 +46,7 @@ export default async function LocaleLayout({
             </main>
             <Footer/>
         </Providers>
+        {process.env.NODE_ENV === 'production' && <GoogleAnalytics gaId="G-ZXB6SWHW8E" />}
         </body>
         </html>
     );
