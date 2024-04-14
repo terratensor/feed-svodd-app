@@ -57,7 +57,18 @@ function makeIndexQuery(offset: number, rids: number[], locale: string) {
     return query;
 }
 
-function makeQuery(text: string, offset: number, rids: number[], locale: string) {
+function getSortOrder(sortBy: string | undefined) {
+    switch (sortBy) {
+        case "date":
+            return [{published: "desc"}, {created: "desc"}];
+        case "-date":
+            return [{published: "asc"}, {created: "asc"}];
+        default:
+            return [];
+    }
+}
+
+function makeQuery(text: string, offset: number, rids: number[], locale: string, sort?: string) {
 
     let query: QueryString = setInitialQuery()
 
@@ -65,26 +76,6 @@ function makeQuery(text: string, offset: number, rids: number[], locale: string)
         if (query.highlight) {
             query.highlight.fields = ["summary", "content"];
         }
-        query.sort = [
-            {
-                published: "desc"
-            },
-            {
-                created: "desc"
-            }
-        ]
-    }
-
-    if (text === "") {
-        query.query.bool.must.push({equals: {language: locale}});
-        query.sort = [
-            {
-                published: "desc"
-            },
-            {
-                created: "desc"
-            }
-        ]
     }
 
     if (rids && rids.length > 0) {
@@ -93,6 +84,8 @@ function makeQuery(text: string, offset: number, rids: number[], locale: string)
 
     query.query.query_string = text;
     query.offset = offset
+
+    query.sort = getSortOrder(sort);
 
     if (offset >= 1000 && offset < MAX_OFFSET) {
         query.max_matches = offset + ITEMS_PER_PAGE
@@ -128,7 +121,7 @@ export async function fetchEntries(locale: string, currentPage: number, rids: nu
     }
     return response.json();
 }
-export async function fetchFilteredEntries(locale: string, text: string, currentPage: number, rids: number[]) {
+export async function fetchFilteredEntries(locale: string, text: string, currentPage: number, rids: number[], sort: string) {
     noStore();
     const offset = (currentPage - 1) * ITEMS_PER_PAGE;
     // await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -138,7 +131,7 @@ export async function fetchFilteredEntries(locale: string, text: string, current
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
-        body: JSON.stringify(makeQuery(text, offset, rids, locale))
+        body: JSON.stringify(makeQuery(text, offset, rids, locale, sort))
     });
     if (!response.ok) {
         throw new Error("failed to fetch API data");

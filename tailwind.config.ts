@@ -34,6 +34,7 @@ const config: Config = {
           border: '#dee2e6',
         },
         svoddGray: {
+          100: '#E5E7EB', // border input
           300: '#495057', //--bs-border-color
           400:'#504f4f',
           500: '#343a40', //--bs-secondary-bg

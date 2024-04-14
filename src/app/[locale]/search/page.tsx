@@ -10,6 +10,7 @@ import * as React from "react";
 import Pagination from "@/ui/pagination/Pagination";
 import {notFound} from "next/navigation";
 import EmptyQuery from "@/components/EmptyQuery";
+import SortFilter from "@/ui/sorting/SortFilter";
 
 
 type Props = {
@@ -18,13 +19,14 @@ type Props = {
         query?: string;
         page?: string;
         rid?: string | string[];
+        sort?: string;
     }
 };
 export default async function Page({params: {locale}, searchParams}: Props) {
     unstable_setRequestLocale(locale);
-    const t = await getTranslations('SearchPage');
 
     const query = searchParams?.query || '';
+    const sort = searchParams?.sort || '';
     const currentPage = Number(searchParams?.page) || 1;
     const lastPageLimit = MAX_OFFSET / ITEMS_PER_PAGE;
 
@@ -53,7 +55,7 @@ export default async function Page({params: {locale}, searchParams}: Props) {
     }
 
     if (query.length == 0) {
-        return <EmptyQuery />
+        return <EmptyQuery/>
     }
 
     return (
@@ -62,11 +64,15 @@ export default async function Page({params: {locale}, searchParams}: Props) {
                 <div
                     className={`flex flex-col max-w-6xl mx-auto my-6 space-y-16 lg:pt-0 pt-5 text-svoddBlack-100 dark:text-svoddWhite-200`}
                 >
-                    <SearchSummary totalHits={totalHits} currentPage={currentPage}/>
+                    <div className="flex flex-col sm:flex-row sm:justify-between justify-start items-baseline sm:mt-3 md:mt-4">
+                        <SearchSummary totalHits={totalHits} currentPage={currentPage}/>
+                        <SortFilter locale={locale}/>
+                    </div>
                     <SearchedEntries
                         query={query}
                         currentPage={currentPage}
                         rids={rids}
+                        sort={sort}
                         locale={locale}
                     />
                 </div>

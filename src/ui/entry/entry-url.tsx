@@ -20,8 +20,8 @@ export default async function EntryUrl({hits, locale}: { hits: Hit[], locale: st
             <article
                 key={hit._id}
                 data-url={hit._source.url}
-                className={clsx('relative group', className, {
-                    "!mt-10": true
+                className={clsx('relative group mx-5 lg:mx-0', className, {
+                    "!mt-8": true
                 })}>
                 <EntryJsonLD entry={hit._source}/>
                 <div
