@@ -78,14 +78,21 @@ function makeQuery(text: string, offset: number, rids: number[], locale: string,
         }
     }
 
+    // Условия для отображения записей на главной.
+    // TODO разделить запросы
+    if (text === "") {
+        query.query.bool.must.push({equals: {language: locale}});
+        query.sort = [{published: "desc"}, {created: "desc"}]
+    } else {
+        query.sort = getSortOrder(sort);
+    }
+
     if (rids && rids.length > 0) {
         query.query.bool.must.push({in: {resource_id: rids}})
     }
 
     query.query.query_string = text;
     query.offset = offset
-
-    query.sort = getSortOrder(sort);
 
     if (offset >= 1000 && offset < MAX_OFFSET) {
         query.max_matches = offset + ITEMS_PER_PAGE
