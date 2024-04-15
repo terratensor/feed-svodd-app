@@ -28,7 +28,7 @@ export default function SortFilter({locale}: { locale: string }) {
             <select
                 id="input-sort"
                 className="entries-sort relative rounded-md border-0 bg-transparent py-2 pl-4 pr-7
-                 text-svoddBlack-100 dark:text-svoddWhite-200 ring-1 ring-inset ring-svoddGray-100 dark:ring-gray-700 focus:ring-svoddRed-400 text-sm leading-6
+                 text-svoddBlack-100 dark:text-svoddWhite-200 ring-1 ring-inset ring-svoddGray-100 dark:ring-gray-700 focus:ring-svoddGray-100 text-sm leading-6
                  w-full sm:w-auto cursor-pointer"
                 onChange={handleSort}
             >
