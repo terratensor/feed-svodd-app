@@ -66,7 +66,7 @@ export default async function Page({params: {locale}, searchParams}: Props) {
                 >
                     <div className="flex flex-col sm:flex-row sm:justify-between justify-start items-baseline sm:mt-3 md:mt-4">
                         <SearchSummary totalHits={totalHits} currentPage={currentPage}/>
-                        <SortFilter locale={locale}/>
+                        {totalHits ? <SortFilter locale={locale}/> : null }
                     </div>
                     <SearchedEntries
                         query={query}
