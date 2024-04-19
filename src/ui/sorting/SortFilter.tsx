@@ -32,9 +32,9 @@ export default function SortFilter({locale}: { locale: string }) {
                  w-full sm:w-auto cursor-pointer"
                 onChange={handleSort}
             >
-                <option selected={true} value={''}>Сортировка по умолчанию</option>
-                <option value={'date'}>Сначала новые записи</option>
-                <option value={'-date'}>Сначала старые записи</option>
+                <option selected={(searchParams.get('sort') === undefined)} value={''}>Сортировка по умолчанию</option>
+                <option selected={(searchParams.get('sort') === 'date')} value={'date'}>Сначала новые записи</option>
+                <option selected={(searchParams.get('sort') === '-date')} value={'-date'}>Сначала старые записи</option>
 
             </select>
         </div>
