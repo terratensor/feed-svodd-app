@@ -3,7 +3,7 @@ import PageLayout from "@/components/PageLayout";
 import LatestEntries from "@/ui/search/latest-entries";
 import {
     fetchEntries,
-    fetchFilteredEntriesTotalHits,
+    fetchIndexEntriesTotalHits,
     ITEMS_PER_PAGE,
     MAX_OFFSET
 } from "@/lib/data";
@@ -47,7 +47,7 @@ export default async function Page({params: {locale}, searchParams}: Props) {
     }
     const rids = handleRids(searchParams?.rid);
 
-    const totalHits = await fetchFilteredEntriesTotalHits(locale, query, rids)
+    const totalHits = await fetchIndexEntriesTotalHits(locale, rids)
     const totalPages = Math.ceil(totalHits / ITEMS_PER_PAGE)
 
     const getTotalPages = () => totalPages < lastPageLimit ? totalPages : lastPageLimit
