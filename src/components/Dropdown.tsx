@@ -126,7 +126,7 @@ export default function Dropdown() {
                                         className={`${
                                             active ? 'dark:bg-svoddRed-900 bg-svoddRed-1000 text-white' : 'text-gray-900 dark:text-svoddWhite-300'
                                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                                        onClick={() => window.open('https://svodd.ru/bolshaya-svoddnaya-tema?sort=-date')}
+                                        onClick={() => window.open('https://svodd.ru/bolshaya-svoddnaya-tema')}
                                     >
                                         {active ? (
                                             <ChatBubbleLeftRightIcon
