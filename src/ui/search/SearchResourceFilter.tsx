@@ -2,18 +2,15 @@ import ResourceTag from "@/ui/search/ResourceTag";
 import React, {useEffect} from "react";
 import {useRouter, useSearchParams} from "next/navigation";
 import storage from "@/lib/localStorage";
-
-const resourceNamesMap = [
-    {rid: 1, name: "КРЕМЛЬ", active: false},
-    {rid: 2, name: "МИД", active: false},
-    {rid: 3, name: "МИНОБОРОНЫ", active: false},
-];
+import {useLocale} from "next-intl";
+import {resourceNamesMap} from "@/lib/utils";
 
 export default function SearchResourceFilter() {
     const searchParams = useSearchParams();
     const {replace} = useRouter();
     const params = new URLSearchParams(searchParams)
     const [rid, setRid] = React.useState(0)
+    const locale = useLocale();
 
     // устанавливаем при первой загрузке значение rid из searchParams
     useEffect(() => {
@@ -61,7 +58,7 @@ export default function SearchResourceFilter() {
                         name={item.name}
                         active={rid == item.rid}
                         handleClick={handleClick}
-                        // showIcon={item.active}
+                        locale={locale}
                     />
                 </div>);
             })}

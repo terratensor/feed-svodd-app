@@ -96,3 +96,9 @@ export const getEntryAlternates = async ({locale, entry}: {
         languages: languages,
     }
 }
+
+export const resourceNamesMap = [
+    {rid: 1, name: "КРЕМЛЬ", active: false, locale: ["ru", "en"]},
+    {rid: 2, name: "МИД", active: false, locale: ["ru", "en", "de", "fr", "pt", "es"]},
+    {rid: 3, name: "МИНОБОРОНЫ", active: false, locale: ["ru"]},
+];
