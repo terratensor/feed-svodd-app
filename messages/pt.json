@@ -16,7 +16,8 @@
   },
   "SearchSummary": {
     "summary": "Mostrando entradas {start} – {next} de {totalHits}",
-    "notFound": "Não foram encontrados resultados para sua solicitação"
+    "notFound": "Não foram encontrados resultados para sua solicitação",
+    "noEntries": "Não há entradas que correspondam aos filtros especificados"
   },
   "LatestEntries": {
     "dateNotSet": "Data não definida",
