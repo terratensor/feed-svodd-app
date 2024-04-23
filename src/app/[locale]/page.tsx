@@ -51,8 +51,8 @@ export default async function Page({params: {locale}, searchParams}: Props) {
     const totalPages = Math.ceil(totalHits / ITEMS_PER_PAGE)
 
     const getTotalPages = () => totalPages < lastPageLimit ? totalPages : lastPageLimit
-    // Если задан параметр страницы более чем установленный лимит, то показывает 404
-    if (currentPage > getTotalPages() || currentPage < 0) {
+    // Если задан параметр страницы более чем установленный лимит, то показывает 404 и не установлен rid
+    if ((currentPage > getTotalPages() || currentPage < 0) && !searchParams?.rid ) {
         return notFound();
     }
 
