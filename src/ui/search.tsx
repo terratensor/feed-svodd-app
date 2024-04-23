@@ -28,7 +28,7 @@ export default function Search({placeholder, locale}: { placeholder: string, loc
         }
     });
 
-    const href = useMainPageURL(locale, searchParams.get('rid')?.toString()?.split(','))
+    const href = useMainPageURL(locale, searchParams.get('rid')?.toString())
 
     async function onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
