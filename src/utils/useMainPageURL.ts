@@ -2,27 +2,27 @@ import {usePathname} from "next/navigation";
 import {defaultLocale} from "@/config";
 import storage from "@/lib/localStorage";
 import {getLanguagePrefix} from "@/utils/getURL";
+import {resourceNamesMap} from "@/lib/utils";
 
-export default function useMainPageURL(locale: string, rids?: string[]) {
+export default function useMainPageURL(locale: string, rid?: string | undefined) {
 
     const pathname = usePathname();
+    const resource = resourceNamesMap.find(item => item.rid === Number(rid));
 
     const params = new URLSearchParams();
 
-    if (!rids && storage.get('rid')) {
-        params.append('rid', storage.get('rid'));
-    } else {
-        rids && rids.map((rid) => {
-            params.append('rid', rid);
-        })
+    if (resource?.locale.map(locale => locale).includes(locale as string)) {
+        if (!rid && storage.get('rid')) {
+            params.append('rid', storage.get('rid'));
+        } else {
+            params.append('rid', rid as string);
+        }
+        params.delete('page')
     }
-    params.delete('page')
 
     if (params.toString().length > 0) {
         return `${getLanguagePrefix(locale)}/?${params.toString()}`
     }
-    if (locale === defaultLocale) {
-        return '/';
-    }
-    return `/${locale}`;
+
+    return locale === defaultLocale ? '/' : `/${locale}`;
 }

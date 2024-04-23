@@ -17,7 +17,8 @@
   },
   "SearchSummary": {
     "summary": "Showing entries {start} – {next} of {totalHits}",
-    "notFound": "No results were found for your request"
+    "notFound": "No results were found for your request",
+    "noEntries": "There are no records matching the specified filters"
   },
   "LatestEntries": {
     "dateNotSet": "Date not set",

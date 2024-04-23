@@ -3,11 +3,13 @@ import * as React from "react";
 import {useRouter, useSearchParams} from "next/navigation";
 import ResourceTag from "@/ui/search/ResourceTag";
 import storage from "@/lib/localStorage";
+import {useLocale} from "next-intl";
 
 export default function EntryTags({hit, name}: { hit: Hit, name: string }) {
     const rid = hit._source.resource_id;
     const searchParams = useSearchParams();
     const {push} = useRouter();
+    const locale = useLocale();
     const handleClick = (event: React.MouseEvent<HTMLElement>, rid: number) => {
         event.preventDefault();
         const params = new URLSearchParams(searchParams)
@@ -28,5 +30,6 @@ export default function EntryTags({hit, name}: { hit: Hit, name: string }) {
         rid={rid}
         name={name}
         handleClick={handleClick}
+        locale={locale}
     />;
 }

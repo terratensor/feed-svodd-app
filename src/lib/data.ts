@@ -146,6 +146,25 @@ export async function fetchFilteredEntries(locale: string, text: string, current
     return response.json();
 }
 
+export async function fetchIndexEntriesTotalHits(locale: string, rids: number[]) {
+    noStore();
+
+    const response = await fetch(`${getApiURL('/search')}`, {
+        // next: {revalidate: 60},
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(makeIndexQuery(0, rids, locale))
+    });
+    if (!response.ok) {
+        throw new Error("failed to fetch API data");
+    }
+    let hits = await response.json();
+
+    return Math.ceil(Number(hits["hits"] ? hits["hits"]["total"] : 0))
+}
+
 export async function fetchFilteredEntriesTotalHits(locale: string, text: string, rids: number[]) {
     noStore();
 

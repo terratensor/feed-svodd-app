@@ -24,12 +24,22 @@ export default function LocaleSwitcherSelect({
     function onSelectChange(event: ChangeEvent<HTMLSelectElement>) {
         const nextLocale = event.target.value;
         const params = new URLSearchParams(searchParams);
+
+        let href: string;
+        // Если это поисковый запрос, то переключаем язык и страницу,
+        // если иное, то переводим на главную с переключением языка интерфейса
+        if (params.has('query')){
+            href = `${pathname}?${params.toString()}`;
+        } else {
+            href = '/';
+        }
+
         startTransition(() => {
             router.replace(
                 // @ts-expect-error -- TypeScript will validate that only known `params`
                 // are used in combination with a given `pathname`. Since the two will
                 // always match for the current route, we can skip runtime checks.
-                `${pathname}?${params.toString()}`,
+                href,
                 {locale: nextLocale}
             );
         });

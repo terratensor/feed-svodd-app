@@ -2,6 +2,8 @@ import {Suspense} from "react";
 import clsx from "clsx";
 import * as React from "react";
 import {XMarkIcon} from "@heroicons/react/16/solid";
+import {resourceNamesMap} from "@/lib/utils";
+import {usePathname} from "next/navigation";
 
 interface ResourceTagProps {
     className?: string;
@@ -10,14 +12,20 @@ interface ResourceTagProps {
     handleClick: (event: React.MouseEvent<HTMLElement>, rid: number) => void;
     showIcon?: boolean;
     active?: boolean;
+    locale?: string;
 }
 
-export default function ResourceTag({className, rid, name, active, handleClick, showIcon}: ResourceTagProps) {
+export default function ResourceTag({className, rid, name, active, handleClick, locale, showIcon}: ResourceTagProps) {
     if (active === undefined) {
         active = true
     }
-    return (<>
-        <Suspense>
+
+    const resource = resourceNamesMap.find(item => item.rid === rid);
+    const pathname = usePathname();
+
+    if (pathname.includes('search') || resource?.locale.map(locale => locale).includes(locale as string)) {
+        return (<>
+            <Suspense>
         <span
             onClick={(event) => handleClick(event, rid)}
             className={clsx('badge text-xl', className, {
@@ -28,6 +36,9 @@ export default function ResourceTag({className, rid, name, active, handleClick, 
             })}>{name.toUpperCase()}
             {showIcon ? <XMarkIcon className="w-4 h-4" /> : null}
         </span>
-        </Suspense>
-    </>);
+            </Suspense>
+        </>);
+    }
+
+    return null;
 }
