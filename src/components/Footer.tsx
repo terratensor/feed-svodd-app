@@ -18,7 +18,7 @@ export default function Footer() {
                         СВОДД 24.02.2022 - {new Date().getFullYear()}
                     </div>
                     <div>
-                        <LocaleSwitcher label={t('localeSwitcher.label')}/>
+                        {/* <LocaleSwitcher label={t('localeSwitcher.label')}/> */}
                         <ThemeSwitch />
                     </div>
                 </div>
