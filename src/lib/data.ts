@@ -2,6 +2,7 @@ import {unstable_noStore as noStore} from "next/cache";
 import getApiURL from "@/utils/getApiURL";
 import {number} from "prop-types";
 import getIndexName from "@/utils/getIndexName";
+import { defaultLocale } from "@/config";
 
 export const ITEMS_PER_PAGE = 20;
 export const MAX_OFFSET = 10000;
@@ -219,6 +220,8 @@ function makeSitemapQuery(limit: number) {
     let query: QueryString = setInitialQuery()
     query.max_matches = limit;
     query.query.bool.must.push({equals: {chunk: 1}});
+    // Фильтруем по языку по умолчанию (русский)
+    query.query.bool.must.push({equals: {language: defaultLocale}});
     query.sort = [{published: "desc"}, {created: "desc"}];
     query.limit = limit;
     return query;
