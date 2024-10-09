@@ -1,25 +1,26 @@
 import {Pathnames} from 'next-intl/navigation';
 
-export const locales = ['ru', 'en', 'de', 'fr', 'es', 'pt'] as const;
+// export const locales = ['ru', 'en', 'de', 'fr', 'es', 'pt'] as const;
+export const locales = ['ru'] as const;
 export const defaultLocale = 'ru';
 
 export const pathnames = {
     '/': '/',
     '/search': {
         ru: '/search',
-        en: '/search',
-        de: '/search',
-        fr: '/search',
-        es: '/search',
-        pt: '/search',
+        // en: '/search',
+        // de: '/search',
+        // fr: '/search',
+        // es: '/search',
+        // pt: '/search',
     },
     '/entry': {
         ru: '/entry',
-        en: '/entry',
-        de: '/entry',
-        fr: '/entry',
-        es: '/entry',
-        pt: '/entry',
+        // en: '/entry',
+        // de: '/entry',
+        // fr: '/entry',
+        // es: '/entry',
+        // pt: '/entry',
     }
 } satisfies Pathnames<typeof locales>;
 
